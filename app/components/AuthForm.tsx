@@ -1,34 +1,45 @@
-"use client"
-import { useState } from "react"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function AuthForm({ mode }: { mode: "login" | "register" }) {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
-      const res = await fetch(`/api/auth/${mode === "register" ? "register" : "login"}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, ...(mode === "register" ? { name } : {}) }),
-      })
+      const res = await fetch(
+        `/api/auth/${mode === "register" ? "register" : "login"}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+            ...(mode === "register" ? { name } : {}),
+          }),
+        }
+      );
 
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || "Something went wrong")
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong");
 
-      window.location.href = "/dashboard"
-    } catch (err: any) {
-      setError(err.message)
+      window.location.href = "/dashboard";
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong");
+      }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -41,7 +52,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === "register" && (
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Name (optional)</label>
+              <label className="block text-sm text-gray-600 mb-1">
+                Name (optional)
+              </label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -77,7 +90,11 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
             disabled={loading}
             className="w-full rounded-xl bg-[#5F6560] text-white py-2 font-medium hover:opacity-90 transition disabled:opacity-50"
           >
-            {loading ? "Please wait…" : mode === "register" ? "Sign Up" : "Log In"}
+            {loading
+              ? "Please wait…"
+              : mode === "register"
+              ? "Sign Up"
+              : "Log In"}
           </button>
         </form>
         <p className="text-sm text-center mt-4 text-gray-600">
@@ -99,5 +116,5 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
         </p>
       </div>
     </div>
-  )
+  );
 }
