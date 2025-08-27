@@ -6,8 +6,12 @@ const MONGODB_URI = process.env.MONGODB_URI!
 
 if (!MONGODB_URI) throw new Error("MONGODB_URI is not set")
 
+interface Cached {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
 
-let cached = (global as any).mongoose as { conn: typeof mongoose | null promise: Promise<typeof mongoose> | null }
+let cached = (global as any).mongoose as Cached;
 
 
 if (!cached) {
