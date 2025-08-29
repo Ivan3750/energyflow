@@ -6,12 +6,10 @@ body{
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   position: relative;
-  /* background: rgb(255, 255, 255); */
   border-radius: 50px;
   overflow: hidden;
 }
 
-/* Ліва частина */
 .left {
   position: relative;
   display: flex;
@@ -42,7 +40,6 @@ body{
   font-size: 14px;
 }
 
-/* Права частина */
 .right {
   border-bottom-left-radius: 50px;
   display: flex;
@@ -69,4 +66,64 @@ body{
   font-size: 18px;
   color: #555;
   max-width: 500px;
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    
+  }
+  .heroImage{
+    height: 100%;
+  }
+  .right {
+    padding: 30px;
+    width: 360px;
+  }
+
+  .hashtags {
+    bottom: 10px;
+    left: 10px;
+    gap: 4px;
+  }
+
+  .hashtags span {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 375px) {
+  .heroImage{
+    border-radius: 50px;
+  }
+  .hero {
+    border: 1px solid #000;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+  }
+
+  .left, .right {
+    padding: 20px;
+  }
+
+  .right h1 {
+    font-size: 28px;
+  }
+
+  .right p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .hashtags {
+    bottom: 15px;
+    left: 15px;
+    gap: 5px;
+  }
+
+  .hashtags span {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
 }
