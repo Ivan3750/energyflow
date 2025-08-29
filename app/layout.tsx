@@ -4,7 +4,7 @@ import { DM_Sans } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"  
 import Footer from './components/Footer/Footer';
-
+import {TranslateProvider} from "./hooks/useTranslate"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,9 +37,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} antialiased bg-gray-50`}
       >
+                <TranslateProvider>
+
         <Header />
         {children}
                 <Footer />
+        </TranslateProvider>
 
       </body>
     </html>
