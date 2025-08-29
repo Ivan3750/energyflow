@@ -7,12 +7,10 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa"
 export default function Header() {
   return (
     <header className={styles.header}>
-      {/* Лого */}
       <div className={styles.logo}>
         energy.<span>flow</span>
       </div>
-
-      {/* Навігація */}
+      
       <nav className={styles.nav}>
         <Link href="/" className={`${styles.navItem} ${styles.active}`}>
           Home
@@ -22,11 +20,11 @@ export default function Header() {
         </Link>
       </nav>
 
-      {/* Соцмережі */}
+      
       <div className={styles.socials}>
-        <a href="#"><FaFacebookF /></a>
-        <a href="#"><FaInstagram /></a>
-        <a href="#"><FaYoutube /></a>
+        <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
+        <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
+        <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
       </div>
     </header>
   )

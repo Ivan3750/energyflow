@@ -1,13 +1,19 @@
-import Hero from "./components/Hero"
 import Footer from "./components/Footer/Footer"
 import Card from "./components/Card"
-import QuoteCard from "./components/QuoteCard"
+import Image from "next/image"
+import Hero from "./components/Hero";
+import InfoBlock from "./components/InfoBlolck"
+import QuoteCard from "./components/QuoteCard";
+import Exercises from "./components/Exercises";
+
 
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen flex flex-col items-center gap-8 p-8">
-      <main className="flex flex-col gap-6 items-center">
+    
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+
         <Hero />
         
         
@@ -18,7 +24,12 @@ export default function Home() {
         </div>
         <QuoteCard />
 
-        <Footer />
+
+        
+
+        <Exercises />
+        <InfoBlock />
+        
       </main>
     </div>
   )
