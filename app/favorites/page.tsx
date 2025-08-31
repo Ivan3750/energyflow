@@ -51,7 +51,10 @@ export default function FavoritesPage() {
       <h1 className="text-xl font-bold mb-4">Favorites</h1>
 
       {favorites.length === 0 ? (
-        <p>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>
+<p>
+  It appears that you haven&apos;t added any exercises to your favorites yet. 
+  To get started, you can add exercises that you like to your favorites for easier access in the future.
+</p>
       ) : (
         <div className="flex gap-4 flex-wrap">
           {favorites.map(item => (
