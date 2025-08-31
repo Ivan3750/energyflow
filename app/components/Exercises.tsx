@@ -1,5 +1,5 @@
 import Muscles from "./Muscles";
-
+import BodyParts from "./BodyParts";
 export default function Exercises() {
     return (
         <div className="w-full flex justify-center">
@@ -22,7 +22,8 @@ export default function Exercises() {
 
 
                 <div >
-                    <Muscles />
+                    {/* <Muscles /> */}
+                    <BodyParts />
                 </div>
             </section>
         </div>
