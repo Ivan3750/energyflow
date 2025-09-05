@@ -5,6 +5,8 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
+  width: 1400px;
+  margin: 0 auto;
   position: relative;
   border-radius: 50px;
   overflow: hidden;
@@ -70,8 +72,9 @@ body{
 
 
 @media (max-width: 768px) {
-  .hero {
-    
+  .hero{
+    width: 550px;
+    margin-right: 850px;
   }
   .heroImage{
     height: 100%;
@@ -82,19 +85,28 @@ body{
   }
 
   .hashtags {
-    bottom: 10px;
-    left: 10px;
-    gap: 4px;
+    height: 50px;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    display: grid;
+    grid-template-columns: repeat(2, auto); 
+    gap: 8px 8px;
   }
 
   .hashtags span {
-    padding: 3px 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 3px 6px 3px 6px;
+    border-radius: 20px;
     font-size: 11px;
+    text-align: center;
   }
 }
 
 @media (max-width: 375px) {
-  .heroImage{
+  /* .heroImage{
     border-radius: 50px;
   }
   .hero {
@@ -125,5 +137,5 @@ body{
   .hashtags span {
     padding: 4px 8px;
     font-size: 12px;
-  }
-}
+  } */
+} 

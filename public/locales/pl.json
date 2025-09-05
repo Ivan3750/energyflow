@@ -1,0 +1,46 @@
+{
+  "home": "Dom",
+  "favorites": "Ulubione",
+  
+  
+  "hero_hashtag1": "#Sport",
+  "hero_hashtag2": "#Zdrowie",
+  "hero_hashtag3": "#Trening",
+  "hero_hashtag4": "#Dieta",
+  "hero_title_part1": "Zyskaj",
+  "hero_title_em": "Formę",
+  "hero_title_part2": "i bądź zdrowy",
+  "hero_subtitle": "Przekształć swoją sylwetkę i prowadź zdrowszy styl życia dzięki naszemu kompleksowemu wsparciu fitness i żywienia.",
+
+  "info_time": "110 min",
+  "info_subtitle": "Dzienne minimum sportu",
+  "info_text": "Światowa Organizacja Zdrowia zaleca co najmniej 150 minut umiarkowanej aktywności fizycznej tygodniowo dla dorosłych w wieku 18–64 lata. A co, jeśli zmienimy to na 110 minut codziennie?",
+
+  "quote_title": "Cytat dnia",
+  "quote_loading": "Ładowanie...",
+
+
+  "favorites_title": "Ulubione",
+  "favorites_empty": "Wygląda na to, że nie dodałeś jeszcze żadnych ćwiczeń do ulubionych. Aby rozpocząć, możesz dodać ćwiczenia, które lubisz, aby łatwiej do nich wrócić w przyszłości.",
+  "favorites_workout": "TRENING",
+  "favorites_delete": "Usuń",
+  "favorites_burned": "Spalone kalorie",
+  "favorites_bodyPart": "Część ciała",
+  "favorites_target": "Cel",
+  "favorites_min": "min",
+
+  "footer_title1": "Przekształcamy twoją",
+  "footer_title_em": "sylwetkę",
+  "footer_title2": "razem z nami",
+  "footer_subscribe_text": "Zapisz się i poznaj nowe ćwiczenia!",
+  "footer_email_placeholder": "Email",
+  "footer_send": "Wyślij",
+  "footer_success": "Subskrypcja zakończona sukcesem!",
+  "footer_error": "Coś poszło nie tak. Spróbuj ponownie.",
+  "footer_network": "Błąd sieci. Spróbuj ponownie.",
+  "footer_rights": "Wszelkie prawa zastrzeżone.",
+  "footer_privacy": "Polityka prywatności",
+  "footer_terms": "Warunki korzystania"
+
+
+}

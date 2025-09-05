@@ -1,17 +1,23 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
 import QuoteCardFav from "../components/QuoteCardFav";
+import { FaStar } from "react-icons/fa6";
+import { useTranslate } from "../hooks/useTranslate";
 
 interface FavoriteItem {
   id: string;
-  title: string;
-  image?: string;
+  bodyPart: string;
+  name: string;
+  target: string;
+  rating: number;
+  burnedCalories: number;
+  time: number;
 }
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const { t } = useTranslate();
 
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
@@ -20,10 +26,10 @@ export default function FavoritesPage() {
         const parsed: FavoriteItem[] = JSON.parse(stored);
 
         const uniqueFavorites = parsed
-          .filter(item => item && item.id)
+          .filter((item) => item && item.id)
           .filter(
             (item, index, self) =>
-              index === self.findIndex(t => t.id === item.id)
+              index === self.findIndex((t) => t.id === item.id)
           );
 
         setFavorites(uniqueFavorites);
@@ -34,8 +40,8 @@ export default function FavoritesPage() {
   }, []);
 
   const removeFavorite = (id: string) => {
-    setFavorites(prev => {
-      const updated = prev.filter(f => f.id !== id);
+    setFavorites((prev) => {
+      const updated = prev.filter((f) => f.id !== id);
       localStorage.setItem("favorites", JSON.stringify(updated));
       return updated;
     });
@@ -43,32 +49,70 @@ export default function FavoritesPage() {
 
   return (
     <div className="p-4">
-      
       <div className="mb-6">
         <QuoteCardFav />
       </div>
 
-      <h1 className="text-xl font-bold mb-4">Favorites</h1>
+      <h1 className="text-xl font-bold mb-4">{t("favorites_title")}</h1>
 
-      {favorites.length === 0 ? (
-<p>
-  It appears that you haven&apos;t added any exercises to your favorites yet. 
-  To get started, you can add exercises that you like to your favorites for easier access in the future.
-</p>
-      ) : (
-        <div className="flex gap-4 flex-wrap">
-          {favorites.map(item => (
-            <Card key={item.id} id={item.id} title={item.title} image={item.image}>
-              <button
-                className="mt-2 px-2 py-1 bg-red-500 text-white rounded"
-                onClick={() => removeFavorite(item.id)}
+      <section className="bg-[#E8E8E8] rounded-[50px] px-[48px] py-[55px]">
+        {favorites.length === 0 ? (
+          <p>{t("favorites_empty")}</p>
+        ) : (
+          <div className="flex gap-4 flex-wrap">
+            {favorites.map((exercise) => (
+              <div
+                key={exercise.id}
+                className="rounded-2xl p-4 bg-white shadow-md hover:shadow-xl transition-shadow duration-200"
               >
-                delete
-              </button>
-            </Card>
-          ))}
-        </div>
-      )}
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
+                      {t("favorites_workout")}
+                    </span>
+                    <span className="text-yellow-400 text-lg flex items-center gap-1">
+                      <FaStar />
+                      {exercise.rating}
+                    </span>
+                  </div>
+
+                  <span
+                    className="font-[DM_Sans] font-medium cursor-pointer"
+                    onClick={() => removeFavorite(exercise.id)}
+                  >
+                    {t("favorites_delete")}
+                  </span>
+                </div>
+
+                <h3 className="text-lg capitalize mt-6 font-[DM_Sans]">
+                  {exercise.name}
+                </h3>
+
+                <div className="flex justify-between mt-2">
+                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_burned")}:
+                    </span>
+                    {exercise.burnedCalories}/{exercise.time} {t("favorites_min")}
+                  </p>
+                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_bodyPart")}:
+                    </span>
+                    {exercise.bodyPart}
+                  </p>
+                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_target")}:
+                    </span>
+                    {exercise.target}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
