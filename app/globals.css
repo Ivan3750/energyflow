@@ -3,22 +3,6 @@
 
 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden; 
-  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
-  background: var(--background);
-  color: var(--foreground);
-}
-
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -40,11 +24,26 @@ html, body {
 }
  */
 
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button{
+  transition: .4s;
+}
+
+button:hover{
+  scale: 0.95;
+  cursor: pointer;
 }
 
 
@@ -218,4 +217,10 @@ body {
   .sports-card {
     max-width: 30%;
   }
+}
+
+
+
+.ma{
+  margin: 0px auto;
 }
