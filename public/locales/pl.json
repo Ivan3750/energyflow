@@ -1,33 +1,46 @@
 {
-  "global": {
-    "app_name": "energy.flow",
-    "home": "Strona główna",
-    "favorites": "Ulubione",
-    "quote_title": "Cytat dnia",
-    "workout": "TRENING",
-    "start_button": "Start",
-    "burned_calories": "Spalone kalorie",
-    "per_3_min": "/3 min",
-    "body_part": "Część ciała",
-    "target_muscle": "Mięsień docelowy",
-    "subscribe_title": "Zmień swoją sylwetkę razem z nami",
-    "subscribe_prompt": "Zapisz się i dowiedz się o nowych ćwiczeniach!",
-    "send_button": "Wyślij",
-    "all_rights_reserved": "© 2024 Energy Flow. Wszelkie prawa zastrzeżone.",
-    "privacy_policy": "Polityka prywatności",
-    "terms_of_service": "Warunki korzystania z usługi",
-    "daily_norm_title": "min",
-    "daily_norm_subtitle": "Dzienna norma sportu",
-    "daily_norm_text": "Światowa Organizacja Zdrowia zaleca dorosłym w wieku 18–64 lat co najmniej 150 minut umiarkowanej intensywności aerobowej aktywności fizycznej w ciągu tygodnia. Co jednak by się stało, gdybyśmy dostosowali tę liczbę do 110 minut każdego dnia?"
-  },
-  "home": {
-    "hashtags": "#Sport #Zdrowy #Trening #Dieta",
-    "main_title": "Wprowadź ciało w formę, bądź zdrowy",
-    "subtitle": "Zmień swoją sylwetkę i przyjmij zdrowszy styl życia dzięki naszemu kompleksowemu wsparciu w zakresie fitnessu i odżywiania.",
-    "muhammad_ali_quote": "Nienawidziłem każdej minuty treningu, ale mówiłem: 'Nie rezygnuj. Cierp teraz, a resztę życia przeżyj jako mistrz'.",
-    "exercises_title": "Ćwiczenia",
-    "muscles": "Mięśnie",
-    "body_parts": "Części ciała",
-    "equipment": "Sprzęt"
-  }
+  "home": "Dom",
+  "favorites": "Ulubione",
+  
+  
+  "hero_hashtag1": "#Sport",
+  "hero_hashtag2": "#Zdrowie",
+  "hero_hashtag3": "#Trening",
+  "hero_hashtag4": "#Dieta",
+  "hero_title_part1": "Zyskaj",
+  "hero_title_em": "Formę",
+  "hero_title_part2": "i bądź zdrowy",
+  "hero_subtitle": "Przekształć swoją sylwetkę i prowadź zdrowszy styl życia dzięki naszemu kompleksowemu wsparciu fitness i żywienia.",
+
+  "info_time": "110 min",
+  "info_subtitle": "Dzienne minimum sportu",
+  "info_text": "Światowa Organizacja Zdrowia zaleca co najmniej 150 minut umiarkowanej aktywności fizycznej tygodniowo dla dorosłych w wieku 18–64 lata. A co, jeśli zmienimy to na 110 minut codziennie?",
+
+  "quote_title": "Cytat dnia",
+  "quote_loading": "Ładowanie...",
+
+
+  "favorites_title": "Ulubione",
+  "favorites_empty": "Wygląda na to, że nie dodałeś jeszcze żadnych ćwiczeń do ulubionych. Aby rozpocząć, możesz dodać ćwiczenia, które lubisz, aby łatwiej do nich wrócić w przyszłości.",
+  "favorites_workout": "TRENING",
+  "favorites_delete": "Usuń",
+  "favorites_burned": "Spalone kalorie",
+  "favorites_bodyPart": "Część ciała",
+  "favorites_target": "Cel",
+  "favorites_min": "min",
+
+  "footer_title1": "Przekształcamy twoją",
+  "footer_title_em": "sylwetkę",
+  "footer_title2": "razem z nami",
+  "footer_subscribe_text": "Zapisz się i poznaj nowe ćwiczenia!",
+  "footer_email_placeholder": "Email",
+  "footer_send": "Wyślij",
+  "footer_success": "Subskrypcja zakończona sukcesem!",
+  "footer_error": "Coś poszło nie tak. Spróbuj ponownie.",
+  "footer_network": "Błąd sieci. Spróbuj ponownie.",
+  "footer_rights": "Wszelkie prawa zastrzeżone.",
+  "footer_privacy": "Polityka prywatności",
+  "footer_terms": "Warunki korzystania"
+
+
 }

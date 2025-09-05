@@ -1,8 +1,45 @@
-
 {
-  "nav.home": "Home",
-  "nav.favorites": "Favorites",
-  "hero.title": "Get <em>Body</em> in shape, Stay healthy",
-  "hero.text": "Transform your physique and embrace a healthier lifestyle with our comprehensive fitness and nutrition support.",
-  "hero.hashtags": ["#Sport", "#Healthy", "#Workout", "#Diet"]
+  "home": "Home",
+  "favorites": "Favorites",
+  "quote_title": "Quote of the day",
+  "quote_loading": "Loading...",
+  
+  "hero_hashtag1": "#Sport",
+  "hero_hashtag2": "#Healthy",
+  "hero_hashtag3": "#Workout",
+  "hero_hashtag4": "#Diet",
+  "hero_title_part1": "Get",
+  "hero_title_em": "Body",
+  "hero_title_part2": "in shape, Stay healthy",
+  "hero_subtitle": "Transform your physique and embrace a healthier lifestyle with our comprehensive fitness and nutrition support.",
+
+  "info_time": "110 min",
+  "info_subtitle": "Daily norm of sports",
+  "info_text": "The World Health Organization recommends at least 150 minutes of moderate-intensity aerobic physical activity throughout the week for adults aged 18–64. However, what happens if we adjust that number to 110 minutes every day?",
+
+  
+
+  "favorites_title": "Favorites",
+  "favorites_empty": "It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.",
+  "favorites_workout": "WORKOUT",
+  "favorites_delete": "Delete",
+  "favorites_burned": "Burned calories",
+  "favorites_bodyPart": "Body Part",
+  "favorites_target": "Target",
+  "favorites_min": "min",
+
+  "footer_title1": "Transforming your",
+  "footer_title_em": "body",
+  "footer_title2": "shape with us",
+  "footer_subscribe_text": "Subscribe and learn about new exercises!",
+  "footer_email_placeholder": "Email",
+  "footer_send": "Send",
+  "footer_success": "Subscription successful!",
+  "footer_error": "Something went wrong. Please try again.",
+  "footer_network": "Network error. Please try again.",
+  "footer_rights": "All rights reserved.",
+  "footer_privacy": "Privacy Policy",
+  "footer_terms": "Terms of Service"
+
+
 }

@@ -1,0 +1,48 @@
+.switcher {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #eceff1;            
+  color: #1f2937;                  
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.btn:hover {
+  background: #44444450;
+  transform: translateY(-1px);
+}
+
+.active {
+  background: linear-gradient(90deg, #444444, #444444); 
+  color: #fff;
+  /* box-shadow: 0 8px 20px rgba(34,197,94,.35); */
+  border-color: rgba(255,255,255,.2);
+}
+
+.btn:disabled {
+  opacity: .9;
+  cursor: default;
+  transform: none;
+}
+
+.flag {
+  line-height: 1;
+}
+
+.label {
+  letter-spacing: .4px;
+}

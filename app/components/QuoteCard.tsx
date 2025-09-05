@@ -1,7 +1,7 @@
-// components/QuoteCard.tsx
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslate } from "../hooks/useTranslate"; 
 
 interface Quote {
   author: string;
@@ -10,6 +10,7 @@ interface Quote {
 
 const QuoteCard = () => {
   const [quote, setQuote] = useState<Quote | null>(null);
+  const { t } = useTranslate(); 
 
   useEffect(() => {
     const fetchQuote = async () => {
@@ -20,7 +21,7 @@ const QuoteCard = () => {
         if (storedData) {
           const parsed = JSON.parse(storedData);
           if (parsed.date === today) {
-            setQuote(parsed.quote); 
+            setQuote(parsed.quote);
             return;
           }
         }
@@ -41,23 +42,26 @@ const QuoteCard = () => {
     fetchQuote();
   }, []);
 
-
   return (
     <div className="quote-container">
       <div className="quote-card">
         <div className="quote-left">
-        <div className="topp">
-  <div className="topp-left">
-    <div className="quote-icon">
-      <img src="/img/icon.png" alt="icon" className="quote-image1" />
-    </div>
-    <h3 className="quote-title">Quote of the day</h3>
-  </div>
-  <div className="topp-right">
-    <img src="/img/bracket.png" alt="bracket" className="bracket-image" />
-  </div>
-</div>
-          <p className="quote-text">{quote?.quote || "Loading..."}</p>
+          <div className="topp">
+            <div className="topp-left">
+              <div className="quote-icon">
+                <img src="/img/icon.png" alt="icon" className="quote-image1" />
+              </div>
+              <h3 className="quote-title">{t("quote_title")}</h3>
+            </div>
+            <div className="topp-right">
+              <img
+                src="/img/bracket.png"
+                alt="bracket"
+                className="bracket-image"
+              />
+            </div>
+          </div>
+          <p className="quote-text">{quote?.quote || t("quote_loading")}</p>
           <p className="quote-author">{quote?.author}</p>
         </div>
         <div className="quote-right">

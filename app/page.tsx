@@ -1,4 +1,4 @@
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer"
 import Card from "./components/Card"
 import Image from "next/image"
 import Hero from "./components/Hero";

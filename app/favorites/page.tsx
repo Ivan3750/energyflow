@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
 import QuoteCardFav from "../components/QuoteCardFav";
 import { FaStar } from "react-icons/fa6";
+import { useTranslate } from "../hooks/useTranslate";
 
 interface FavoriteItem {
   id: string;
@@ -17,6 +17,7 @@ interface FavoriteItem {
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const { t } = useTranslate();
 
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
@@ -52,15 +53,11 @@ export default function FavoritesPage() {
         <QuoteCardFav />
       </div>
 
-      <h1 className="text-xl font-bold mb-4">Favorites</h1>
+      <h1 className="text-xl font-bold mb-4">{t("favorites_title")}</h1>
 
       <section className="bg-[#E8E8E8] rounded-[50px] px-[48px] py-[55px]">
         {favorites.length === 0 ? (
-          <p>
-            It appears that you haven&apos;t added any exercises to your favorites
-            yet. To get started, you can add exercises that you like to your
-            favorites for easier access in the future.
-          </p>
+          <p>{t("favorites_empty")}</p>
         ) : (
           <div className="flex gap-4 flex-wrap">
             {favorites.map((exercise) => (
@@ -71,7 +68,7 @@ export default function FavoritesPage() {
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-2">
                     <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
-                      WORKOUT
+                      {t("favorites_workout")}
                     </span>
                     <span className="text-yellow-400 text-lg flex items-center gap-1">
                       <FaStar />
@@ -79,8 +76,11 @@ export default function FavoritesPage() {
                     </span>
                   </div>
 
-                  <span className="font-[DM_Sans] font-medium cursor-pointer" onClick={() => removeFavorite(exercise.id)}>
-                    Delete
+                  <span
+                    className="font-[DM_Sans] font-medium cursor-pointer"
+                    onClick={() => removeFavorite(exercise.id)}
+                  >
+                    {t("favorites_delete")}
                   </span>
                 </div>
 
@@ -90,15 +90,21 @@ export default function FavoritesPage() {
 
                 <div className="flex justify-between mt-2">
                   <p className="text-sm text-black font-[DM_Sans] capitalize">
-                    <span className="text-[#1B1B1B66] mr-1">Burned calories:</span>
-                    {exercise.burnedCalories}/{exercise.time} min
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_burned")}:
+                    </span>
+                    {exercise.burnedCalories}/{exercise.time} {t("favorites_min")}
                   </p>
                   <p className="text-sm text-black font-[DM_Sans] capitalize">
-                    <span className="text-[#1B1B1B66] mr-1">Body Part:</span>{" "}
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_bodyPart")}:
+                    </span>
                     {exercise.bodyPart}
                   </p>
                   <p className="text-sm text-black font-[DM_Sans] capitalize">
-                    <span className="text-[#1B1B1B66] mr-1">Target:</span>{" "}
+                    <span className="text-[#1B1B1B66] mr-1">
+                      {t("favorites_target")}:
+                    </span>
                     {exercise.target}
                   </p>
                 </div>
