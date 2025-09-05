@@ -9,15 +9,15 @@ type Lang = "en" | "pl" | "ua";
 const LanguageSwitcher = () => {
   const { lang, changeLang } = useTranslate();
 
-  const languages: { code: Lang; label: string; flag: string }[] = [
-    { code: "en", label: "EN", flag: "🇬🇧" },
-    { code: "pl", label: "PL", flag: "🇵🇱" },
-    { code: "ua", label: "UA", flag: "🇺🇦" },
+  const languages: { code: Lang; label: string;  }[] = [
+    { code: "en", label: "EN"},
+    { code: "pl", label: "PL" },
+    { code: "ua", label: "UA" },
   ];
 
   return (
     <div className={styles.switcher}>
-      {languages.map(({ code, label, flag }) => (
+      {languages.map(({ code, label }) => (
         <button
           key={code}
           onClick={() => changeLang(code)}
@@ -25,7 +25,7 @@ const LanguageSwitcher = () => {
           aria-pressed={lang === code}
           disabled={lang === code}
         >
-          <span className={styles.flag}>{flag}</span>
+          
           <span className={styles.label}>{label}</span>
         </button>
       ))}
