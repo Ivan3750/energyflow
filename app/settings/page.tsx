@@ -1,15 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Smartphone, Mail, MessageSquare, LogOut, User } from "lucide-react";
 import { useTranslate } from "../hooks/useTranslate";
+import Switch from "@mui/material/Switch";
+import {
+  Smartphone,
+  Mail,
+  MessageSquare,
+  LogOut,
+  User,
+  Earth,
+} from "lucide-react";
 
 const Settings = () => {
   const { t } = useTranslate();
 
   const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     gender: "",
     birthday: "",
@@ -25,12 +32,14 @@ const Settings = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto max-w-4xl space-y-8">
+      <div className="container max-w-[1200px] mx-auto p-2">
+        {/* Заголовок */}
         <div>
           <h1 className="text-2xl font-bold mb-2">{t("settings_title")}</h1>
           <p className="text-gray-500">{t("settings_subtitle")}</p>
         </div>
 
+        {/* Профиль */}
         <div className="bg-white p-6 rounded-xl shadow space-y-6">
           <h2 className="text-lg font-semibold">{t("settings_profile_info")}</h2>
 
@@ -48,27 +57,15 @@ const Settings = () => {
 
           <hr className="border-gray-300 my-4" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="firstName" className="block font-medium">{t("settings_first_name")}</label>
-              <input
-                id="firstName"
-                type="text"
-                value={profile.firstName}
-                onChange={(e) => setProfile(prev => ({ ...prev, firstName: e.target.value }))}
-                className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="lastName" className="block font-medium">{t("settings_last_name")}</label>
-              <input
-                id="lastName"
-                type="text"
-                value={profile.lastName}
-                onChange={(e) => setProfile(prev => ({ ...prev, lastName: e.target.value }))}
-                className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]"
-              />
-            </div>
+          <div className="space-y-2">
+            <label htmlFor="name" className="block font-medium">{t("settings_first_name")}</label>
+            <input
+              id="name"
+              type="text"
+              value={profile.name}
+              onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
+              className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]"
+            />
           </div>
 
           <div className="space-y-2">
@@ -132,34 +129,61 @@ const Settings = () => {
           <button className="px-4 py-2 rounded-lg bg-[#444] text-white mt-4">{t("settings_save_changes")}</button>
         </div>
 
+        
         <div className="bg-white p-6 rounded-xl shadow space-y-4">
           <h2 className="text-lg font-semibold">{t("settings_delivery")}</h2>
-          {[
+          {[ 
             { icon: <Smartphone className="h-4 w-4" />, label: t("settings_push_notifications"), key: "pushNotifications" },
             { icon: <Mail className="h-4 w-4" />, label: t("settings_email_notifications"), key: "emailNotifications" },
-            { icon: <MessageSquare className="h-4 w-4" />, label: t("settings_sms_notifications"), key: "smsNotifications" },
-          ].map((item) => (
+            { icon: <MessageSquare className="h-4 w-4" />, label: t("settings_sms_notifications"), key: "smsNotifications" }
+          ].map(item => (
             <div key={item.key} className="flex items-center justify-between">
               <div className="flex items-center gap-2">{item.icon}<span>{item.label}</span></div>
-              <input
-                type="checkbox"
+              <Switch
                 checked={notifications[item.key as keyof typeof notifications]}
-                onChange={(e) =>
-                  setNotifications(prev => ({ ...prev, [item.key]: e.target.checked }))
-                }
-                className="w-5 h-5 rounded"
+                onChange={(e) => setNotifications(prev => ({ ...prev, [item.key]: e.target.checked }))}
               />
             </div>
           ))}
         </div>
 
+       
+        <div className="bg-white p-6 rounded-xl shadow space-y-4">
+          <div className="flex gap-5 items-center">
+            <Earth className="w-6 h-6" />
+            <div>
+              <h2 className="text-lg font-semibold">{t("settings_preferences")}</h2>
+              <p className="text-gray-500 mb-2">{t("settings_preferences_desc")}</p>
+            </div>
+          </div>
+          <hr className="border-gray-300 my-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="block font-medium">{t("settings_language")}</label>
+              <select className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]">
+                <option value="EN">English</option>
+                <option value="UA">Ukrainian</option>
+                <option value="PL">Polish</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="block font-medium">{t("settings_theme")}</label>
+              <select className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]">
+                <option value="dark">{t("settings_theme_dark")}</option>
+                <option value="light">{t("settings_theme_light")}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+       
         <div className="bg-white p-6 rounded-xl shadow space-y-4">
           <h2 className="text-lg font-semibold">{t("settings_account_actions")}</h2>
           <div className="flex flex-col sm:flex-row gap-3">
-            <button className="flex items-center justify-start gap-2">
+            <button className="flex items-center justify-start gap-2 bg-white rounded-2xl p-2 font-semibold">
               <LogOut className="h-4 w-4" /> {t("settings_sign_out")}
             </button>
-            <button className="flex items-center justify-start gap-2">
+            <button className="flex items-center justify-start gap-2 bg-[#C54B63] rounded-2xl p-2 text-white font-semibold">
               <User className="h-4 w-4" /> {t("settings_delete_account")}
             </button>
           </div>
