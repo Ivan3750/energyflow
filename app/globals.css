@@ -2,6 +2,7 @@
 @import "tailwindcss";
 
 
+
 * {
   margin: 0;
   padding: 0;
@@ -11,11 +12,12 @@
 html, body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden; /* прибирає горизонтальний скрол */
+  overflow-x: hidden; 
   font-family: 'DM Sans', Arial, Helvetica, sans-serif;
   background: var(--background);
   color: var(--foreground);
 }
+
 
 :root {
   --background: #ffffff;
@@ -28,6 +30,7 @@ html, body {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
 /* 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -38,101 +41,181 @@ html, body {
  */
 
 
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
 .quote-container {
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 20px 0;
-  
-
 }
 
 .quote-card {
   display: flex;
-  /* width: 100%; */
-  /* max-width: 900px; */
-  /* border-radius: 20px; */
+  flex-wrap: wrap;
+  width: 100%;
+  height: 302px;
+  max-width: 1920px;
   overflow: hidden;
   font-family: 'DM Sans', sans-serif;
+  /* gap: 20px; */
 }
 
 .quote-left {
   flex: 1;
   background: #7E847F; 
   color: white;
-  padding: 30px;
-  width: 800px;
-  height: 302px;
+  padding: 20px;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 .quote-icon {
-  
-   width: 34px;  
-  height: 34px;  
+  width: 28px;  
+  height: 28px;  
   object-fit: contain;
-  margin-left: 64px;
+  margin-left: 20px;
 }
 .quote-title {
-  font-size:24px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: 15px;
-  line-height: 32px;
+  margin-bottom: 10px;
+  line-height: 28px;
   margin-left: 8px;
 }
-
 .quote-text {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  /* margin-bottom: 25px; */
-  margin:0 0 25px 114px;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0 0 20px 40px;
   color: #F6F6F699;
-  width: 526px;
+  max-width: 90%;
 }
-
 .quote-author {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 24px;
-  margin-left: 114px;
+  line-height: 20px;
+  margin-left: 40px;
 }
 
 .quote-right {
   flex: 1;
-  width: 704px;
+  min-width: 280px;
+  height: auto;
   height: 302px;
-  border-radius: 50px;
 }
-
-.quote-image {
+.quote-image1,
+.quote-image2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50px;
+  border-radius: 30px;
 }
-
+.quote-image2{height: 302px;}
 .topp {
   display: flex;
-  align-items: center;       /* выравнивание по вертикали */
-  justify-content: space-between; /* иконка+текст слева, скобка справа */
+  align-items: center;       
+  justify-content: space-between; 
 }
-
 .topp-left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-
 .topp-right img {
-  width: 48px;  
-  height: 48px;
+  width: 40px;  
+  height: 40px;
   object-fit: contain;
-   margin-right: 25px; /* сдвиг правее */
-  margin-top: -60px; 
+  margin-right: 15px; 
 }
 
+.image-and-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; 
+  gap: 20px;  
+}
+
+.sports-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 15px;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+.sports-duration {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 4px;
+}
+.sports-description {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+/* 📱 Смартфони */
+@media (max-width: 375px) {
+  .quote-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .quote-text, .quote-author {
+    margin-left: 20px;
+  }
+}
+
+/* 📱📲 Планшети */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .quote-card {
+    flex-direction: row;
+    /* gap: 20px; */
+    
+  }
+  .quote-left {
+    height: 300px;
+    width: 500px;
+    border-radius: 30px;
+    padding: 20px;
+  }
+  .quote-right {
+   width: 500px;
+    height: 300px; 
+    border-radius: 30px;
+  }
+  .sports-card {
+    max-width: 45%;
+  }
+}
+
+/* 💻 Десктопи */
+@media (min-width: 1200px) {
+  .quote-card {
+    gap: 30px;
+  }
+  .quote-title {
+    font-size: 24px;
+  }
+  .quote-text {
+    font-size: 16px;
+  }
+  .sports-card {
+    max-width: 30%;
+  }
+}

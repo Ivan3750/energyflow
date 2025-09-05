@@ -1,0 +1,33 @@
+{
+  "global": {
+    "app_name": "energy.flow",
+    "home": "Strona główna",
+    "favorites": "Ulubione",
+    "quote_title": "Cytat dnia",
+    "workout": "TRENING",
+    "start_button": "Start",
+    "burned_calories": "Spalone kalorie",
+    "per_3_min": "/3 min",
+    "body_part": "Część ciała",
+    "target_muscle": "Mięsień docelowy",
+    "subscribe_title": "Zmień swoją sylwetkę razem z nami",
+    "subscribe_prompt": "Zapisz się i dowiedz się o nowych ćwiczeniach!",
+    "send_button": "Wyślij",
+    "all_rights_reserved": "© 2024 Energy Flow. Wszelkie prawa zastrzeżone.",
+    "privacy_policy": "Polityka prywatności",
+    "terms_of_service": "Warunki korzystania z usługi",
+    "daily_norm_title": "min",
+    "daily_norm_subtitle": "Dzienna norma sportu",
+    "daily_norm_text": "Światowa Organizacja Zdrowia zaleca dorosłym w wieku 18–64 lat co najmniej 150 minut umiarkowanej intensywności aerobowej aktywności fizycznej w ciągu tygodnia. Co jednak by się stało, gdybyśmy dostosowali tę liczbę do 110 minut każdego dnia?"
+  },
+  "home": {
+    "hashtags": "#Sport #Zdrowy #Trening #Dieta",
+    "main_title": "Wprowadź ciało w formę, bądź zdrowy",
+    "subtitle": "Zmień swoją sylwetkę i przyjmij zdrowszy styl życia dzięki naszemu kompleksowemu wsparciu w zakresie fitnessu i odżywiania.",
+    "muhammad_ali_quote": "Nienawidziłem każdej minuty treningu, ale mówiłem: 'Nie rezygnuj. Cierp teraz, a resztę życia przeżyj jako mistrz'.",
+    "exercises_title": "Ćwiczenia",
+    "muscles": "Mięśnie",
+    "body_parts": "Części ciała",
+    "equipment": "Sprzęt"
+  }
+}
