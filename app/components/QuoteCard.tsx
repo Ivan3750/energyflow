@@ -14,9 +14,25 @@ const QuoteCard = () => {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
+        const today = new Date().toDateString();
+        const storedData = localStorage.getItem("quoteOfTheDay");
+
+        if (storedData) {
+          const parsed = JSON.parse(storedData);
+          if (parsed.date === today) {
+            setQuote(parsed.quote); 
+            return;
+          }
+        }
+
         const res = await fetch("https://energyflow.b.goit.study/api/quote");
         const data = await res.json();
         setQuote(data);
+
+        localStorage.setItem(
+          "quoteOfTheDay",
+          JSON.stringify({ date: today, quote: data })
+        );
       } catch (error) {
         console.error("Ошибка загрузки цитаты:", error);
       }
@@ -24,6 +40,7 @@ const QuoteCard = () => {
 
     fetchQuote();
   }, []);
+
 
   return (
     <div className="quote-container">

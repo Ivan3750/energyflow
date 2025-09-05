@@ -1,8 +1,9 @@
 .infoBlock {
   display: grid;
+  width: 1400px;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  margin: 60px 0;
+  margin: 60px auto;
 }
 
 .left {
@@ -59,20 +60,19 @@
 
 @media (max-width: 768px) {
   .infoBlock {
-    margin: 100px auto;
+    margin-right: 850px;
+    width: 550px;
     display: flex;
     flex-direction: column;
   }
 
   .left {
-    width: 500px;
     height: 300px; 
     border-radius: 30px;
   }
 
   .right {
     height: 300px;
-    width: 500px;
     border-radius: 30px;
     padding: 20px;
   }
