@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslate } from "../hooks/useTranslate";
 
 export default function AuthForm({ mode }: { mode: "login" | "register" }) {
+  const { t } = useTranslate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -29,15 +32,12 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
       );
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
+      if (!res.ok) throw new Error(data.error || t("auth_error"));
 
       window.location.href = "/dashboard";
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Something went wrong");
-      }
+      if (err instanceof Error) setError(err.message);
+      else setError(t("auth_error"));
     } finally {
       setLoading(false);
     }
@@ -47,24 +47,22 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
     <div className="min-h-screen flex items-center justify-center px-4 font-[DM_Sans]">
       <div className="w-full max-w-md rounded-2xl border bg-white shadow-lg p-8">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-          {mode === "register" ? "Create an Account" : "Welcome Back"}
+          {mode === "register" ? t("auth_create_account") : t("auth_welcome_back")}
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === "register" && (
             <div>
-              <label className="block text-sm text-gray-600 mb-1">
-                Name (optional)
-              </label>
+              <label className="block text-sm text-gray-600 mb-1">{t("auth_name")}</label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560] transition"
-                placeholder="John Doe"
+                placeholder={t("auth_name_placeholder")}
               />
             </div>
           )}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Email</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("auth_email")}</label>
             <input
               type="email"
               value={email}
@@ -75,7 +73,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Password</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("auth_password")}</label>
             <input
               type="password"
               value={password}
@@ -91,26 +89,22 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
             className="w-full rounded-xl bg-[#5F6560] text-white py-2 font-medium hover:opacity-90 transition disabled:opacity-50"
           >
             {loading
-              ? "Please wait…"
+              ? t("auth_wait")
               : mode === "register"
-              ? "Sign Up"
-              : "Log In"}
+              ? t("auth_sign_up")
+              : t("auth_log_in")}
           </button>
         </form>
         <p className="text-sm text-center mt-4 text-gray-600">
           {mode === "register" ? (
             <>
-              Already have an account?{" "}
-              <Link href="/login" className="underline text-[#5F6560]">
-                Log In
-              </Link>
+              {t("auth_already_have_account")}{" "}
+              <Link href="/login" className="underline text-[#5F6560]">{t("auth_log_in")}</Link>
             </>
           ) : (
             <>
-              Don’t have an account?{" "}
-              <Link href="/register" className="underline text-[#5F6560]">
-                Sign Up
-              </Link>
+              {t("auth_dont_have_account")}{" "}
+              <Link href="/register" className="underline text-[#5F6560]">{t("auth_sign_up")}</Link>
             </>
           )}
         </p>

@@ -1,10 +1,12 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import Button from "../components/Button";
 import { Smartphone, Mail, MessageSquare, LogOut, User } from "lucide-react";
+import { useTranslate } from "../hooks/useTranslate";
 
 const Settings = () => {
+  const { t } = useTranslate();
+
   const [profile, setProfile] = useState({
     firstName: "",
     lastName: "",
@@ -25,22 +27,21 @@ const Settings = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto max-w-4xl space-y-8">
         <div>
-          <h1 className="text-2xl font-bold mb-2">Settings</h1>
-          <p className="text-gray-500">Manage your account settings and preferences</p>
+          <h1 className="text-2xl font-bold mb-2">{t("settings_title")}</h1>
+          <p className="text-gray-500">{t("settings_subtitle")}</p>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow space-y-6">
-          <h2 className="text-lg font-semibold">Profile Information</h2>
+          <h2 className="text-lg font-semibold">{t("settings_profile_info")}</h2>
 
-          
           <div className="flex items-center gap-6">
             <div className="w-16 h-16 rounded-full bg-gray-200"></div>
             <div className="flex-1">
-              <h3 className="font-medium">Profile Photo</h3>
-              <p className="text-gray-500 mb-2">Add a photo to personalize your account</p>
+              <h3 className="font-medium">{t("settings_profile_photo")}</h3>
+              <p className="text-gray-500 mb-2">{t("settings_profile_photo_desc")}</p>
               <div className="flex gap-2">
-                <button className="px-4 py-2 rounded-lg bg-[#444] text-white">Upload Photo</button>
-                <button className="px-4 py-2 rounded-lg bg-gray-200 text-gray-900">Remove</button>
+                <button className="px-4 py-2 rounded-lg bg-[#444] text-white">{t("settings_upload")}</button>
+                <button className="px-4 py-2 rounded-lg bg-gray-200 text-gray-900">{t("settings_remove")}</button>
               </div>
             </div>
           </div>
@@ -49,7 +50,7 @@ const Settings = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="firstName" className="block font-medium">First Name</label>
+              <label htmlFor="firstName" className="block font-medium">{t("settings_first_name")}</label>
               <input
                 id="firstName"
                 type="text"
@@ -59,7 +60,7 @@ const Settings = () => {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="lastName" className="block font-medium">Last Name</label>
+              <label htmlFor="lastName" className="block font-medium">{t("settings_last_name")}</label>
               <input
                 id="lastName"
                 type="text"
@@ -71,7 +72,7 @@ const Settings = () => {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="email" className="block font-medium">Email Address</label>
+            <label htmlFor="email" className="block font-medium">{t("settings_email")}</label>
             <input
               id="email"
               type="email"
@@ -82,22 +83,22 @@ const Settings = () => {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="gender" className="block font-medium">Gender</label>
+            <label htmlFor="gender" className="block font-medium">{t("settings_gender")}</label>
             <select
               id="gender"
               value={profile.gender}
               onChange={(e) => setProfile(prev => ({ ...prev, gender: e.target.value }))}
               className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-[#5F6560]"
             >
-              <option value="">Select your gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="">{t("settings_gender_select")}</option>
+              <option value="male">{t("settings_gender_male")}</option>
+              <option value="female">{t("settings_gender_female")}</option>
             </select>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <label htmlFor="birthday" className="block font-medium">Birthday</label>
+              <label htmlFor="birthday" className="block font-medium">{t("settings_birthday")}</label>
               <input
                 id="birthday"
                 type="date"
@@ -107,7 +108,7 @@ const Settings = () => {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="height" className="block font-medium">Height</label>
+              <label htmlFor="height" className="block font-medium">{t("settings_height")}</label>
               <input
                 id="height"
                 type="number"
@@ -117,7 +118,7 @@ const Settings = () => {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="weight" className="block font-medium">Weight</label>
+              <label htmlFor="weight" className="block font-medium">{t("settings_weight")}</label>
               <input
                 id="weight"
                 type="number"
@@ -128,15 +129,15 @@ const Settings = () => {
             </div>
           </div>
 
-          <button className="px-4 py-2 rounded-lg bg-[#444] text-white mt-4">Save Changes</button>
+          <button className="px-4 py-2 rounded-lg bg-[#444] text-white mt-4">{t("settings_save_changes")}</button>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow space-y-4">
-          <h2 className="text-lg font-semibold">Delivery Methods</h2>
+          <h2 className="text-lg font-semibold">{t("settings_delivery")}</h2>
           {[
-            { icon: <Smartphone className="h-4 w-4" />, label: "Push Notifications", key: "pushNotifications" },
-            { icon: <Mail className="h-4 w-4" />, label: "Email Notifications", key: "emailNotifications" },
-            { icon: <MessageSquare className="h-4 w-4" />, label: "SMS Notifications", key: "smsNotifications" },
+            { icon: <Smartphone className="h-4 w-4" />, label: t("settings_push_notifications"), key: "pushNotifications" },
+            { icon: <Mail className="h-4 w-4" />, label: t("settings_email_notifications"), key: "emailNotifications" },
+            { icon: <MessageSquare className="h-4 w-4" />, label: t("settings_sms_notifications"), key: "smsNotifications" },
           ].map((item) => (
             <div key={item.key} className="flex items-center justify-between">
               <div className="flex items-center gap-2">{item.icon}<span>{item.label}</span></div>
@@ -153,13 +154,13 @@ const Settings = () => {
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow space-y-4">
-          <h2 className="text-lg font-semibold">Account Actions</h2>
+          <h2 className="text-lg font-semibold">{t("settings_account_actions")}</h2>
           <div className="flex flex-col sm:flex-row gap-3">
             <button className="flex items-center justify-start gap-2">
-              <LogOut className="h-4 w-4" /> Sign Out
+              <LogOut className="h-4 w-4" /> {t("settings_sign_out")}
             </button>
             <button className="flex items-center justify-start gap-2">
-              <User className="h-4 w-4" /> Delete Account
+              <User className="h-4 w-4" /> {t("settings_delete_account")}
             </button>
           </div>
         </div>
