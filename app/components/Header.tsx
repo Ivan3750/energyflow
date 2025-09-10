@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useTranslate } from "../hooks/useTranslate";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -34,6 +34,13 @@ export default function Header() {
           >
             {t("favorites")}
           </Link>
+          <Link
+            href="/about"
+            className={`${styles.navItem} ${activeTab === "about" ? styles.active : ""}`}
+            onClick={() => setActiveTab("about")}
+          >
+            {t("About")}
+          </Link>
         </nav>
 
         <div className={styles.langSwitcher}>
@@ -44,6 +51,7 @@ export default function Header() {
           <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
           <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
           <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
+          <a href="#"><FaUser /></a>
         </div>
 
         <div className={styles.burger} onClick={() => setMenuOpen(true)}>
@@ -72,12 +80,20 @@ export default function Header() {
             >
               {t("favorites")}
             </Link>
+            <Link
+            href="/about"
+            className={`${styles.mobilenavItem} ${activeTab === "about" ? styles.active : ""}`}
+            onClick={() => setActiveTab("about")}
+          >
+            {t("About")}
+          </Link>
           </nav>
 
           <div className={styles.mobileSocials}>
             <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
             <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
             <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
+            <a href="#"><FaUser /></a>
           </div>
         </div>
       )}
