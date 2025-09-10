@@ -68,9 +68,71 @@
   background: #f5f5f5;
 }
 
+.burger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
 
-@media (max-width: 768px){
-  .header{
-    width: 100%;
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #666;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  z-index: 999;
+}
+
+.mobileMenu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 60px;
+  align-items: center;
+}
+
+.mobileNavItem {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 999px;
+  transition: background 0.3s;
+}
+
+.mobileNavItem:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.closeBtn {
+  align-self: flex-end;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Соцмережі в моб меню */
+.mobileSocials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Медіа для мобіли */
+@media (max-width: 768px) {
+  .nav,
+  .socials {
+    display: none;
+  }
+
+  .burger {
+    display: block;
   }
 }
