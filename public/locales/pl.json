@@ -80,6 +80,41 @@
   "auth_wait": "Proszę czekać…",
   "auth_error": "Coś poszło nie tak",
   "auth_already_have_account": "Masz już konto?",
-  "auth_dont_have_account": "Nie masz konta?"
+  "auth_dont_have_account": "Nie masz konta?",
+
+    "rating": "Ocena",
+    "target": "Cel",
+    "bodyPart": "Część ciała",
+    "equipment": "Sprzęt",
+    "popularity": "Popularność",
+    "burnedCalories": "Spalone kalorie",
+    "addToFavorites": "Dodaj do ulubionych",
+    "giveRating": "Oceń",
+
+
+     "ourAdvantages": "Nasze zalety",
+  "modernEquipment": "Nowoczesny sprzęt",
+  "modernEquipmentDesc": "Najnowocześniejsze urządzenia od wiodących światowych marek dla skutecznych treningów",
+  "professionalTrainers": "Profesjonalni trenerzy",
+  "professionalTrainersDesc": "Certyfikowani specjaliści z wieloletnim doświadczeniem i indywidualnym podejściem",
+  "flexibleSchedule": "Elastyczny grafik",
+  "flexibleScheduleDesc": "Pracujemy od 6:00 do 23:00 bez przerwy, abyś mógł trenować w dogodnym czasie",
+  "personalTraining": "Indywidualne treningi",
+  "personalTrainingDesc": "Programy dostosowane specjalnie do Twoich celów i możliwości",
+  "personalTrainingDescFull": "Indywidualne zajęcia z doświadczonymi trenerami, którzy opracują plan specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja do osiągania najlepszych wyników.",
+  "trainingAlt": "Trening",
+  "clientReviews": "Opinie naszych klientów",
+  "reviewAlice": "Najlepsza siłownia w mieście! Profesjonalni trenerzy, nowoczesny sprzęt i przyjazna atmosfera. Zawsze czuję się zmotywowany i osiągam swoje cele. Gorąco polecam!",
+  "reviewBob": "Chodzę tutaj od ponad roku i efekty są niesamowite. Trenerzy zawsze służą pomocą, zajęcia są ciekawe, a siłownia czysta i dobrze zorganizowana. Czuję się zdrowszy i pełen energii!",
+  "reviewClara": "Czysto, dobrze zorganizowane i najwyższej klasy sprzęt. Personel jest miły i zawsze gotowy do pomocy. Uwielbiam zajęcia grupowe — dają dużo motywacji!",
+  "reviewDavid": "Elastyczne godziny otwarcia pozwalają mi trenować nawet po pracy. Trenerzy są uważni i dają świetne wskazówki. Każdy trening przynosi satysfakcję!",
+  "reviewEva": "Trenerzy naprawdę dbają o postępy każdego. Schudłam 10 kg w 3 miesiące dzięki ich programowi. Atmosfera motywuje i wspiera. Czuję się silniejsza i pewniejsza siebie!",
+  "reviewFrank": "Atmosfera siłowni motywuje do osiągania celów. Duży wybór sprzętu i zajęć sprawia, że każdy trening jest ciekawy. Zawsze wychodzę pełen energii!",
+
+  "About": "O nas",
+
+   "noAccess": "Nie masz dostępu",
+  "noAccessDesc": "Jeśli chcesz mieć dostęp do tej strony, po prostu się zarejestruj",
+  "registerBtn": "Rejestr"
 
 }
