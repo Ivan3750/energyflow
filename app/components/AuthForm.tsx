@@ -33,8 +33,10 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || t("auth_error"));
-
-      window.location.href = "/dashboard";
+      if (data.user && data.token) {
+  localStorage.setItem("token", data.token);
+}
+      window.location.href = "/";
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError(t("auth_error"));

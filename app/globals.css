@@ -224,3 +224,106 @@ button:hover{
 .ma{
   margin: 0px auto;
 }
+
+
+
+/* TESST */
+
+.advantage-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #8B4513;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.md\:grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.training-card {
+  background-color: #718096;
+  color: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.training-card h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.training-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.comment-card {
+  background-color: #2d3748;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+}
+
+.md\:grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.space-y-16 > * + * {
+  margin-top: 4rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+
+
+@media (max-width: 768px) {
+  .md\:grid-cols-2,
+  .md\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  
+  .training-card {
+    padding: 2rem;
+    min-height: auto;
+  }
+  
+  .training-card h3 {
+    font-size: 1.5rem;
+  }
+}

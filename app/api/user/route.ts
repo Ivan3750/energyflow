@@ -1,44 +1,48 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+import { dbConnect } from "@/app/lib/mongoose";
+import User from "@/app/model/User";
 import { getUserFromToken } from "@/app/lib/getUserFromToken";
 
+// GET user profile
 export async function GET(req: Request) {
   try {
-    const user = await getUserFromToken(req) 
-
-    return NextResponse.json(
-      {
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        weight: user.weight,
-        height: user.height,
-        sex: user.sex,
-      },
-      { status: 200 }
-    );
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 401 });
+    await dbConnect();
+    const user = await getUserFromToken(req);
+    return NextResponse.json(user);
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 401 });
   }
 }
 
+// PATCH update user profile
 export async function PATCH(req: Request) {
   try {
-    const user = await getUserFromToken();
-    const data = await req.json();
+    await dbConnect();
+    const user = await getUserFromToken(req);
+    const body = await req.json();
 
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, 10);
-    }
+    const updated = await User.findByIdAndUpdate(
+      user._id,
+      { $set: body },
+      { new: true }
+    ).select("-password");
 
-    Object.assign(user, data);
-    await user.save();
+    return NextResponse.json({ success: true, user: updated });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 401 });
+  }
+}
 
-    return NextResponse.json(
-      { message: "Profile updated", user },
-      { status: 200 }
-    );
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 401 });
+// DELETE soft remove user
+export async function DELETE(req: Request) {
+  try {
+    await dbConnect();
+    const user = await getUserFromToken(req);
+
+    await User.findByIdAndUpdate(user._id, { removed: true });
+
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 401 });
   }
 }
