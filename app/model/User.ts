@@ -19,8 +19,8 @@ export interface IUser {
   smsNotifications?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
-  lang?: String;
-  theme?: String;
+  lang?: string;
+  theme?: string;
 }
 
 const UserSchema = new Schema<IUser>(

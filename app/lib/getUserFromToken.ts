@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { cookies } from "next/headers";
 import User from "@/app/model/User";
 import { dbConnect } from "@/app/lib/mongoose";
 

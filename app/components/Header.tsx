@@ -9,7 +9,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("home"); // Додаємо стан для активного меню
+  const [activeTab, setActiveTab] = useState("home");
   const { t } = useTranslate();
 
   return (
@@ -93,7 +93,7 @@ export default function Header() {
             <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
             <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
             <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
-            <a href="#"><FaUser /></a>
+            <a href="/settings"><FaUser /></a>
           </div>
         </div>
       )}

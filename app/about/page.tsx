@@ -90,7 +90,7 @@ export default function Home() {
                 <span className="card-icon">{user.icon}</span>
                 {user.name}
               </div>
-              <p className="text-sm mt-2">"{user.comment}"</p>
+              <p className="text-sm mt-2">{user.comment}</p>
             </div>
           ))}
         </div>
