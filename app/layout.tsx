@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { TranslateProvider } from "./hooks/useTranslate";
+import ClientWrapper from "./components/ClientWrapper";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -18,17 +19,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={` ${dmSans.variable} antialiased bg-gray-50`}>
-        <TranslateProvider>
-          <Header />
-          {children}
-          <Footer />
-        </TranslateProvider>
+      <body className={`${dmSans.variable} antialiased bg-gray-50`}>
+      <TranslateProvider>
+  <Header />
+  <ClientWrapper>{children}</ClientWrapper>
+  <Footer />
+</TranslateProvider>
+
       </body>
     </html>
   );
