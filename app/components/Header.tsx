@@ -9,6 +9,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("home"); // Додаємо стан для активного меню
   const { t } = useTranslate();
 
   return (
@@ -18,12 +19,19 @@ export default function Header() {
           energy.<span>flow</span>
         </div>
 
-        
         <nav className={styles.nav}>
-          <Link href="/" className={`${styles.navItem} ${styles.active}`}>
+          <Link
+            href="/"
+            className={`${styles.navItem} ${activeTab === "home" ? styles.active : ""}`}
+            onClick={() => setActiveTab("home")}
+          >
             {t("home")}
           </Link>
-          <Link href="/favorites" className={styles.navItem}>
+          <Link
+            href="/favorites"
+            className={`${styles.navItem} ${activeTab === "favorites" ? styles.active : ""}`}
+            onClick={() => setActiveTab("favorites")}
+          >
             {t("favorites")}
           </Link>
         </nav>
@@ -38,13 +46,11 @@ export default function Header() {
           <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
         </div>
 
-      
         <div className={styles.burger} onClick={() => setMenuOpen(true)}>
           ☰
         </div>
       </header>
 
-     
       {menuOpen && (
         <div className={styles.mobileMenu}>
           <div className={styles.closeBtn} onClick={() => setMenuOpen(false)}>
@@ -54,15 +60,15 @@ export default function Header() {
           <nav>
             <Link
               href="/"
-              className={styles.mobileNavItem}
-              onClick={() => setMenuOpen(false)}
+              className={`${styles.mobileNavItem} ${activeTab === "home" ? styles.active : ""}`}
+              onClick={() => { setMenuOpen(false); setActiveTab("home"); }}
             >
               {t("home")}
             </Link>
             <Link
               href="/favorites"
-              className={styles.mobileNavItem}
-              onClick={() => setMenuOpen(false)}
+              className={`${styles.mobileNavItem} ${activeTab === "favorites" ? styles.active : ""}`}
+              onClick={() => { setMenuOpen(false); setActiveTab("favorites"); }}
             >
               {t("favorites")}
             </Link>
