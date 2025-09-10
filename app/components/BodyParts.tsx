@@ -58,11 +58,11 @@ export default function ExercisesList() {
                     return (
                         <div
                             key={exercise._id}
-                            className="rounded-2xl p-4 bg-white shadow-md hover:shadow-xl transition-shadow duration-200"
+                            className="rounded-2xl !p-4 bg-white shadow-md hover:shadow-xl transition-shadow duration-200"
                         >
                             <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-2">
-                                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
+                                    <span className="rounded-2xl !p-1 !px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
                                         WORKOUT
                                     </span>
                                     <span
@@ -76,27 +76,27 @@ export default function ExercisesList() {
 
                                 <button
                                     onClick={() => setSelectedExercise(exercise)}
-                                    className="px-3 py-1 cursor-pointer font-[DM_Sans] font-medium"
+                                    className="!px-3 !py-1 cursor-pointer font-[DM_Sans] font-medium"
                                 >
                                     Start
                                 </button>
                             </div>
 
-                            <h3 className="text-lg capitalize mt-6 font-[DM_Sans]">
+                            <h3 className="text-lg capitalize !mt-6 font-[DM_Sans]">
                                 {exercise.name}
                             </h3>
 
-                            <div className="flex flex-col gap-1 mt-2">
+                            <div className="flex flex-col !gap-1 !mt-2">
                                 <p className="text-sm text-black font-[DM_Sans] capitalize">
-                                    <span className="text-[#1B1B1B66] mr-1">Burned calories:</span>
+                                    <span className="text-[#1B1B1B66] !mr-1">Burned calories:</span>
                                     {exercise.burnedCalories}/{exercise.time} min
                                 </p>
                                 <p className="text-sm text-black font-[DM_Sans] capitalize">
-                                    <span className="text-[#1B1B1B66] mr-1">Body Part:</span>
+                                    <span className="text-[#1B1B1B66] !mr-1">Body Part:</span>
                                     {exercise.bodyPart}
                                 </p>
                                 <p className="text-sm text-black font-[DM_Sans] capitalize">
-                                    <span className="text-[#1B1B1B66] mr-1">Target:</span>
+                                    <span className="text-[#1B1B1B66] !mr-1">Target:</span>
                                     {exercise.target}
                                 </p>
                             </div>
