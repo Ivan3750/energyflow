@@ -22,46 +22,50 @@ type ExercisesModalProps = {
 export default function ExercisesModal({ exercise, onClose }: ExercisesModalProps) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-            <div className="flex bg-white rounded-2xl p-6 w-[732px] shadow-lg">
-                <img src={exercise.gifUrl} alt="" />
-                <div>  <div className="flex ">
-                    <h2 className="text-xl font-bold  text-center">{exercise.name}</h2>
-                    <button
-                        onClick={onClose}
-                        className="text-xl text-black  cursor-pointer text-center"
-                    >
-                        X
-                    </button>
-                </div>
-                    <div><p className="mb-4">⭐ Rating: {exercise.rating}</p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans] capitalize">Target:</span> {exercise.target}
-                        </p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans] capitalize">Body part:</span> {exercise.bodyPart}
-                        </p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans] capitalize">Equipment:</span> {exercise.equipment}
-                        </p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans] capitalize">Body part:</span> {exercise.bodyPart}
-                        </p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans] capitalize">Popularity:</span> {exercise.popularity}
-                        </p>
-                        <p className="mb-2 capitalize">
-                            <span className="text-gray-500 font-[DM_Sans]" >Burned calories:</span>{" "}
-                            {exercise.burnedCalories} / {exercise.time} min
-                        </p>
-                        <p className="text-gray-500 font-[DM_Sans] capitalize">
-                            {exercise.description}
-                        </p>
-                        <div>
-                            <button>Add to favorites</button>
-                            <button>Give a rating</button>
-                        </div>
-                    </div></div>
+            <div className="relative flex bg-white rounded-2xl !p-[40px] w-[732px] shadow-lg">
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-6 text-xl text-black cursor-pointer"
+                >
+                    X
+                </button>
 
+                <img src={exercise.gifUrl} alt="" className="w-[270px]      " />
+
+                <div className="ml-4">
+                    <h2 className="text-2xl !mb-[8px] font-bold capitalize">{exercise.name}</h2>
+                    <p className="!mb-[16px]">⭐ Rating: {exercise.rating}</p>
+                    <div className="flex grid grid-cols-4 gap-[20px]">
+                        <p className=" capitalize  whitespace-nowrap">
+                            <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">Target</span> {exercise.target}
+                        </p>
+                        <p className=" capitalize whitespace-nowrap">
+                            <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">Body part</span> {exercise.bodyPart}
+                        </p>
+                        <p className=" capitalize whitespace-nowrap">
+                            <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">Equipment</span> {exercise.equipment}
+                        </p>
+                        <p className=" capitalize whitespace-nowrap">
+                            <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">Popularity</span> {exercise.popularity}
+                        </p>
+                        <p className=" capitalize whitespace-nowrap">
+                            <span className=" block text-gray-500 text-sm font-[DM_Sans] ">Burned calories</span>{" "}
+                            {exercise.burnedCalories} / {exercise.time} min
+                        </p></div>
+
+                    <p className="text-gray-500 font-[DM_Sans] capitalize !mb-[32px]">
+                        {exercise.description}
+                    </p>
+
+                    <div className="flex gap-2 mt-4">
+                        <button className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]">
+                            Add to favorites
+                        </button>
+                        <button className="rounded-3xl !py-[11px] !px-[15px] cursor-pointer font-[DM_Sans] border border-black hover:border-[#7E847F] hover:text-[#7E847F]">
+                            Give a rating
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
