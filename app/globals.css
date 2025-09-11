@@ -1,6 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
+/* Основний контейнер календаря */
+.fc {
+  @apply font-sans text-gray-700;
+}
+
+/* Сітка календаря */
+.fc .fc-timegrid-slot-lane {
+  @apply bg-gray-50 border-b border-gray-200 relative;
+  transition: background-color 0.2s;
+}
+
+/* Слоти половинної години */
+.fc .fc-timegrid-slot-minor {
+  @apply bg-gray-50 border-b border-gray-100;
+}
+
+/* Hover ефект для слотів */
+.fc .fc-timegrid-slot-lane:hover {
+  @apply bg-gray-100;
+}
+
+/* Ліва колонка з часом */
+.fc .fc-timegrid-slot-label {
+  @apply text-gray-500 text-sm font-medium px-2;
+}
+
+/* Додаткове вирівнювання часу у колонці */
+.fc .fc-timegrid-slot-label-frame {
+  @apply flex items-center justify-end pr-2;
+}
+
+/* Текст часу */
+.fc .fc-timegrid-slot-label-cushion {
+  @apply font-semibold text-gray-700;
+}
+
+/* Події */
+.fc .fc-event {
+  @apply bg-white text-gray-900 rounded-xl shadow-md border-l-4 border-blue-500 px-3 py-2 m-1 hover:shadow-lg transition-all;
+  overflow: hidden;
+}
+
+/* Текст події */
+.fc .fc-event-title {
+  @apply font-semibold text-sm truncate;
+}
+
+/* Tooltip події (через tippy.js) */
+.tippy-box {
+  @apply bg-gray-800 text-white text-xs rounded-lg shadow-lg p-2;
+}
+
+/* Виділення сьогоднішнього дня у header */
+.fc .fc-col-header-cell.fc-day-today {
+  @apply bg-green-200 text-gray-900 rounded-lg;
+}
+
+/* Лінії розділення заголовків днів */
+.fc .fc-col-header-cell {
+  @apply border-b border-gray-200;
+}
+
+/* Висота рядків слотів */
+.fc .fc-timegrid-slot {
+  height: 2.5rem; /* 40px на слот */
+}
+
+/* Кнопки навігації FullCalendar (якщо використовуєш headerToolbar) */
+.fc .fc-button {
+  @apply bg-gray-200 text-gray-700 rounded-lg px-3 py-1 font-medium hover:bg-gray-300 transition;
+}
+.fc .fc-button-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
 
 
 :root {
