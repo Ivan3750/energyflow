@@ -66,6 +66,8 @@
   "settings_account_actions": "Account Actions",
   "settings_sign_out": "Sign Out",
   "settings_delete_account": "Delete Account",
+  "settings_language":" Language",
+   "settings_preferences":"Settings preferences",
   
   "auth_create_account": "Create an Account",
   "auth_welcome_back": "Welcome Back",
@@ -131,6 +133,7 @@
     "save": "Save",
     "cancel": "Cancel",
     "persZan":"Personal training with experienced trainers who will develop a program specifically for you. Individual approach, control of exercise technique and motivation to achieve the best results."
+
 
   
 

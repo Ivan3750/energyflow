@@ -270,7 +270,7 @@ const Settings = () => {
               </select>
             </div>
             <div className="hidden">
-               {/* ПРИХОВАНО */}
+               
               <label className="block font-medium">{t("settings_theme")}</label>
               <select
                 value={user.theme || "light"}

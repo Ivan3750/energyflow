@@ -68,6 +68,8 @@
   "settings_account_actions": "Akcje konta",
   "settings_sign_out": "Wyloguj się",
   "settings_delete_account": "Usuń konto",
+  "settings_language":" Język",
+  "settings_preferences":"Ustawienia preferencji",
   
   "auth_create_account": "Utwórz konto",
   "auth_welcome_back": "Witaj ponownie",
