@@ -1,16 +1,21 @@
 "use client";
-
 import Link from "next/link";
 import styles from "./Header.module.css";
 import { FaFacebookF, FaInstagram, FaYoutube, FaUser } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslate } from "../hooks/useTranslate";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { t } = useTranslate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   return (
     <>
@@ -22,24 +27,39 @@ export default function Header() {
         <nav className={styles.nav}>
           <Link
             href="/"
-            className={`${styles.navItem} ${activeTab === "home" ? styles.active : ""}`}
+            className={`${styles.navItem} ${
+              activeTab === "home" ? styles.active : ""
+            }`}
             onClick={() => setActiveTab("home")}
           >
             {t("home")}
           </Link>
           <Link
             href="/favorites"
-            className={`${styles.navItem} ${activeTab === "favorites" ? styles.active : ""}`}
+            className={`${styles.navItem} ${
+              activeTab === "favorites" ? styles.active : ""
+            }`}
             onClick={() => setActiveTab("favorites")}
           >
             {t("favorites")}
           </Link>
           <Link
             href="/about"
-            className={`${styles.navItem} ${activeTab === "about" ? styles.active : ""}`}
+            className={`${styles.navItem} ${
+              activeTab === "about" ? styles.active : ""
+            }`}
             onClick={() => setActiveTab("about")}
           >
             {t("About")}
+          </Link>
+          <Link
+            href="/calendar"
+            className={`${styles.navItem} ${
+              activeTab === "calendar" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("calendar")}
+          >
+            {t("Calendar")}
           </Link>
         </nav>
 
@@ -48,10 +68,24 @@ export default function Header() {
         </div>
 
         <div className={styles.socials}>
-          <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
-          <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
-          <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
-          <a href="#"><FaUser /></a>
+          <a href="https://www.facebook.com/goITclub/">
+            <FaFacebookF />
+          </a>
+          <a href="https://www.instagram.com/goitclub/">
+            <FaInstagram />
+          </a>
+          <a href="https://www.youtube.com/c/GoIT">
+            <FaYoutube />
+          </a>
+          {isLoggedIn ? (
+            <Link href="/settings">
+              <FaUser />
+            </Link>
+          ) : (
+            <Link href="/login" className={styles.loginBtn}>
+              {t("Login")}
+            </Link>
+          )}
         </div>
 
         <div className={styles.burger} onClick={() => setMenuOpen(true)}>
@@ -68,32 +102,63 @@ export default function Header() {
           <nav>
             <Link
               href="/"
-              className={`${styles.mobileNavItem} ${activeTab === "home" ? styles.active : ""}`}
-              onClick={() => { setMenuOpen(false); setActiveTab("home"); }}
+              className={`${styles.mobileNavItem} ${
+                activeTab === "home" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("home");
+              }}
             >
               {t("home")}
             </Link>
             <Link
               href="/favorites"
-              className={`${styles.mobileNavItem} ${activeTab === "favorites" ? styles.active : ""}`}
-              onClick={() => { setMenuOpen(false); setActiveTab("favorites"); }}
+              className={`${styles.mobileNavItem} ${
+                activeTab === "favorites" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("favorites");
+              }}
             >
               {t("favorites")}
             </Link>
             <Link
-            href="/about"
-            className={`${styles.mobilenavItem} ${activeTab === "about" ? styles.active : ""}`}
-            onClick={() => setActiveTab("about")}
-          >
-            {t("About")}
-          </Link>
+              href="/about"
+              className={`${styles.mobileNavItem} ${
+                activeTab === "about" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("about");
+              }}
+            >
+              {t("About")}
+            </Link>
           </nav>
 
-          <div className={styles.mobileSocials}>
-            <a href="https://www.facebook.com/goITclub/"><FaFacebookF /></a>
-            <a href="https://www.instagram.com/goitclub/"><FaInstagram /></a>
-            <a href="https://www.youtube.com/c/GoIT"><FaYoutube /></a>
-            <a href="/settings"><FaUser /></a>
+          <div className={styles.mobileSocials} style={{ gap: "10px" }}>
+            <a href="https://www.facebook.com/goITclub/">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/goitclub/">
+              <FaInstagram />
+            </a>
+            <a href="https://www.youtube.com/c/GoIT">
+              <FaYoutube />
+            </a>
+            {isLoggedIn ? (
+              <Link href="/settings">
+                <FaUser />
+              </Link>
+            ) : (
+              <>
+                <Link href="/login" className={styles.loginBtn}>
+                  {t("Login")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

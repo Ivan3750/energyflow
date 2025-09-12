@@ -11,12 +11,13 @@ import "tippy.js/dist/tippy.css";
 const LOCAL_STORAGE_KEY = "workout-events";
 
 interface WorkoutEvent extends EventInit {
-  id: string;           
-  title: string;       
-  start: string | Date; 
-  end?: string | Date;   
-  description?: string;  
-  extendedProps?: any;  
+  id: string;
+  title: string;
+  start: string | Date;
+  end?: string | Date;
+  description?: string;
+  duration?: number; 
+  extendedProps?: any;
 }
 
 export default function WorkoutCalendar() {
@@ -28,6 +29,7 @@ export default function WorkoutCalendar() {
   const [formTitle, setFormTitle] = useState("");
   const [formDate, setFormDate] = useState("");
   const [formDesc, setFormDesc] = useState("");
+  const [formDuration, setFormDuration] = useState(60);
 
   useEffect(() => {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -45,11 +47,13 @@ export default function WorkoutCalendar() {
       setFormTitle(event.title?.toString() || "");
       setFormDate(event.start?.toString() || "");
       setFormDesc(event.description || "");
+      setFormDuration(event.duration || 60);
     } else {
       setCurrentEvent(null);
       setFormTitle("");
       setFormDate("");
       setFormDesc("");
+      setFormDuration(60);
     }
     setIsModalOpen(true);
   };
@@ -57,10 +61,20 @@ export default function WorkoutCalendar() {
   const handleSave = () => {
     if (!formTitle || !formDate) return;
 
+    const startDate = new Date(formDate);
+    const endDate = new Date(startDate.getTime() + formDuration * 60000);
+
     if (currentEvent) {
       const newEvents = events.map((ev) =>
         ev.id === currentEvent.id
-          ? { ...ev, title: formTitle, start: formDate, description: formDesc }
+          ? {
+              ...ev,
+              title: formTitle,
+              start: startDate,
+              end: endDate,
+              description: formDesc,
+              duration: formDuration,
+            }
           : ev
       );
       saveEvents(newEvents);
@@ -68,8 +82,10 @@ export default function WorkoutCalendar() {
       const newEvent: WorkoutEvent = {
         id: Date.now().toString(),
         title: formTitle,
-        start: formDate,
+        start: startDate,
+        end: endDate,
         description: formDesc,
+        duration: formDuration,
       };
       saveEvents([...events, newEvent]);
     }
@@ -87,154 +103,173 @@ export default function WorkoutCalendar() {
   const today = DateTime.now();
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">Тренування на тиждень</h1>
-        <div className="flex space-x-2">
+    <div className="font-sans grid grid-rows-[80px_1fr] mt-[50px] min-h-screen bg-white">
+      <section className="row-start-1 flex flex-col items-center justify-center py-10 text-center">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4">
+          Плануй свої <span className="text-[#444]">Тренування</span>
+        </h1>
+        <p className="text-gray-600 max-w-xl">
+          Організуй свій спортивний розклад на тиждень і стеж за прогресом.
+        </p>
+      </section>
+
+      <section className="row-start-2 flex flex-col items-center sm:items-start px-6 sm:px-20 gap-8 w-full py-5">
+        <div className="flex w-full justify-between items-center">
+          <div className="flex gap-2">
+            <button
+              onClick={() => calendarRef.current?.getApi().today()}
+              className="px-4 py-2 bg-gray-200 text-sm rounded-full"
+            >
+              Сьогодні
+            </button>
+            <button
+              onClick={() => calendarRef.current?.getApi().prev()}
+              className="px-4 py-2 bg-gray-200 text-sm rounded-full"
+            >
+              ◀
+            </button>
+            <button
+              onClick={() => calendarRef.current?.getApi().next()}
+              className="px-4 py-2 bg-gray-200 text-sm rounded-full"
+            >
+              ▶
+            </button>
+          </div>
+
           <button
-            onClick={() => calendarRef.current?.getApi().today()}
-            className="px-4 py-2 bg-gray-200 text-sm rounded-lg hover:bg-gray-300 transition"
+            onClick={() => openModal()}
+            className="px-6 py-3 bg-[#444] text-white font-medium rounded-full shadow transition"
           >
-            Сьогодні
-          </button>
-          <button
-            onClick={() => calendarRef.current?.getApi().prev()}
-            className="px-4 py-2 bg-gray-200 text-sm rounded-lg hover:bg-gray-300 transition"
-          >
-            ◀
-          </button>
-          <button
-            onClick={() => calendarRef.current?.getApi().next()}
-            className="px-4 py-2 bg-gray-200 text-sm rounded-lg hover:bg-gray-300 transition"
-          >
-            ▶
+            +
           </button>
         </div>
-      </div>
 
-      <button
-        onClick={() => openModal()}
-        className="mb-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-xl shadow hover:bg-blue-700 transition"
-      >
-         Додати вправу
-      </button>
-
-      <div className="rounded-xl shadow-lg overflow-hidden border border-gray-200">
-        <FullCalendar
-          ref={calendarRef}
-          plugins={[luxonPlugin, timeGridPlugin]}
-          initialView="timeGridWeek"
-          initialDate={today.toJSDate()}
-          events={events}
-          eventClick={(args) => {
-            const ev = events.find((e) => e.id === args.event.id);
-            if (ev) openModal(ev);
-          }}
-          eventDidMount={(args) => {
-            tippy(args.el, {
-              content: args.event.extendedProps.description || "",
-              placement: "top",
-              duration: 0,
-              allowHTML: true,
-            });
-          }}
-          windowResize={() => {
-            if (window.innerWidth >= 768) {
-              calendarRef.current?.getApi().changeView("timeGridWeek");
-            } else {
-              calendarRef.current?.getApi().changeView("timeGridDay");
-            }
-          }}
-          slotDuration={"00:30:00"}
-          slotMinTime={"07:00"}
-          slotMaxTime={"18:00"}
+        {/* Calendar */}
+        <div className="rounded-2xl shadow-xl overflow-hidden border border-gray-200 w-full bg-white">
+          <FullCalendar
+            ref={calendarRef}
+            plugins={[luxonPlugin, timeGridPlugin]}
+            initialView="timeGridWeek"
+            initialDate={today.toJSDate()}
+            events={events}
+            eventClick={(args) => {
+              const ev = events.find((e) => e.id === args.event.id);
+              if (ev) openModal(ev);
+            }}
+            eventDidMount={(args) => {
+              tippy(args.el, {
+                content: args.event.extendedProps.description || "",
+                placement: "top",
+                duration: 0,
+                allowHTML: true,
+              });
+            }}
+            windowResize={() => {
+              if (window.innerWidth >= 768) {
+                calendarRef.current?.getApi().changeView("timeGridWeek");
+              } else {
+                calendarRef.current?.getApi().changeView("timeGridDay");
+              }
+            }}
+            slotDuration={"00:30:00"}
+            slotMinTime={"07:00"}
+            slotMaxTime={"18:00"}
             slotLabelFormat={{
-    hour: "2-digit",   
-    minute: "2-digit", 
-    hour12: false      
-  }}
-          allDaySlot={false}
-          slotEventOverlap={false}
-          weekends={false}
-          headerToolbar={false}
-          contentHeight={"auto"}
-          nowIndicator
-          dayHeaderContent={(renderProps) => {
-            const date = DateTime.fromJSDate(renderProps.date);
-            const todayClasses = renderProps.isToday
-              ? "w-8 h-8 rounded-full bg-green-300 text-black"
-              : "";
-            const weekday = date.toFormat("ccc");
-            return (
-              <div className="h-12 flex items-center justify-center py-3">
-                <span className="flex items-baseline font-normal leading-6">
-                  {weekday}
-                  <span
-                    className={`flex items-center justify-center ml-1 font-semibold ${todayClasses}`}
-                  >
-                    {date.day}
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            }}
+            allDaySlot={false}
+            slotEventOverlap={false}
+            weekends={false}
+            headerToolbar={false}
+            contentHeight={"auto"}
+            nowIndicator
+            dayHeaderContent={(renderProps) => {
+              const date = DateTime.fromJSDate(renderProps.date);
+              const todayClasses = renderProps.isToday
+                ? "w-8 h-8 rounded-full bg-blue-500 text-white"
+                : "";
+              const weekday = date.toFormat("ccc");
+              return (
+                <div className="h-12 flex items-center justify-center py-3">
+                  <span className="flex items-baseline font-normal leading-6">
+                    {weekday}
+                    <span
+                      className={`flex items-center justify-center ml-1 font-semibold ${todayClasses}`}
+                    >
+                      {date.day}
+                    </span>
                   </span>
-                </span>
-              </div>
-            );
-          }}
-          eventClassNames={() => [
-            "rounded-lg",
-
-            "px-2",
-            "py-1",
-            "text-sm",
-            "bg-blue-500",
-            "text-white",
-            "hover:bg-blue-600",
-            "transition",
-          ]}
-        />
-      </div>
+                </div>
+              );
+            }}
+            eventClassNames={() => [
+              "rounded-lg",
+              "px-2",
+              "py-1",
+              "text-sm",
+              "bg-gradient-to-r from-[#444] to-[#444]",
+              "text-white",
+              "transition",
+              "border-none"
+            ]}
+          />
+        </div>
+      </section>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-96 shadow-xl">
-            <h3 className="text-xl font-semibold mb-4">
-              {currentEvent ? "Редагувати вправу" : "Додати вправу"}
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl animate-fadeIn flex flex-col gap-4">
+            <h3 className="text-2xl font-bold text-gray-800 text-center">
+              {currentEvent ? "Редагувати заняття" : "Додати заняття"}
             </h3>
             <input
               type="text"
-              placeholder="Назва вправи"
-              className="w-full mb-3 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="Назва"
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
             />
             <input
               type="datetime-local"
-              className="w-full mb-3 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
               value={formDate}
               onChange={(e) => setFormDate(e.target.value)}
             />
+            <input
+              type="number"
+              min={15}
+              step={15}
+              placeholder="Тривалість (хв)"
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
+              value={formDuration}
+              onChange={(e) => setFormDuration(Number(e.target.value))}
+            />
             <textarea
-              placeholder="Опис вправи"
-              className="w-full mb-3 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="Опис"
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400 resize-none h-24"
               value={formDesc}
               onChange={(e) => setFormDesc(e.target.value)}
             />
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-3 mt-2">
               {currentEvent && (
                 <button
                   onClick={handleDelete}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition"
+                  className="bg-[#940000]  text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
                 >
                   Видалити
                 </button>
               )}
               <button
                 onClick={handleSave}
-                className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg transition"
+                className="bg-[#444]  text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
               >
                 Зберегти
               </button>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded-lg transition"
+                className="bg-gray-300  px-5 py-2 rounded-2xl font-medium transition shadow-md"
               >
                 Відміна
               </button>
@@ -245,4 +280,3 @@ export default function WorkoutCalendar() {
     </div>
   );
 }
-0

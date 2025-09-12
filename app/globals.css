@@ -1,82 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
-/* Основний контейнер календаря */
 .fc {
   @apply font-sans text-gray-700;
 }
-
-/* Сітка календаря */
 .fc .fc-timegrid-slot-lane {
-  @apply bg-gray-50 border-b border-gray-200 relative;
-  transition: background-color 0.2s;
+  @apply bg-gray-50 border-b border-gray-200 relative transition-colors duration-200;
 }
-
-/* Слоти половинної години */
 .fc .fc-timegrid-slot-minor {
   @apply bg-gray-50 border-b border-gray-100;
 }
-
-/* Hover ефект для слотів */
 .fc .fc-timegrid-slot-lane:hover {
   @apply bg-gray-100;
 }
-
-/* Ліва колонка з часом */
 .fc .fc-timegrid-slot-label {
   @apply text-gray-500 text-sm font-medium px-2;
 }
-
-/* Додаткове вирівнювання часу у колонці */
 .fc .fc-timegrid-slot-label-frame {
   @apply flex items-center justify-end pr-2;
 }
-
-/* Текст часу */
 .fc .fc-timegrid-slot-label-cushion {
   @apply font-semibold text-gray-700;
 }
-
-/* Події */
 .fc .fc-event {
-  @apply bg-white text-gray-900 rounded-xl shadow-md border-l-4 border-blue-500 px-3 py-2 m-1 hover:shadow-lg transition-all;
-  overflow: hidden;
+  @apply bg-white text-gray-900 rounded-2xl shadow-lg border-l-4  px-4 py-2 m-1 hover:shadow-2xl transition-all overflow-hidden;
 }
-
-/* Текст події */
 .fc .fc-event-title {
   @apply font-semibold text-sm truncate;
 }
-
-/* Tooltip події (через tippy.js) */
 .tippy-box {
-  @apply bg-gray-800 text-white text-xs rounded-lg shadow-lg p-2;
+  @apply bg-gray-900 text-white text-xs rounded-lg shadow-lg p-2;
 }
-
-/* Виділення сьогоднішнього дня у header */
 .fc .fc-col-header-cell.fc-day-today {
-  @apply bg-green-200 text-gray-900 rounded-lg;
+  @apply  text-gray-900 rounded-lg;
 }
-
-/* Лінії розділення заголовків днів */
 .fc .fc-col-header-cell {
   @apply border-b border-gray-200;
 }
-
-/* Висота рядків слотів */
 .fc .fc-timegrid-slot {
-  height: 2.5rem; /* 40px на слот */
+  height: 2.5rem; 
 }
-
-/* Кнопки навігації FullCalendar (якщо використовуєш headerToolbar) */
 .fc .fc-button {
-  @apply bg-gray-200 text-gray-700 rounded-lg px-3 py-1 font-medium hover:bg-gray-300 transition;
+  @apply bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-medium hover:bg-gray-300 transition;
 }
 .fc .fc-button-primary {
   @apply bg-blue-600 text-white hover:bg-blue-700;
 }
-
-
 
 :root {
   --background: #ffffff;
@@ -300,105 +269,3 @@ button:hover{
   margin: 0px auto;
 }
 
-
-
-/* TESST */
-
-.advantage-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  background-color: #8B4513;
-  color: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
-  font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.md\:grid-cols-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.training-card {
-  background-color: #718096;
-  color: white;
-  padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.training-card h3 {
-  font-size: 2rem;
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.training-card p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.comment-card {
-  background-color: #2d3748;
-  color: white;
-  padding: 1.5rem;
-  border-radius: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-height: 200px;
-}
-
-.md\:grid-cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-
-.space-y-16 > * + * {
-  margin-top: 4rem;
-}
-
-.space-y-4 > * + * {
-  margin-top: 1rem;
-}
-
-
-
-@media (max-width: 768px) {
-  .md\:grid-cols-2,
-  .md\:grid-cols-3 {
-    grid-template-columns: 1fr;
-  }
-  
-  
-  .training-card {
-    padding: 2rem;
-    min-height: auto;
-  }
-  
-  .training-card h3 {
-    font-size: 1.5rem;
-  }
-}
