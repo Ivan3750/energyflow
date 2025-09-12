@@ -15,6 +15,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "EnergyFlow",
   description: "EnergyFlow is best",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

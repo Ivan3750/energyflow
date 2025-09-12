@@ -108,51 +108,45 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
           <p className="!mb-[16px]">⭐ {t("rating")}: {exercise.rating}</p>
           <div className="flex grid grid-cols-4 gap-[20px]">
             <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">
+              <span className="block text-gray-500 text-sm  capitalize">
                 {t("target")}
               </span>
               {exercise.target}
             </p>
             <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">
+              <span className="block text-gray-500 text-sm  capitalize">
                 {t("bodyPart")}
               </span>
               {exercise.bodyPart}
             </p>
             <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">
+              <span className="block text-gray-500 text-sm  capitalize">
                 {t("equipment")}
               </span>
               {exercise.equipment}
             </p>
             <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm font-[DM_Sans] capitalize">
+              <span className="block text-gray-500 text-sm  capitalize">
                 {t("popularity")}
               </span>
               {exercise.popularity}
             </p>
-            <p className="capitalize whitespace-nowrap col-span-4">
-              <span className="block text-gray-500 text-sm font-[DM_Sans]">
+            <p className="capitalize whitespace-nowrap">
+              <span className="block text-gray-500 text-sm ">
                 {t("burnedCalories")}
               </span>
               {exercise.burnedCalories} / {exercise.time} min
             </p>
           </div>
 
-          <p className="text-gray-500 font-[DM_Sans] capitalize !mb-[32px] mt-4">
+          <p className="text-gray-500 font-[DM_Sans] capitalize !mb-[32px]">
             {exercise.description}
           </p>
 
           <div className="flex gap-2 mt-4">
-            <button
-              onClick={handleAddToFavorites}
-              disabled={isAdded}
-              className={`rounded-3xl !py-[11px] !px-[20px] cursor-pointer font-[DM_Sans] text-white ${isAdded ? " cursor-not-allowed bg-[#7E847F] hover:bg-[#5F6560] " : "bg-[#7E847F] hover:bg-[#5F6560]"
-                }`}
-            >
-              {isAdded ? t("Already added") : t("Add to favorites")}
+            <button className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]">
+              {t("addToFavorites")}
             </button>
-
             <button className="rounded-3xl !py-[11px] !px-[15px] cursor-pointer font-[DM_Sans] border border-black hover:border-[#7E847F] hover:text-[#7E847F]">
               {t("giveRating")}
             </button>

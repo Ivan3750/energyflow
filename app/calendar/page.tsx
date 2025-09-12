@@ -8,6 +8,7 @@ import { DateTime } from "luxon";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import { useTranslate } from "../hooks/useTranslate";
+import { useRouter } from "next/navigation";
 
 const LOCAL_STORAGE_KEY = "workout-events";
 
@@ -22,6 +23,8 @@ interface WorkoutEvent extends EventInit {
 }
 
 export default function WorkoutCalendar() {
+    const router = useRouter();
+  
   const { t } = useTranslate();
   const calendarRef = useRef<FullCalendar>(null);
   const [events, setEvents] = useState<WorkoutEvent[]>([]);
@@ -34,6 +37,13 @@ export default function WorkoutCalendar() {
   const [formDuration, setFormDuration] = useState(60);
 
   useEffect(() => {
+ const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
+
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (stored) setEvents(JSON.parse(stored));
   }, []);
@@ -105,7 +115,7 @@ export default function WorkoutCalendar() {
   const today = DateTime.now();
 
   return (
-    <div className="font-sans grid grid-rows-[80px_1fr] mt-[50px] min-h-screen bg-white">
+    <div className="font-sans grid grid-rows-[80px_1fr] pt-[50px] min-h-screen bg-white">
       <section className="row-start-1 flex flex-col items-center justify-center py-10 text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4">
           {t("title")}

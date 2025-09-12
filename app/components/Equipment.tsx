@@ -48,10 +48,10 @@ export default function Equipment() {
                         />
                         <div className="absolute inset-0 bg-black/55" />
                         <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
-                            <h2 className="font-[DM_Sans] font-normal text-white text-[24px] capitalize">
+                            <h2 className=" font-normal text-white text-[24px] capitalize">
                                 {equipment.name}
                             </h2>
-                            <p className="font-[DM_Sans] font-normal text-[#F6F6F666] text-[18px] mt-1">
+                            <p className=" font-normal text-[#F6F6F666] text-[18px] mt-1">
                                 Equipment
                             </p>
                         </div>

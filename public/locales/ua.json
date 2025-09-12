@@ -67,6 +67,8 @@
   "settings_account_actions": "Дії з акаунтом",
   "settings_sign_out": "Вийти",
   "settings_delete_account": "Видалити акаунт",
+  "settings_language":" Mова",
+  "settings_preferences":" Налаштування параметрів",
   
   "auth_create_account": "Створити акаунт",
   "auth_welcome_back": "Ласкаво просимо назад",

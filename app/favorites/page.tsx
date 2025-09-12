@@ -76,7 +76,7 @@ export default function FavoritesPage() {
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
+                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm  font-medium">
                       {t("favorites_workout")}
                     </span>
                     <span className="text-yellow-400 text-lg flex items-center gap-1">
@@ -86,31 +86,31 @@ export default function FavoritesPage() {
                   </div>
 
                   <span
-                    className="font-[DM_Sans] font-medium cursor-pointer"
+                    className=" font-medium cursor-pointer"
                     onClick={() => removeFavorite(exercise.id)}
                   >
                     {t("favorites_delete")}
                   </span>
                 </div>
 
-                <h3 className="text-lg capitalize mt-6 font-[DM_Sans]">
+                <h3 className="text-lg capitalize mt-6 ">
                   {exercise.name}
                 </h3>
 
-                <div className="flex justify-between gap-3 mt-2">
-                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                <div className="flex justify-between mt-2">
+                  <p className="text-sm text-black capitalize">
                     <span className="text-[#1B1B1B66] mr-1">
                       {t("favorites_burned")}:
                     </span>
                     {exercise.burnedCalories}/{exercise.time} {t("favorites_min")}
                   </p>
-                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                  <p className="text-sm text-black  capitalize">
                     <span className="text-[#1B1B1B66] mr-1">
                       {t("favorites_bodyPart")}:
                     </span>
                     {exercise.bodyPart}
                   </p>
-                  <p className="text-sm text-black font-[DM_Sans] capitalize">
+                  <p className="text-sm text-black  capitalize">
                     <span className="text-[#1B1B1B66] mr-1">
                       {t("favorites_target")}:
                     </span>
