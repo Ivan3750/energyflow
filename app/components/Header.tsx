@@ -20,9 +20,11 @@ export default function Header() {
   return (
     <>
       <header className={styles.header}>
+        <Link href="/">
         <div className={styles.logo}>
           energy.<span>flow</span>
         </div>
+        </Link>
 
         <nav className={styles.nav}>
           <Link
@@ -135,6 +137,18 @@ export default function Header() {
               }}
             >
               {t("About")}
+            </Link>
+            <Link
+              href="/calendar"
+              className={`${styles.mobileNavItem} ${
+                activeTab === "calendar" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("calendar");
+              }}
+            >
+              {t("Calendar")}
             </Link>
           </nav>
 

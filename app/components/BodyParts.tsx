@@ -64,7 +64,7 @@ export default function ExercisesList() {
             >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
-                  <span className="rounded-2xl !p-1 !px-2 text-white bg-[#7E847F] text-sm font-[DM_Sans] font-medium">
+                  <span className="rounded-2xl !p-1 !px-2 text-white bg-[#7E847F] text-sm  font-medium">
                     {t("workout")}
                   </span>
                   <span
@@ -79,28 +79,28 @@ export default function ExercisesList() {
 
                 <button
                   onClick={() => setSelectedExercise(exercise)}
-                  className="!px-3 !py-1 cursor-pointer font-[DM_Sans] font-medium"
+                  className="!px-3 !py-1 cursor-pointer  font-medium"
                 >
                   {t("start")}
                 </button>
               </div>
 
-              <h3 className="text-lg capitalize !mt-6 font-[DM_Sans]">
+              <h3 className="text-lg capitalize !mt-6 ">
                 {exercise.name}
               </h3>
 
               <div className="flex flex-col !gap-1 !mt-2">
-                <p className="text-sm text-black font-[DM_Sans] capitalize">
+                <p className="text-sm text-black  capitalize">
                   <span className="text-[#1B1B1B66] !mr-1">
                     {t("burnedCalories")}:
                   </span>
                   {exercise.burnedCalories}/{exercise.time} min
                 </p>
-                <p className="text-sm text-black font-[DM_Sans] capitalize">
+                <p className="text-sm text-black  capitalize">
                   <span className="text-[#1B1B1B66] !mr-1">{t("bodyPart")}:</span>
                   {exercise.bodyPart}
                 </p>
-                <p className="text-sm text-black font-[DM_Sans] capitalize">
+                <p className="text-sm text-black  capitalize">
                   <span className="text-[#1B1B1B66] !mr-1">{t("target")}:</span>
                   {exercise.target}
                 </p>

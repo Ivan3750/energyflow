@@ -28,7 +28,7 @@ const QuoteCard = () => {
           }
         }
 
-        const res = await fetch(`/api/quote?lang=${lang}`);
+        const res = await fetch(`https://energyflow.b.goit.study/api/quote?lang=${lang}`);
         const data: Quote = await res.json();
         setQuote(data);
 

@@ -22,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} antialiased bg-gray-50`}>
+      <body className={`${dmSans.variable} antialiased bg-white`}>
       <TranslateProvider>
   <Header />
   <ClientWrapper>{children}</ClientWrapper>

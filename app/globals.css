@@ -5,10 +5,10 @@
   @apply font-sans text-gray-700;
 }
 .fc .fc-timegrid-slot-lane {
-  @apply bg-gray-50 border-b border-gray-200 relative transition-colors duration-200;
+  @apply bg-gray-200 border-b border-gray-200 relative transition-colors duration-200;
 }
 .fc .fc-timegrid-slot-minor {
-  @apply bg-gray-50 border-b border-gray-100;
+  @apply bg-gray-100 border-b border-gray-100;
 }
 .fc .fc-timegrid-slot-lane:hover {
   @apply bg-gray-100;
@@ -76,7 +76,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
 }
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -155,6 +154,13 @@ button:hover{
   height: auto;
   height: 302px;
 }
+
+@media (max-width: 768.98px){
+  .quote-right{
+    display: none;
+  }
+}
+
 .quote-image1,
 .quote-image2 {
   width: 100%;
