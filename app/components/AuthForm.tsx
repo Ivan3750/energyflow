@@ -46,7 +46,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 font-[DM_Sans]">
+    <div className="min-h-screen flex items-center justify-center px-4 ">
       <div className="w-full max-w-md rounded-2xl border bg-white shadow-lg p-8">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
           {mode === "register" ? t("auth_create_account") : t("auth_welcome_back")}

@@ -16,13 +16,13 @@ export const TranslateProvider = ({ children }: { children: React.ReactNode }) =
   const [lang, setLang] = useState("en");
   const [translations, setTranslations] = useState<Translations>({});
 
-  // Загружаем сохранённый язык из localStorage
+ 
   useEffect(() => {
     const savedLang = localStorage.getItem("lang") || "en";
     setLang(savedLang);
   }, []);
 
-  // Загружаем json-файл при смене языка
+  
   useEffect(() => {
     const loadTranslations = async () => {
       try {

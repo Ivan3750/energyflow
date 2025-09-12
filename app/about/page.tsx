@@ -1,123 +1,139 @@
+"use client";
+import Image from "next/image";
 import { Dumbbell, Users, Clock, User } from "lucide-react";
+import { useTranslate } from "../hooks/useTranslate";
+import s1 from "@/public/img/sport.webp";
+import s2 from "@/public/img/fitnes-2.jpg";
+import s3 from "@/public/img/fitnes-3.jpg";
 
 export default function Home() {
+  const { t } = useTranslate();
+
   const advantages = [
-    { 
-      icon: "🏋️", 
-      title: "Сучасний інвентар",
-      description: "Новітнє обладнання від провідних світових брендів для ефективних тренувань"
+    {
+      icon: <Dumbbell className="w-7 h-7" />,
+      title: t("modernEquipment"),
+      description: t("modernEquipmentDesc"),
     },
-    { 
-      icon: "👨‍🏫", 
-      title: "Професійні тренери",
-      description: "Сертифіковані фахівці з багаторічним досвідом роботи та індивідуальним підходом"
+    {
+      icon: <Users className="w-7 h-7" />,
+      title: t("professionalTrainers"),
+      description: t("professionalTrainersDesc"),
     },
-    { 
-      icon: "⏰", 
-      title: "Гнучкий графік",
-      description: "Працюємо з 6:00 до 23:00 без вихідних, щоб ви могли тренуватися у зручний час"
+    {
+      icon: <Clock className="w-7 h-7" />,
+      title: t("flexibleSchedule"),
+      description: t("flexibleScheduleDesc"),
     },
-    { 
-      icon: "🙋‍♂️", 
-      title: "Індивідуальні тренування",
-      description: "Персональні програми, розроблені спеціально під ваші цілі та можливості"
+    {
+      icon: <User className="w-7 h-7" />,
+      title: t("personalTraining"),
+      description: t("personalTrainingDesc"),
     },
   ];
 
-const users = [
-  { 
-    name: "Alice", 
-    icon: "A", 
-    comment: "The best gym in town! Professional trainers, modern equipment, and a welcoming atmosphere. I feel motivated every time I come here, and the personal training sessions really help me achieve my fitness goals. Highly recommend!" 
-  },
-  { 
-    name: "Bob", 
-    icon: "B", 
-    comment: "I've been coming here for over a year and the results are incredible. The trainers always provide guidance, the classes are engaging, and the gym is always clean and organized. I feel healthier and more energetic than ever before!" 
-  },
-  { 
-    name: "Clara", 
-    icon: "C", 
-    comment: "Clean, organized, and top-notch equipment. The staff is friendly and always ready to help. I especially love the group classes—they keep me motivated and push me to do my best every time. This gym is worth every penny!" 
-  },
-  { 
-    name: "David", 
-    icon: "D", 
-    comment: "Flexible working hours allow me to train even after a long workday. The trainers are attentive and offer helpful tips for improving my technique. I enjoy every session and always leave feeling accomplished and energized!" 
-  },
-  { 
-    name: "Eva", 
-    icon: "E", 
-    comment: "Trainers truly care about each member's progress. I've lost 10 kg in 3 months thanks to their personalized programs. The community here is supportive, and the atmosphere keeps me coming back. I feel stronger, healthier, and more confident!" 
-  },
-  { 
-    name: "Frank", 
-    icon: "F", 
-    comment: "The gym has a motivating atmosphere that pushes me to achieve my goals. Every visit is fun and challenging, and I love the variety of equipment and classes available. I always leave feeling full of energy and ready to take on the day!" 
-  }
-];
-
+  const users = [
+    { name: "Alice", icon: "A", comment: t("reviewAlice") },
+    { name: "Bob", icon: "B", comment: t("reviewBob") },
+    { name: "Clara", icon: "C", comment: t("reviewClara") },
+    { name: "David", icon: "D", comment: t("reviewDavid") },
+    { name: "Eva", icon: "E", comment: t("reviewEva") },
+    { name: "Frank", icon: "F", comment: t("reviewFrank") },
+  ];
 
   return (
-    <main className="p-8 space-y-16">
-      {/* Наші переваги */}
-      <section>
-        <h2>Наші переваги</h2>
-        <div className="grid md:grid-cols-2 gap-6 items-center">
-          <div className="space-y-4">
-            {advantages.map((adv, i) => (
-              <div key={i} className="advantage-card">
-                <div className="card-icon">{adv.icon}</div>
+    <main className="p-8 space-y-24 bg-white">
+      <section className=" mx-auto">
+        <h2 className="text-[44px] text-center font-semibold !mb-4">
+          {t("ourAdvantages")}
+        </h2>
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div className="space-y-6">
+            {advantages.map(({ icon, title, description }, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 bg-[#8B4513] text-white p-6 rounded-[40px]"
+              >
+                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-white/20 shrink-0 text-xl">
+                  {icon}
+                </div>
                 <div>
-                  <h3>{adv.title}</h3>
-                  <p className="text-sm">{adv.description}</p>
+                  <h3 className="font-semibold text-lg">{title}</h3>
+                  <p className="text-sm opacity-90 leading-relaxed">
+                    {description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
-          <img 
-            src="/img/treadmill.jpg" 
-            alt="Тренування" 
-            className="rounded-xl shadow" 
+          <Image
+            src={s1}
+            alt={t("trainingAlt")}
+            className="rounded-[40px] w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+            priority
           />
         </div>
       </section>
 
-      {/* Індивідуальні тренування */}
-      <section className="grid md:grid-cols-2 gap-6 items-center">
-        <div className="training-card">
-          <h3>Індивідуальні тренування</h3>
-          <p>
-            Персональні заняття з досвідченими тренерами, які розроблять 
-            програму спеціально для вас. Індивідуальний підхід, контроль 
-            техніки виконання вправ та мотивація для досягнення найкращих результатів.
-          </p>
+      <section className="space-y-12">
+        <h2 className="text-[44px] text-center font-semibold !mb-4">
+          {t("personalTraining")}
+        </h2>
+
+        <div className="flex flex-col md:flex-row gap-6  mx-auto">
+          <div className="flex-1 rounded-[40px] overflow-hidden">
+            <Image
+              src={s2}
+              alt="Зал"
+              className="w-full h-full object-cover"
+              width={600}
+              height={400}
+            />
+          </div>
+          <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
+            <p className="text-lg leading-relaxed opacity-95">
+              {t("persZan")}
+              
+            </p>
+          </div>
         </div>
-        <div className="grid gap-4">
-          <img 
-            src="/img/gym1.jpg" 
-            alt="Зал" 
-            className="rounded-xl shadow" 
-          />
-          <img 
-            src="/img/gym2.jpg" 
-            alt="Тренажери" 
-            className="rounded-xl shadow" 
-          />
+
+        <div className="flex flex-col md:flex-row-reverse gap-6  mx-auto">
+          <div className="flex-1 rounded-[40px] overflow-hidden">
+            <Image
+              src={s3}
+              alt="Тренажери"
+              className="w-full h-full object-cover"
+              width={600}
+              height={400}
+            />
+          </div>
+          <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
+            <p className="text-lg leading-relaxed opacity-95">
+              {t("persZan")}
+             
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Рандомні коментарі */}
-      <section>
-        <h2>Відгуки наших клієнтів</h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {users.map((user, i) => (
-            <div key={i} className="comment-card">
-              <div className="flex items-center gap-2 font-semibold">
-                <span className="card-icon">{user.icon}</span>
-                {user.name}
+      <section className=" mx-auto space-y-8">
+        <h2 className="text-[44px] text-center font-semibold !mb-4">
+          {t("clientReviews")}
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {users.map(({ name, icon, comment }, i) => (
+            <div key={i} className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-[#2f2f2f] flex items-center justify-center border border-[#3a3a3a] text-white font-bold text-lg">
+                  A
+                </div>
+                <p className="text-white text-sm">{name}</p>
               </div>
-              <p className="text-sm mt-2">"{user.comment}"</p>
+              <div className="flex gap-1 mb-3">
+             
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">{comment}</p>
             </div>
           ))}
         </div>

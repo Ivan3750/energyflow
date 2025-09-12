@@ -1,7 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
-
+.fc {
+  @apply font-sans text-gray-700;
+}
+.fc .fc-timegrid-slot-lane {
+  @apply bg-gray-200 border-b border-gray-200 relative transition-colors duration-200;
+}
+.fc .fc-timegrid-slot-minor {
+  @apply bg-gray-100 border-b border-gray-100;
+}
+.fc .fc-timegrid-slot-lane:hover {
+  @apply bg-gray-100;
+}
+.fc .fc-timegrid-slot-label {
+  @apply text-gray-500 text-sm font-medium px-2;
+}
+.fc .fc-timegrid-slot-label-frame {
+  @apply flex items-center justify-end pr-2;
+}
+.fc .fc-timegrid-slot-label-cushion {
+  @apply font-semibold text-gray-700;
+}
+.fc .fc-event {
+  @apply bg-white text-gray-900 rounded-2xl shadow-lg border-l-4  px-4 py-2 m-1 hover:shadow-2xl transition-all overflow-hidden;
+}
+.fc .fc-event-title {
+  @apply font-semibold text-sm truncate;
+}
+.tippy-box {
+  @apply bg-gray-900 text-white text-xs rounded-lg shadow-lg p-2;
+}
+.fc .fc-col-header-cell.fc-day-today {
+  @apply  text-gray-900 rounded-lg;
+}
+.fc .fc-col-header-cell {
+  @apply border-b border-gray-200;
+}
+.fc .fc-timegrid-slot {
+  height: 2.5rem; 
+}
+.fc .fc-button {
+  @apply bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-medium hover:bg-gray-300 transition;
+}
+.fc .fc-button-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
 
 :root {
   --background: #ffffff;
@@ -32,7 +76,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
 }
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -111,6 +154,13 @@ button:hover{
   height: auto;
   height: 302px;
 }
+
+@media (max-width: 768.98px){
+  .quote-right{
+    display: none;
+  }
+}
+
 .quote-image1,
 .quote-image2 {
   width: 100%;
@@ -224,6 +274,7 @@ button:hover{
 .ma{
   margin: 0px auto;
 }
+
 
 
 
@@ -347,3 +398,4 @@ img {
     height: 200px;
   }
 }
+

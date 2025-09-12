@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslate } from "../hooks/useTranslate"; 
+import { useTranslate } from "../hooks/useTranslate";
+import PageLoader from "./PageLoader";
 
 interface Quote {
   author: string;
@@ -10,13 +11,14 @@ interface Quote {
 
 const QuoteCard = () => {
   const [quote, setQuote] = useState<Quote | null>(null);
-  const { t } = useTranslate(); 
+  const { t, lang } = useTranslate();
 
   useEffect(() => {
     const fetchQuote = async () => {
       try {
         const today = new Date().toDateString();
-        const storedData = localStorage.getItem("quoteOfTheDay");
+        const storageKey = `quoteOfTheDay_${lang}`;
+        const storedData = localStorage.getItem(storageKey);
 
         if (storedData) {
           const parsed = JSON.parse(storedData);
@@ -26,12 +28,12 @@ const QuoteCard = () => {
           }
         }
 
-        const res = await fetch("https://energyflow.b.goit.study/api/quote");
-        const data = await res.json();
+        const res = await fetch(`https://energyflow.b.goit.study/api/quote?lang=${lang}`);
+        const data: Quote = await res.json();
         setQuote(data);
 
         localStorage.setItem(
-          "quoteOfTheDay",
+          storageKey,
           JSON.stringify({ date: today, quote: data })
         );
       } catch (error) {
@@ -40,7 +42,7 @@ const QuoteCard = () => {
     };
 
     fetchQuote();
-  }, []);
+  }, [lang]);
 
   return (
     <div className="quote-container">
@@ -61,7 +63,7 @@ const QuoteCard = () => {
               />
             </div>
           </div>
-          <p className="quote-text">{quote?.quote || t("quote_loading")}</p>
+          {quote ? <p className="quote-text">{quote.quote}</p> : <PageLoader />}
           <p className="quote-author">{quote?.author}</p>
         </div>
         <div className="quote-right">
