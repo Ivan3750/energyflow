@@ -97,7 +97,7 @@ export default function FavoritesPage() {
                   {exercise.name}
                 </h3>
 
-                <div className="flex justify-between mt-2">
+                <div className="flex justify-between gap-3 mt-2">
                   <p className="text-sm text-black font-[DM_Sans] capitalize">
                     <span className="text-[#1B1B1B66] mr-1">
                       {t("favorites_burned")}:

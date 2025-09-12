@@ -77,7 +77,7 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                         <div key={exercise._id} className="rounded-2xl p-4 bg-white shadow-md">
                             <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-2">
-                                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-medium">
+                                    <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-medium capitalize">
                                         {t("workout")}
                                     </span>
                                     <span
@@ -91,7 +91,7 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
 
                                 <button
                                     onClick={() => setSelectedExercise(exercise)}
-                                    className="px-3 py-1 cursor-pointer font-medium"
+                                    className="px-3 py-1 cursor-pointer font-medium capitalize"
                                 >
                                     {t("start")}
                                 </button>
