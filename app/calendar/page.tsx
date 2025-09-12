@@ -8,6 +8,7 @@ import { DateTime } from "luxon";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import { useTranslate } from "../hooks/useTranslate";
+import { useRouter } from "next/navigation";
 
 const LOCAL_STORAGE_KEY = "workout-events";
 
@@ -22,6 +23,8 @@ interface WorkoutEvent extends EventInit {
 }
 
 export default function WorkoutCalendar() {
+    const router = useRouter();
+  
   const { t } = useTranslate();
   const calendarRef = useRef<FullCalendar>(null);
   const [events, setEvents] = useState<WorkoutEvent[]>([]);
@@ -34,6 +37,13 @@ export default function WorkoutCalendar() {
   const [formDuration, setFormDuration] = useState(60);
 
   useEffect(() => {
+ const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
+
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (stored) setEvents(JSON.parse(stored));
   }, []);

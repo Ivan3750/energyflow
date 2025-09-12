@@ -154,6 +154,13 @@ button:hover{
   height: auto;
   height: 302px;
 }
+
+@media (max-width: 768.98px){
+  .quote-right{
+    display: none;
+  }
+}
+
 .quote-image1,
 .quote-image2 {
   width: 100%;

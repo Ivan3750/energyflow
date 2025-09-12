@@ -138,6 +138,18 @@ export default function Header() {
             >
               {t("About")}
             </Link>
+            <Link
+              href="/calendar"
+              className={`${styles.mobileNavItem} ${
+                activeTab === "calendar" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("calendar");
+              }}
+            >
+              {t("Calendar")}
+            </Link>
           </nav>
 
           <div className={styles.mobileSocials} style={{ gap: "10px" }}>
