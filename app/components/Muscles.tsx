@@ -7,18 +7,18 @@ type Muscle = {
     filter: string;
 };
 
-export default function Muscles() {
+export default function Muscles({ onSelectMuscle }: { onSelectMuscle: (name: string) => void }) {
     const [data, setData] = useState<Muscle[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("https://energyflow.b.goit.study/api/filters?filter=Muscles&page=1&limit=12")
-            .then(res => res.json())
-            .then(json => {
+            .then((res) => res.json())
+            .then((json) => {
                 setData(json.results);
                 setLoading(false);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error(err);
                 setLoading(false);
             });
@@ -32,7 +32,8 @@ export default function Muscles() {
                 {data.map((muscle) => (
                     <div
                         key={muscle.name}
-                        className="relative w-[313px] h-[250px] rounded-2xl overflow-hidden"
+                        onClick={() => onSelectMuscle(muscle.name)}
+                        className="relative w-[313px] h-[250px] rounded-2xl overflow-hidden cursor-pointer"
                     >
                         <img
                             src={muscle.imgUrl}
