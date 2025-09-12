@@ -327,3 +327,23 @@ img {
     font-size: 1.5rem;
   }
 }
+
+/* 📱 Вертикально при 768px і менше */
+@media (max-width: 768px) {
+  .quote-card {
+    flex-direction: column;
+    height: auto;
+  }
+  .quote-left{
+    width: 550px;
+    height: 200px;
+  }
+  .quote-right{
+    width: 550px;
+    border-radius: 30px;
+  }
+  .quote-right img {
+    border-radius: 30px;
+    height: 200px;
+  }
+}
