@@ -20,9 +20,11 @@ export default function Header() {
   return (
     <>
       <header className={styles.header}>
+        <Link href="/">
         <div className={styles.logo}>
           energy.<span>flow</span>
         </div>
+        </Link>
 
         <nav className={styles.nav}>
           <Link

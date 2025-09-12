@@ -7,7 +7,7 @@ import luxonPlugin from "@fullcalendar/luxon3";
 import { DateTime } from "luxon";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
-import { useTranslate } from "../hooks/useTranslate"; // твой хук перевода
+import { useTranslate } from "../hooks/useTranslate";
 
 const LOCAL_STORAGE_KEY = "workout-events";
 
@@ -146,7 +146,6 @@ export default function WorkoutCalendar() {
           </button>
         </div>
 
-        {/* Calendar */}
         <div className="rounded-2xl shadow-xl overflow-hidden border border-gray-200 w-full bg-white">
           <FullCalendar
             ref={calendarRef}
@@ -154,6 +153,11 @@ export default function WorkoutCalendar() {
             initialView="timeGridWeek"
             initialDate={today.toJSDate()}
             events={events}
+             eventContent={(args) => (
+    <div className="text-white text-sm px-1 py-0.5">
+      {args.event.title}
+    </div>
+  )}
             eventClick={(args) => {
               const ev = events.find((e) => e.id === args.event.id);
               if (ev) openModal(ev);
@@ -174,8 +178,8 @@ export default function WorkoutCalendar() {
               }
             }}
             slotDuration={"00:30:00"}
-            slotMinTime={"07:00"}
-            slotMaxTime={"18:00"}
+            slotMinTime={"05:00"}
+            slotMaxTime={"22:00"}
             slotLabelFormat={{
               hour: "2-digit",
               minute: "2-digit",
