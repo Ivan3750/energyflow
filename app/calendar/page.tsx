@@ -7,6 +7,7 @@ import luxonPlugin from "@fullcalendar/luxon3";
 import { DateTime } from "luxon";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
+import { useTranslate } from "../hooks/useTranslate"; // твой хук перевода
 
 const LOCAL_STORAGE_KEY = "workout-events";
 
@@ -21,6 +22,7 @@ interface WorkoutEvent extends EventInit {
 }
 
 export default function WorkoutCalendar() {
+  const { t } = useTranslate();
   const calendarRef = useRef<FullCalendar>(null);
   const [events, setEvents] = useState<WorkoutEvent[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -106,10 +108,10 @@ export default function WorkoutCalendar() {
     <div className="font-sans grid grid-rows-[80px_1fr] mt-[50px] min-h-screen bg-white">
       <section className="row-start-1 flex flex-col items-center justify-center py-10 text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4">
-          Плануй свої <span className="text-[#444]">Тренування</span>
+          {t("title")}
         </h1>
         <p className="text-gray-600 max-w-xl">
-          Організуй свій спортивний розклад на тиждень і стеж за прогресом.
+          {t("subtitle")}
         </p>
       </section>
 
@@ -120,7 +122,7 @@ export default function WorkoutCalendar() {
               onClick={() => calendarRef.current?.getApi().today()}
               className="px-4 py-2 bg-gray-200 text-sm rounded-full"
             >
-              Сьогодні
+              {t("today")}
             </button>
             <button
               onClick={() => calendarRef.current?.getApi().prev()}
@@ -222,18 +224,18 @@ export default function WorkoutCalendar() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl animate-fadeIn flex flex-col gap-4">
             <h3 className="text-2xl font-bold text-gray-800 text-center">
-              {currentEvent ? "Редагувати заняття" : "Додати заняття"}
+              {currentEvent ? t("edit") : t("add")}
             </h3>
             <input
               type="text"
-              placeholder="Назва"
-              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
+              placeholder={t("name")}
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
             />
             <input
               type="datetime-local"
-              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
               value={formDate}
               onChange={(e) => setFormDate(e.target.value)}
             />
@@ -241,14 +243,14 @@ export default function WorkoutCalendar() {
               type="number"
               min={15}
               step={15}
-              placeholder="Тривалість (хв)"
-              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400"
+              placeholder={t("duration")}
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
               value={formDuration}
               onChange={(e) => setFormDuration(Number(e.target.value))}
             />
             <textarea
-              placeholder="Опис"
-              className="w-full rounded-2xl border border-gray-300 px-4 py-3  placeholder-gray-400 resize-none h-24"
+              placeholder={t("description")}
+              className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400 resize-none h-24"
               value={formDesc}
               onChange={(e) => setFormDesc(e.target.value)}
             />
@@ -256,22 +258,22 @@ export default function WorkoutCalendar() {
               {currentEvent && (
                 <button
                   onClick={handleDelete}
-                  className="bg-[#940000]  text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
+                  className="bg-[#940000] text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
                 >
-                  Видалити
+                  {t("delete")}
                 </button>
               )}
               <button
                 onClick={handleSave}
-                className="bg-[#444]  text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
+                className="bg-[#444] text-white px-5 py-2 rounded-2xl font-medium transition shadow-md"
               >
-                Зберегти
+                {t("save")}
               </button>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="bg-gray-300  px-5 py-2 rounded-2xl font-medium transition shadow-md"
+                className="bg-gray-300 px-5 py-2 rounded-2xl font-medium transition shadow-md"
               >
-                Відміна
+                {t("cancel")}
               </button>
             </div>
           </div>

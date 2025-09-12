@@ -92,10 +92,8 @@ export default function Home() {
           </div>
           <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
             <p className="text-lg leading-relaxed opacity-95">
-              Персональні заняття з досвідченими тренерами, які розроблять
-              програму спеціально для вас. Індивідуальний підхід, контроль
-              техніки виконання вправ та мотивація для досягнення найкращих
-              результатів.
+              {t("persZan")}
+              
             </p>
           </div>
         </div>
@@ -112,10 +110,8 @@ export default function Home() {
           </div>
           <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
             <p className="text-lg leading-relaxed opacity-95">
-              Персональні заняття з досвідченими тренерами, які розроблять
-              програму спеціально для вас. Індивідуальний підхід, контроль
-              техніки виконання вправ та мотивація для досягнення найкращих
-              результатів.
+              {t("persZan")}
+             
             </p>
           </div>
         </div>

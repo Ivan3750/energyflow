@@ -115,6 +115,33 @@
 
    "noAccess": "Nie masz dostępu",
   "noAccessDesc": "Jeśli chcesz mieć dostęp do tej strony, po prostu się zarejestruj",
-  "registerBtn": "Rejestr"
+  "registerBtn": "Rejestr",
+
+  "Calendar": "Kalendar",
+  "Exercises": "Ćwiczenia",
+
+
+   "workout": "ĆWICZYĆ",
+  "start": "Start",
+  "burnedCalories": "Spalone kalorie",
+  "bodyPart": "Część ciała",
+  "target": "Cel",
+
+
+   "title": "Planuj swoje Treningi",
+    "subtitle": "Zorganizuj swój sportowy harmonogram na tydzień i śledź postępy.",
+    "today": "Dzisiaj",
+    "edit": "Edytuj zajęcia",
+    "add": "Dodaj zajęcia",
+    "name": "Nazwa",
+    "duration": "Czas trwania (min)",
+    "description": "Opis",
+    "delete": "Usuń",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+
+
+    "persZan":"Trening personalny z doświadczonymi trenerami, którzy opracują program specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja dla osiągnięcia najlepszych rezultatów.",
+    "persZan":"Trening personalny z doświadczonymi trenerami, którzy opracują program specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja dla osiągnięcia najlepszych rezultatów."
 
 }

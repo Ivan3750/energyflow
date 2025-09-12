@@ -3,13 +3,16 @@ import { useState } from "react";
 import Muscles from "./Muscles";
 import BodyParts from "./BodyParts";
 import Equipment from "./Equipment";
+import { useTranslate } from "../hooks/useTranslate";
 export default function Exercises() {
+    const { t } = useTranslate();
     const [active, setActive] = useState<"muscles" | "bodyparts" | "equipment">("muscles");
 
     return (
         <div className="w-full flex justify-center">
             <section className="bg-[#E8E8E8] rounded-[50px] !px-[48px] !py-[55px]">
-                <h2 className="text-[44px] font-[DM_Sans] font-semibold !mb-4">Exercises</h2>
+                <h2 className="text-[44px] font-[DM_Sans] font-semibold !mb-4">{t("Exercises")}</h2>
+                
 
                 <div className="flex gap-2 !mb-8">
                     <button

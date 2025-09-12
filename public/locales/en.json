@@ -114,7 +114,23 @@
 
  "noAccess": "You don't have access",
   "noAccessDesc": "If you want to have access to this site, simply register",
-  "registerBtn": "Register"
+  "registerBtn": "Register",
+
+
+
+
+     "title": "Plan your Workouts",
+    "subtitle": "Organize your weekly workout schedule and track your progress.",
+    "today": "Today",
+    "edit": "Edit session",
+    "add": "Add session",
+    "name": "Name",
+    "duration": "Duration (min)",
+    "description": "Description",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "persZan":"Personal training with experienced trainers who will develop a program specifically for you. Individual approach, control of exercise technique and motivation to achieve the best results."
 
   
 
