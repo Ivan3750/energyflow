@@ -127,7 +127,7 @@ export default function Home() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {users.map(({ name, icon, comment }, i) => (
-            <div className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300">
+            <div key={i} className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-[#2f2f2f] flex items-center justify-center border border-[#3a3a3a] text-white font-bold text-lg">
                   A
