@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import QuoteCardFav from "../components/QuoteCardFav";
 import { FaStar } from "react-icons/fa6";
 import { useTranslate } from "../hooks/useTranslate";
+import { useRouter } from "next/navigation";
 
 interface FavoriteItem {
   id: string;
@@ -18,8 +19,16 @@ interface FavoriteItem {
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
   const { t } = useTranslate();
+  const router = useRouter();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
+
     const stored = localStorage.getItem("favorites");
     if (stored) {
       try {
@@ -37,7 +46,7 @@ export default function FavoritesPage() {
         console.error("Ошибка парсинга избранного:", error);
       }
     }
-  }, []);
+  }, [router]);
 
   const removeFavorite = (id: string) => {
     setFavorites((prev) => {

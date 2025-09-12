@@ -1,8 +1,8 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa6";
 import ExercisesModal from "./ExercisesModal";
+import { useTranslate } from "../hooks/useTranslate";
 
 type Exercise = {
     _id: string;
@@ -24,6 +24,7 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
     const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const { t } = useTranslate();
 
     useEffect(() => {
         const stored = localStorage.getItem("favorites");
@@ -57,6 +58,16 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
         return pages;
     };
 
+    const toggleFavorite = (exercise: Exercise) => {
+        setFavorites((prev) => {
+            const updated = prev.includes(exercise._id)
+                ? prev.filter((id) => id !== exercise._id)
+                : [...prev, exercise._id];
+            localStorage.setItem("favorites", JSON.stringify(updated));
+            return updated;
+        });
+    };
+
     return (
         <div className="w-full flex flex-col items-center">
             <div className="grid grid-cols-3 gap-5">
@@ -65,22 +76,14 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                     return (
                         <div key={exercise._id} className="rounded-2xl p-4 bg-white shadow-md">
                             <div className="flex items-center justify-between w-full">
-                                <div className="flex items-center gap-2 ">
+                                <div className="flex items-center gap-2">
                                     <span className="rounded-2xl p-1 px-2 text-white bg-[#7E847F] text-sm font-medium">
-                                        WORKOUT
+                                        {t("workout")}
                                     </span>
                                     <span
                                         className={`cursor-pointer text-lg flex items-center gap-0.5 ${isFav ? "text-yellow-400" : "text-gray-400"
                                             }`}
-                                        onClick={() => {
-                                            setFavorites((prev) => {
-                                                const updated = isFav
-                                                    ? prev.filter((id) => id !== exercise._id)
-                                                    : [...prev, exercise._id];
-                                                localStorage.setItem("favorites", JSON.stringify(updated));
-                                                return updated;
-                                            });
-                                        }}
+                                        onClick={() => toggleFavorite(exercise)}
                                     >
                                         <FaStar /> {exercise.rating}
                                     </span>
@@ -90,22 +93,23 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                                     onClick={() => setSelectedExercise(exercise)}
                                     className="px-3 py-1 cursor-pointer font-medium"
                                 >
-                                    Start
+                                    {t("start")}
                                 </button>
                             </div>
 
                             <h3 className="text-lg capitalize mt-6">{exercise.name}</h3>
+
                             <div className="flex gap-4 mt-2 text-sm">
                                 <p>
-                                    <span className="text-gray-500 mr-1">Burned calories:</span>
+                                    <span className="text-gray-500 mr-1">{t("burnedCalories")}:</span>
                                     {exercise.burnedCalories}/{exercise.time} min
                                 </p>
                                 <p className="capitalize">
-                                    <span className="text-gray-500 mr-1">Body Part:</span>
+                                    <span className="text-gray-500 mr-1">{t("bodyPart")}:</span>
                                     {exercise.bodyPart}
                                 </p>
                                 <p className="capitalize">
-                                    <span className="text-gray-500 mr-1 ">Target:</span>
+                                    <span className="text-gray-500 mr-1">{t("target")}:</span>
                                     {exercise.target}
                                 </p>
                             </div>
@@ -122,7 +126,8 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                         <button
                             key={idx}
                             onClick={() => setPage(p as number)}
-                            className={`px-3 py-1 rounded-lg ${page === p ? "bg-[#7E847F] text-white" : "bg-gray-200"}`}
+                            className={`px-3 py-1 rounded-lg ${page === p ? "bg-[#7E847F] text-white" : "bg-gray-200"
+                                }`}
                         >
                             {p}
                         </button>

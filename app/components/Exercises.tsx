@@ -3,16 +3,29 @@ import { useState } from "react";
 import Muscles from "./Muscles";
 import ExercisesList from "./ExercisesList";
 import Equipment from "./Equipment";
+import { useTranslate } from "../hooks/useTranslate";
 
 export default function Exercises() {
-    const [active, setActive] = useState<"muscles" | "bodyparts" | "equipment">("muscles");
+    const { t } = useTranslate();
+    const [active, setActive] = useState<"muscles" | "exerciseslist" | "equipment">(
+        "muscles"
+    );
     const [selectedMuscle, setSelectedMuscle] = useState<string | null>(null);
 
     return (
         <div className="w-full flex justify-center">
             <section className="bg-[#E8E8E8] rounded-[50px] px-[48px] py-[55px]">
-                <h2 className="text-[44px] font-[DM_Sans] font-medium mb-4 ">
-                    Exercises{selectedMuscle && <span className="capitalize text-[#7E847F] text-3xl font-medium"><span className="text-[44px] text-black font-[DM_Sans] font-medium"> / </span>{selectedMuscle}</span>}
+                <h2 className="text-[44px] font-[DM_Sans] font-semibold mb-4">
+                    {t("Exercises")}
+                    {selectedMuscle && (
+                        <span className="capitalize text-[#7E847F] text-3xl font-medium">
+                            <span className="text-[44px] text-black font-[DM_Sans] font-medium">
+                                {" "}
+                                /{" "}
+                            </span>
+                            {selectedMuscle}
+                        </span>
+                    )}
                 </h2>
 
                 <div className="flex gap-2 mb-8">
@@ -21,23 +34,26 @@ export default function Exercises() {
                             setActive("muscles");
                             setSelectedMuscle(null);
                         }}
-                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "muscles" && !selectedMuscle ? "bg-[#7E847F] text-white" : "bg-white text-gray-700"
-                            }`}
-                    >
-                        Muscles
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            setActive("bodyparts");
-                            setSelectedMuscle(null);
-                        }}
-                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "bodyparts" || (active === "muscles" && selectedMuscle)
+                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "muscles" && !selectedMuscle
                             ? "bg-[#7E847F] text-white"
                             : "bg-white text-gray-700"
                             }`}
                     >
-                        Body parts
+                        {t("Muscles")}
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            setActive("exerciseslist");
+                            setSelectedMuscle(null);
+                        }}
+                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "exerciseslist" ||
+                            (active === "muscles" && selectedMuscle)
+                            ? "bg-[#7E847F] text-white"
+                            : "bg-white text-gray-700"
+                            }`}
+                    >
+                        {t("Body parts")}
                     </button>
 
                     <button
@@ -45,10 +61,12 @@ export default function Exercises() {
                             setActive("equipment");
                             setSelectedMuscle(null);
                         }}
-                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "equipment" ? "bg-[#7E847F] text-white" : "bg-white text-gray-700"
+                        className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "equipment"
+                            ? "bg-[#7E847F] text-white"
+                            : "bg-white text-gray-700"
                             }`}
                     >
-                        Equipment
+                        {t("Equipment")}
                     </button>
                 </div>
 
@@ -61,7 +79,7 @@ export default function Exercises() {
                         <ExercisesList muscle={selectedMuscle} />
                     )}
 
-                    {active === "bodyparts" && <ExercisesList />}
+                    {active === "exerciseslist" && <ExercisesList />}
 
                     {active === "equipment" && <Equipment />}
                 </div>

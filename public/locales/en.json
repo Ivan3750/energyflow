@@ -41,6 +41,7 @@
   "footer_privacy": "Privacy Policy",
   "footer_terms": "Terms of Service",
  "settings_title": "Settings",
+ "settings_language": "Language",
   "settings_subtitle": "Manage your account settings and preferences",
   "settings_profile_info": "Profile Information",
   "settings_profile_photo": "Profile Photo",
@@ -77,7 +78,62 @@
   "auth_wait": "Please wait…",
   "auth_error": "Something went wrong",
   "auth_already_have_account": "Already have an account?",
-  "auth_dont_have_account": "Don’t have an account?"
+  "auth_dont_have_account": "Don’t have an account?",
 
+
+   "rating": "Rating",
+    "target": "Target",
+    "bodyPart": "Body part",
+    "equipment": "Equipment",
+    "popularity": "Popularity",
+    "burnedCalories": "Burned calories",
+    "addToFavorites": "Add to favorites",
+    "giveRating": "Give a rating",
+
+
+    "ourAdvantages": "Our Advantages",
+  "modernEquipment": "Modern Equipment",
+  "modernEquipmentDesc": "The latest equipment from leading global brands for effective workouts",
+  "professionalTrainers": "Professional Trainers",
+  "professionalTrainersDesc": "Certified specialists with years of experience and a personalized approach",
+  "flexibleSchedule": "Flexible Schedule",
+  "flexibleScheduleDesc": "We are open from 6:00 to 23:00 every day so you can train at a convenient time",
+  "personalTraining": "Personal Training",
+  "personalTrainingDesc": "Personalized programs tailored to your goals and abilities",
+  "personalTrainingDescFull": "One-on-one sessions with experienced trainers who will design a program just for you. Personalized guidance, technique control, and motivation to achieve the best results.",
+  "trainingAlt": "Training",
+  "clientReviews": "Client Reviews",
+  "reviewAlice": "The best gym in town! Professional trainers, modern equipment, and a friendly atmosphere. I always feel motivated and reach my goals. Highly recommend!",
+  "reviewBob": "I’ve been training here for over a year — the results are incredible. The trainers are always helpful, the classes are engaging, and the gym is clean and organized. I feel healthier and more energetic than ever!",
+  "reviewClara": "Clean, organized, and top-notch equipment. The staff is friendly and always ready to help. I especially love the group classes — they keep me motivated!",
+  "reviewDavid": "Flexible hours allow me to train even after work. The trainers are attentive and always give useful tips. Every workout feels rewarding!",
+  "reviewEva": "The trainers truly care about everyone’s progress. I lost 10 kg in 3 months thanks to their personalized programs. The atmosphere is supportive and motivating. I feel stronger and more confident!",
+  "reviewFrank": "The gym’s atmosphere pushes me to achieve more. The variety of equipment and classes makes every session enjoyable. I always leave full of energy!",
+
+"About": "About",
+
+ "noAccess": "You don't have access",
+  "noAccessDesc": "If you want to have access to this site, simply register",
+  "registerBtn": "Register",
+
+
+
+
+     "title": "Plan your Workouts",
+    "subtitle": "Organize your weekly workout schedule and track your progress.",
+    "today": "Today",
+    "edit": "Edit session",
+    "add": "Add session",
+    "name": "Name",
+    "duration": "Duration (min)",
+    "description": "Description",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "persZan":"Personal training with experienced trainers who will develop a program specifically for you. Individual approach, control of exercise technique and motivation to achieve the best results."
+
+  
 
 }
+
+
