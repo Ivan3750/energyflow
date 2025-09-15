@@ -1,9 +1,12 @@
 .infoBlock {
   display: grid;
-  width: 1400px;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
+  gap: 30px;
+  max-width: 1400px;
+  width: 100%;
   margin: 60px auto;
+  padding: 0 20px;
 }
 
 .left {
@@ -19,8 +22,8 @@
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;   
-  object-position: top; 
+  object-fit: cover;
+  object-position: top;
 }
 
 .right {
@@ -57,34 +60,59 @@
   color: #ddd;
 }
 
-
-@media (max-width: 768px) {
+/* 📱 Планшети */
+@media (max-width: 1024px) {
   .infoBlock {
-    margin-right: 850px;
-    width: 550px;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .left {
-    height: 300px; 
+  .left,
+  .right {
+    height: auto;
     border-radius: 30px;
   }
 
   .right {
-    height: 300px;
-    border-radius: 30px;
-    padding: 20px;
+    padding: 30px 20px;
+  }
+
+  .right h2 {
+    font-size: 24px;
+  }
+
+  .text {
+    font-size: 15px;
   }
 }
 
-@media (max-width: 375px){
-    .left{
-        width: 350px;
-        height: 300px;
-    }
-    .right{
-        width: 350px;
-        height: 300px;
-    }
+/* 📱 Смартфони */
+@media (max-width: 600px) {
+  .infoBlock {
+    padding: 0 10px;
+    gap: 15px;
+  }
+
+  .left,
+  .right {
+    border-radius: 20px;
+  }
+
+  .right {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .right h2 {
+    font-size: 20px;
+    justify-content: center;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
 }

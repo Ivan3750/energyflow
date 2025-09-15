@@ -9,7 +9,7 @@ import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import { useTranslate } from "../hooks/useTranslate";
 import { useRouter } from "next/navigation";
-
+import { RRule } from "rrule";
 const LOCAL_STORAGE_KEY = "workout-events";
 
 interface WorkoutEvent extends EventInit {
@@ -70,40 +70,57 @@ export default function WorkoutCalendar() {
     setIsModalOpen(true);
   };
 
-  const handleSave = () => {
-    if (!formTitle || !formDate) return;
+ 
+ const [repeat, setRepeat] = useState<"none"|"daily"|"weekly"|"monthly"|"yearly">("none");
+const [repeatCount, setRepeatCount] = useState(1); 
 
-    const startDate = new Date(formDate);
-    const endDate = new Date(startDate.getTime() + formDuration * 60000);
+ const handleSave = () => {
+  if (!formTitle || !formDate) return;
 
-    if (currentEvent) {
-      const newEvents = events.map((ev) =>
-        ev.id === currentEvent.id
-          ? {
-              ...ev,
-              title: formTitle,
-              start: startDate,
-              end: endDate,
-              description: formDesc,
-              duration: formDuration,
-            }
-          : ev
-      );
-      saveEvents(newEvents);
-    } else {
-      const newEvent: WorkoutEvent = {
-        id: Date.now().toString(),
-        title: formTitle,
-        start: startDate,
-        end: endDate,
-        description: formDesc,
-        duration: formDuration,
-      };
-      saveEvents([...events, newEvent]);
-    }
+  const startDate = new Date(formDate);
+  const endDate = new Date(startDate.getTime() + formDuration * 60000);
 
-    setIsModalOpen(false);
+  const generateRecurringEvents = (): WorkoutEvent[] => {
+    if (repeat === "none") return [{
+      id: Date.now().toString(),
+      title: formTitle,
+      start: startDate,
+      end: endDate,
+      description: formDesc,
+      duration: formDuration,
+    }];
+
+    const freqMap = {
+      daily: RRule.DAILY,
+      weekly: RRule.WEEKLY,
+      monthly: RRule.MONTHLY,
+      yearly: RRule.YEARLY,
+    };
+
+    const rule = new RRule({
+      freq: freqMap[repeat],
+      count: repeatCount,
+      dtstart: startDate,
+    });
+
+    return rule.all().map((date) => ({
+      id: Date.now().toString() + date.getTime(),
+      title: formTitle,
+      start: date,
+      end: new Date(date.getTime() + formDuration * 60000),
+      description: formDesc,
+      duration: formDuration,
+    }));
   };
+
+  const newEvents = currentEvent
+    ? events.map((ev) => ev.id === currentEvent.id ? { ...ev, title: formTitle, start: startDate, end: endDate, description: formDesc, duration: formDuration } : ev)
+    : [...events, ...generateRecurringEvents()];
+
+  saveEvents(newEvents);
+  setIsModalOpen(false);
+};
+
 
   const handleDelete = () => {
     if (!currentEvent) return;
@@ -262,6 +279,31 @@ export default function WorkoutCalendar() {
               value={formDuration}
               onChange={(e) => setFormDuration(Number(e.target.value))}
             />
+            <div className="flex flex-col gap-2">
+  <label className="font-medium">{t("repeat")}</label>
+  <select
+    value={repeat}
+    onChange={(e) => setRepeat(e.target.value as any)}
+    className="w-full rounded-2xl border border-gray-300 px-4 py-3"
+  >
+    <option value="none">{t("none")}</option>
+    <option value="daily">{t("daily")}</option>
+    <option value="weekly">{t("weekly")}</option>
+    <option value="monthly">{t("monthly")}</option>
+    <option value="yearly">{t("yearly")}</option>
+  </select>
+  {repeat !== "none" && (
+    <input
+      type="number"
+      min={1}
+      value={repeatCount}
+      onChange={(e) => setRepeatCount(Number(e.target.value))}
+      className="w-full rounded-2xl border border-gray-300 px-4 py-3"
+      placeholder={t("repeat_count")}
+    />
+  )}
+</div>
+
             <textarea
               placeholder={t("description")}
               className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400 resize-none h-24"

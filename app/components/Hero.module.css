@@ -1,15 +1,12 @@
-body{
-  background-color: #c8c7c7;
-}
+ 
+
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  width: 1400px;
-  margin: 0 auto;
-  position: relative;
+  max-width: 1400px;
   border-radius: 50px;
-  overflow: hidden;
+  margin: 40px;
 }
 
 .left {
@@ -20,7 +17,7 @@ body{
 }
 
 .heroImage {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-bottom-right-radius: 50px;
   object-fit: cover;
@@ -32,6 +29,7 @@ body{
   left: 30px;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .hashtags span {
@@ -70,52 +68,47 @@ body{
   max-width: 500px;
 }
 
+/* 📱 Планшети */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    border-radius: 30px;
+  }
 
-@media (max-width: 768px) {
-  .hero{
-    width: 550px;
-    margin-right: 850px;
-  }
-  .heroImage{
-    height: 100%;
-  }
   .right {
-    padding: 30px;
-    width: 360px;
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+    border-radius: 0 0 30px 30px;
+  }
+
+  .right h1 {
+    font-size: 40px;
+  }
+
+  .right p {
+    font-size: 16px;
   }
 
   .hashtags {
-    height: 50px;
-    position: absolute;
-    top: 90%;
+    bottom: 20px;
     left: 50%;
-    transform: translate(-50%, -50%); 
-    display: grid;
-    grid-template-columns: repeat(2, auto); 
-    gap: 8px 8px;
-  }
-
-  .hashtags span {
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 3px 6px 3px 6px;
-    border-radius: 20px;
-    font-size: 11px;
-    text-align: center;
+    transform: translateX(-50%);
+    justify-content: center;
   }
 }
 
-@media (max-width: 375px) {
-  /* .heroImage{
-    border-radius: 50px;
-  }
+/* 📱 Смартфони */
+@media (max-width: 600px) {
   .hero {
-    border: 1px solid #000;
-    grid-template-columns: 1fr;
-    margin: 0 auto;
+    border-radius: 20px;
   }
 
-  .left, .right {
+  .heroImage {
+    border-radius: 0;
+  }
+
+  .right {
     padding: 20px;
   }
 
@@ -125,17 +118,10 @@ body{
 
   .right p {
     font-size: 14px;
-    max-width: 100%;
-  }
-
-  .hashtags {
-    bottom: 15px;
-    left: 15px;
-    gap: 5px;
   }
 
   .hashtags span {
-    padding: 4px 8px;
     font-size: 12px;
-  } */
-} 
+    padding: 4px 8px;
+  }
+}
