@@ -33,7 +33,8 @@
     "react-icons": "^5.5.0",
     "recharts": "^3.2.0",
     "rrule": "^2.8.1",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

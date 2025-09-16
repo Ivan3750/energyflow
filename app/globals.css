@@ -3,11 +3,7 @@
 
 
 
-*{
-  outline: 2px solid #f0f;
-}
-
-
+ 
 .fc {
   @apply font-sans text-gray-700;
 }

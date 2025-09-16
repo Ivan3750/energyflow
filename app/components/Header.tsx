@@ -63,6 +63,15 @@ export default function Header() {
           >
             {t("Calendar")}
           </Link>
+          <Link
+            href="/statistic"
+            className={`${styles.navItem} ${
+              activeTab === "statistic" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("statistic")}
+          >
+            {t("Statistic")}
+          </Link>
         </nav>
 
         <div className={styles.langSwitcher}>
@@ -149,6 +158,18 @@ export default function Header() {
               }}
             >
               {t("Calendar")}
+            </Link>
+            <Link
+              href="/statistic"
+              className={`${styles.mobileNavItem} ${
+                activeTab === "statistic" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("statistic");
+              }}
+            >
+              {t("Statistic")}
             </Link>
           </nav>
 

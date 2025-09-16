@@ -76,7 +76,7 @@ export default function WorkoutStatsPage() {
         Статистика тренувань
       </h1>
 
-       <div className="bg-white p-6 rounded-3xl shadow-lg flex justify-around text-center">
+       <div className="bg-white p-6 rounded-3xl flex justify-around text-center">
         <div>
           <p className="text-gray-500">Вже відбулося</p>
           <p className="text-2xl font-bold">{pastWorkouts.length}</p>
@@ -91,7 +91,7 @@ export default function WorkoutStatsPage() {
         </div>
       </div>
 
-       <div className="bg-white p-6 rounded-3xl shadow-lg">
+       <div className="bg-white p-6 rounded-3xl">
         <h2 className="text-xl font-semibold mb-4">Список тренувань</h2>
         {workouts.length === 0 ? (
           <p className="text-gray-500">Тренувань немає</p>
@@ -110,7 +110,7 @@ export default function WorkoutStatsPage() {
         )}
       </div>
 
-       <div className="bg-white p-6 rounded-3xl shadow-lg">
+       <div className="bg-white p-6 rounded-3xl">
         <h2 className="text-xl font-semibold mb-4">Тривалість по днях</h2>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={dailyData}>
@@ -128,7 +128,7 @@ export default function WorkoutStatsPage() {
         </ResponsiveContainer>
       </div>
 
-       <div className="bg-white p-6 rounded-3xl shadow-lg">
+       <div className="bg-white p-6 rounded-3xl">
         <h2 className="text-xl font-semibold mb-4">Тривалість по тижнях</h2>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={weeklyData}>
