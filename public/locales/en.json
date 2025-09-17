@@ -132,7 +132,18 @@
     "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
-    "persZan":"Personal training with experienced trainers who will develop a program specifically for you. Individual approach, control of exercise technique and motivation to achieve the best results."
+    "persZan":"Personal training with experienced trainers who will develop a program specifically for you. Individual approach, control of exercise technique and motivation to achieve the best results.",
+    "Statistic":"Statistic",
+      "statsTitle": "Workout Statistics",
+  "past": "Completed",
+  "future": "Planned",
+  "avgDuration": "Average Duration",
+  "workoutList": "Workout List",
+  "noWorkouts": "No workouts",
+  "durationByDay": "Duration by Day",
+  "durationByWeek": "Duration by Week",
+  "minutes": "min",
+  "duration": "Duration (min)"
 
 
   

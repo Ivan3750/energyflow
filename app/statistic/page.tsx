@@ -13,6 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { DateTime } from "luxon";
+import { useTranslate } from "../hooks/useTranslate"; 
 
 interface WorkoutEvent {
   id: string;
@@ -22,6 +23,7 @@ interface WorkoutEvent {
 }
 
 export default function WorkoutStatsPage() {
+  const { t } = useTranslate();
   const [workouts, setWorkouts] = React.useState<WorkoutEvent[]>([]);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function WorkoutStatsPage() {
     DateTime.fromISO(w.start) > now
   );
 
-   const dailyData = useMemo(() => {
+  const dailyData = useMemo(() => {
     const byDay: Record<string, { duration: number }> = {};
     pastWorkouts.forEach((w) => {
       const day = DateTime.fromISO(w.start).toFormat("yyyy-MM-dd");
@@ -50,7 +52,7 @@ export default function WorkoutStatsPage() {
       .sort((a, b) => (a.day > b.day ? 1 : -1));
   }, [pastWorkouts]);
 
-   const weeklyData = useMemo(() => {
+  const weeklyData = useMemo(() => {
     const byWeek: Record<string, { duration: number }> = {};
     pastWorkouts.forEach((w) => {
       const dt = DateTime.fromISO(w.start);
@@ -63,7 +65,7 @@ export default function WorkoutStatsPage() {
       .sort((a, b) => (a.week > b.week ? 1 : -1));
   }, [pastWorkouts]);
 
-   const avgDuration = pastWorkouts.length
+  const avgDuration = pastWorkouts.length
     ? Math.round(
         pastWorkouts.reduce((sum, w) => sum + w.duration, 0) /
           pastWorkouts.length
@@ -73,28 +75,30 @@ export default function WorkoutStatsPage() {
   return (
     <div className="p-6 max-w-6xl mx-auto grid gap-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Статистика тренувань
+        {t("statsTitle")}
       </h1>
 
-       <div className="bg-white p-6 rounded-3xl flex justify-around text-center">
+      <div className="bg-white p-6 rounded-3xl flex justify-around text-center">
         <div>
-          <p className="text-gray-500">Вже відбулося</p>
+          <p className="text-gray-500">{t("past")}</p>
           <p className="text-2xl font-bold">{pastWorkouts.length}</p>
         </div>
         <div>
-          <p className="text-gray-500">Заплановано</p>
+          <p className="text-gray-500">{t("future")}</p>
           <p className="text-2xl font-bold">{futureWorkouts.length}</p>
         </div>
         <div>
-          <p className="text-gray-500">Середня тривалість</p>
-          <p className="text-2xl font-bold">{avgDuration} хв</p>
+          <p className="text-gray-500">{t("avgDuration")}</p>
+          <p className="text-2xl font-bold">
+            {avgDuration} {t("minutes")}
+          </p>
         </div>
       </div>
 
-       <div className="bg-white p-6 rounded-3xl">
-        <h2 className="text-xl font-semibold mb-4">Список тренувань</h2>
+      <div className="bg-white p-6 rounded-3xl">
+        <h2 className="text-xl font-semibold mb-4">{t("workoutList")}</h2>
         {workouts.length === 0 ? (
-          <p className="text-gray-500">Тренувань немає</p>
+          <p className="text-gray-500">{t("noWorkouts")}</p>
         ) : (
           <ul className="flex flex-col gap-3">
             {workouts.map((w) => (
@@ -103,15 +107,17 @@ export default function WorkoutStatsPage() {
                 className="p-3 bg-gray-100 rounded-lg flex justify-between hover:bg-gray-200 transition"
               >
                 <span>{w.title}</span>
-                <span>{w.duration} хв</span>
+                <span>
+                  {w.duration} {t("minutes")}
+                </span>
               </li>
             ))}
           </ul>
         )}
       </div>
 
-       <div className="bg-white p-6 rounded-3xl">
-        <h2 className="text-xl font-semibold mb-4">Тривалість по днях</h2>
+      <div className="bg-white p-6 rounded-3xl">
+        <h2 className="text-xl font-semibold mb-4">{t("durationByDay")}</h2>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={dailyData}>
             <XAxis dataKey="day" tick={{ fontSize: 12 }} />
@@ -120,7 +126,7 @@ export default function WorkoutStatsPage() {
             <Legend />
             <Bar
               dataKey="duration"
-              name="Тривалість (хв)"
+              name={t("duration")}
               fill="#4f46e5"
               radius={[5, 5, 0, 0]}
             />
@@ -128,8 +134,8 @@ export default function WorkoutStatsPage() {
         </ResponsiveContainer>
       </div>
 
-       <div className="bg-white p-6 rounded-3xl">
-        <h2 className="text-xl font-semibold mb-4">Тривалість по тижнях</h2>
+      <div className="bg-white p-6 rounded-3xl">
+        <h2 className="text-xl font-semibold mb-4">{t("durationByWeek")}</h2>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={weeklyData}>
             <XAxis dataKey="week" tick={{ fontSize: 12 }} />
@@ -139,7 +145,7 @@ export default function WorkoutStatsPage() {
             <Line
               type="monotone"
               dataKey="duration"
-              name="Тривалість (хв)"
+              name={t("duration")}
               stroke="#4f46e5"
               strokeWidth={3}
             />

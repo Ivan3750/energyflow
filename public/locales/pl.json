@@ -144,6 +144,17 @@
 
 
     "persZan":"Trening personalny z doświadczonymi trenerami, którzy opracują program specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja dla osiągnięcia najlepszych rezultatów.",
-    "persZan":"Trening personalny z doświadczonymi trenerami, którzy opracują program specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja dla osiągnięcia najlepszych rezultatów."
+    "persZan":"Trening personalny z doświadczonymi trenerami, którzy opracują program specjalnie dla Ciebie. Indywidualne podejście, kontrola techniki ćwiczeń i motywacja dla osiągnięcia najlepszych rezultatów.",
+    "Statistic":"Statystyka",
+      "statsTitle": "Statystyki treningów",
+  "past": "Już się odbyło",
+  "future": "Zaplanowane",
+  "avgDuration": "Średni czas trwania",
+  "workoutList": "Lista treningów",
+  "noWorkouts": "Brak treningów",
+  "durationByDay": "Czas trwania według dni",
+  "durationByWeek": "Czas trwania według tygodni",
+  "minutes": "min",
+  "duration": "Czas trwania (min)"
 
 }
