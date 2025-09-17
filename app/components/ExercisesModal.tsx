@@ -154,9 +154,13 @@ const handleAddToFavorites = () => {
           </p>
 
           <div className="flex gap-2 mt-4">
-            <button className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]">
-              {t("addToFavorites")}
-            </button>
+           <button
+  onClick={handleAddToFavorites}
+  className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]"
+>
+  {isAdded ? t("added") : t("addToFavorites")}
+</button>
+
             <button className="rounded-3xl !py-[11px] !px-[15px] cursor-pointer font-[DM_Sans] border border-black hover:border-[#7E847F] hover:text-[#7E847F]">
               {t("giveRating")}
             </button>
