@@ -12,11 +12,25 @@ type Message = {
 };
 
 export default function Chat() {
+  const getSystemText = () => {
+    const lang = localStorage.getItem("language") || "en";
+
+    switch (lang) {
+      case "ua":
+        return "Вітаю! Я - ваш спортивний помічник. Питаєте — отримуєте план або пораду.";
+      case "pl":
+        return "Witaj! Jestem twoim asystentem sportowym. Zapytaj — otrzymasz plan lub poradę.";
+      case "en":
+      default:
+        return "Welcome! I am your sports assistant. Ask — and you’ll get a plan or advice.";
+    }
+  };
+
   const [messages, setMessages] = useState<Message[]>(() => [
     {
       id: "sys",
       role: "system",
-      text: "Вітаю! Я - ваш спортивний помічник. Питаєте — отримуєте план або пораду.",
+      text: getSystemText(),
       createdAt: Date.now(),
     },
   ]);
