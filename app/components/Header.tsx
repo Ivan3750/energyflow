@@ -72,6 +72,15 @@ export default function Header() {
           >
             {t("Statistic")}
           </Link>
+          <Link
+            href="/ai"
+            className={`${styles.navItem} ${
+              activeTab === "ai" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("ai")}
+          >
+            {t("AI")}
+          </Link>
         </nav>
 
         <div className={styles.langSwitcher}>
@@ -170,6 +179,18 @@ export default function Header() {
               }}
             >
               {t("Statistic")}
+            </Link>
+            <Link
+              href="/ai"
+              className={`${styles.mobileNavItem} ${
+                activeTab === "ai" ? styles.active : ""
+              }`}
+              onClick={() => {
+                setMenuOpen(false);
+                setActiveTab("ai");
+              }}
+            >
+              {t("AI")}
             </Link>
           </nav>
 

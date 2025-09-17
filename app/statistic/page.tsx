@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import { DateTime } from "luxon";
 import { useTranslate } from "../hooks/useTranslate"; 
+import { useRouter } from "next/navigation";
 
 interface WorkoutEvent {
   id: string;
@@ -24,12 +25,22 @@ interface WorkoutEvent {
 
 export default function WorkoutStatsPage() {
   const { t } = useTranslate();
+
+  const router = useRouter();
+
   const [workouts, setWorkouts] = React.useState<WorkoutEvent[]>([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
     const stored = localStorage.getItem("workout-events");
     if (stored) setWorkouts(JSON.parse(stored));
   }, []);
+
 
   const now = DateTime.now();
 

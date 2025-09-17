@@ -97,13 +97,13 @@ button:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 20px 20px;
 }
 
 .quote-card {
   display: flex;
   flex-wrap: wrap;
   height: 302px;
+  width: 100%;
   overflow: hidden;
   /* gap: 20px; */
 }
