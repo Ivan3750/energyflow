@@ -19,7 +19,7 @@
 .heroImage {
   width: 100%;
   height: auto;
-  border-bottom-right-radius: 50px;
+  border-radius: 50px;
   object-fit: cover;
 }
 
@@ -68,7 +68,6 @@
   max-width: 500px;
 }
 
-/* 📱 Планшети */
 @media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
@@ -98,7 +97,6 @@
   }
 }
 
-/* 📱 Смартфони */
 @media (max-width: 600px) {
   .hero {
     border-radius: 20px;

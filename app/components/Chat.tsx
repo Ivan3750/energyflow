@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import clsx from "clsx";
-import { useTranslate } from "../hooks/useTranslate"; 
+import { useRouter } from "next/navigation";
+import { useTranslate } from "../hooks/useTranslate";
 
 type Message = {
   id: string;
@@ -13,18 +14,45 @@ type Message = {
 };
 
 export default function Chat() {
-  const { t } = useTranslate(); 
-  const [messages, setMessages] = useState<Message[]>(() => [
-    {
-      id: "sys",
-      role: "system",
-      text: t("systemWelcome"), 
-      createdAt: Date.now(),
-    },
-  ]);
+  const router = useRouter();
+  const { t } = useTranslate();
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  
+  const getSystemText = (lang: string) => {
+    switch (lang) {
+      case "ua":
+        return "Вітаю! Я - ваш спортивний помічник. Питаєте — отримуєте план або пораду.";
+      case "pl":
+        return "Witaj! Jestem twoim asystentem sportowym. Zapytaj — otrzymasz plan lub poradę.";
+      case "en":
+      default:
+        return "Welcome! I am your sports assistant. Ask — and you’ll get a plan or advice.";
+    }
+  };
+
+ 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
+
+    const lang = localStorage.getItem("lang") || "en";
+    setMessages([
+      {
+        id: "sys",
+        role: "system",
+        text: getSystemText(lang),
+        createdAt: Date.now(),
+      },
+    ]);
+  }, [router]);
+
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,13 +60,16 @@ export default function Chat() {
 
   async function send() {
     if (!input.trim()) return;
+
     const userMsg: Message = {
       id: uuidv4(),
       role: "user",
       text: input.trim(),
       createdAt: Date.now(),
     };
-    setMessages((prev) => [...prev, userMsg]);
+
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
     setInput("");
     setLoading(true);
 
@@ -47,17 +78,18 @@ export default function Chat() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [...messages, userMsg].map((m) => ({
+          messages: newMessages.map((m) => ({
             role: m.role,
             text: m.text,
           })),
         }),
       });
+
       const data = await resp.json();
       const assistantMsg: Message = {
         id: uuidv4(),
         role: "assistant",
-        text: data.assistant || t("noAnswer"), 
+        text: data.assistant || t("noAnswer"),
         createdAt: Date.now(),
       };
       setMessages((prev) => [...prev, assistantMsg]);
@@ -65,7 +97,7 @@ export default function Chat() {
       const errMsg: Message = {
         id: uuidv4(),
         role: "assistant",
-        text: t("serverError"), 
+        text: t("serverError"),
         createdAt: Date.now(),
       };
       setMessages((prev) => [...prev, errMsg]);
@@ -115,15 +147,15 @@ export default function Chat() {
               send();
             }
           }}
-          placeholder={t("inputPlaceholder")} 
+          placeholder={t("inputPlaceholder")}
           className="flex-1 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring"
         />
         <button
           onClick={send}
           disabled={loading}
-          className="px-4 py-2 rounded-lg bg-blue-600 text-white disabled:opacity-60"
+          className="px-4 py-2 rounded-lg bg-[#444] text-white disabled:opacity-60 h-full"
         >
-          {loading ? "..." : t("sendButton")} 
+          {loading ? "..." : t("sendButton")}
         </button>
       </footer>
     </div>

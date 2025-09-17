@@ -3,7 +3,6 @@ import { dbConnect } from "@/app/lib/mongoose";
 import User from "@/app/model/User";
 import { getUserFromToken } from "@/app/lib/getUserFromToken";
 
-// GET user profile
 export async function GET(req: Request) {
   try {
     await dbConnect();
@@ -14,7 +13,6 @@ export async function GET(req: Request) {
   }
 }
 
-// PATCH update user profile
 export async function PATCH(req: Request) {
   try {
     await dbConnect();
@@ -33,7 +31,6 @@ export async function PATCH(req: Request) {
   }
 }
 
-// DELETE soft remove user
 export async function DELETE(req: Request) {
   try {
     await dbConnect();

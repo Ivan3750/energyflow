@@ -11,7 +11,9 @@ export default function Home() {
 
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <Hero />
+        <div className="px-[48px] py-[55px] w-full"> 
         <QuoteCard />
+        </div>
         <Exercises />
         <InfoBlock />
       </main>

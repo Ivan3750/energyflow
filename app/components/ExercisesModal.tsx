@@ -32,7 +32,10 @@ type ExercisesModalProps = {
   onClose: () => void;
 };
 
-export default function ExercisesModal({ exercise, onClose }: ExercisesModalProps) {
+export default function ExercisesModal({
+  exercise,
+  onClose,
+}: ExercisesModalProps) {
   const { t } = useTranslate();
   const modalRef = useRef<HTMLDivElement>(null);
   const [isAdded, setIsAdded] = useState(false);
@@ -63,27 +66,30 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
     }
   };
 
-  const handleAddToFavorites = () => {
-    const storedFavorites = localStorage.getItem("favorites");
-    let favorites: FavoriteItem[] = storedFavorites ? JSON.parse(storedFavorites) : [];
+const handleAddToFavorites = () => {
+  const storedFavorites = localStorage.getItem("favorites");
+  const favorites: FavoriteItem[] = storedFavorites
+    ? JSON.parse(storedFavorites)
+    : [];
 
-    const exists = favorites.some(fav => fav.id === exercise._id);
-    if (!exists) {
-      const newFavorite: FavoriteItem = {
-        id: exercise._id,
-        bodyPart: exercise.bodyPart,
-        name: exercise.name,
-        target: exercise.target,
-        rating: exercise.rating,
-        burnedCalories: exercise.burnedCalories,
-        time: exercise.time,
-      };
+  const exists = favorites.some((fav) => fav.id === exercise._id);
+  if (!exists) {
+    const newFavorite: FavoriteItem = {
+      id: exercise._id,
+      bodyPart: exercise.bodyPart,
+      name: exercise.name,
+      target: exercise.target,
+      rating: exercise.rating,
+      burnedCalories: exercise.burnedCalories,
+      time: exercise.time,
+    };
 
-      favorites.push(newFavorite);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsAdded(true);
-    }
-  };
+    favorites.push(newFavorite);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    setIsAdded(true);
+  }
+};
+
 
   return (
     <div
@@ -104,8 +110,12 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
         <img src={exercise.gifUrl} alt={exercise.name} className="w-[270px]" />
 
         <div className="ml-4">
-          <h2 className="text-2xl !mb-[8px] font-bold capitalize">{exercise.name}</h2>
-          <p className="!mb-[16px]">⭐ {t("rating")}: {exercise.rating}</p>
+          <h2 className="text-2xl !mb-[8px] font-bold capitalize">
+            {exercise.name}
+          </h2>
+          <p className="!mb-[16px]">
+            ⭐ {t("rating")}: {exercise.rating}
+          </p>
           <div className="flex grid grid-cols-4 gap-[20px]">
             <p className="capitalize whitespace-nowrap">
               <span className="block text-gray-500 text-sm  capitalize">
@@ -144,9 +154,13 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
           </p>
 
           <div className="flex gap-2 mt-4">
-            <button className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]">
-              {t("addToFavorites")}
-            </button>
+           <button
+  onClick={handleAddToFavorites}
+  className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]"
+>
+  {isAdded ? t("added") : t("addToFavorites")}
+</button>
+
             <button className="rounded-3xl !py-[11px] !px-[15px] cursor-pointer font-[DM_Sans] border border-black hover:border-[#7E847F] hover:text-[#7E847F]">
               {t("giveRating")}
             </button>

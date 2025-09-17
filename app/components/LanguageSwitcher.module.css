@@ -29,7 +29,6 @@
 .active {
   background: linear-gradient(90deg, #444444, #444444); 
   color: #fff;
-  /* box-shadow: 0 8px 20px rgba(34,197,94,.35); */
   border-color: rgba(255,255,255,.2);
 }
 

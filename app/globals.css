@@ -62,14 +62,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
- */
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -97,15 +89,15 @@ button:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 20px 20px;
 }
 
 .quote-card {
   display: flex;
   flex-wrap: wrap;
   height: 302px;
+    width: 100%;
+  width: 100%;
   overflow: hidden;
-  /* gap: 20px; */
 }
 
 .quote-left {
@@ -219,7 +211,6 @@ button:hover{
   text-align: center;
 }
 
-/* 📱 Смартфони */
 @media (max-width: 375px) {
   .quote-card {
     flex-direction: column;
@@ -230,11 +221,9 @@ button:hover{
   }
 }
 
-/* 📱📲 Планшети */
 @media (min-width: 768px) and (max-width: 1024px) {
   .quote-card {
     flex-direction: row;
-    /* gap: 20px; */
     
   }
   .quote-left {
@@ -253,7 +242,6 @@ button:hover{
   }
 }
 
-/* 💻 Десктопи */
 @media (min-width: 1200px) {
   .quote-card {
     gap: 30px;
@@ -278,7 +266,6 @@ button:hover{
 
 
 
-/* TESST */
 
 .advantage-card {
   display: flex;
@@ -379,7 +366,6 @@ img {
   }
 }
 
-/* 📱 Вертикально при 768px і менше */
 @media (max-width: 768px) {
   .quote-card {
     flex-direction: column;

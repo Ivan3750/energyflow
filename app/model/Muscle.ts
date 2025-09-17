@@ -8,7 +8,7 @@ interface ITranslation {
 
 interface IMuscle {
   name: string;
-  filter: ITranslation;  
+  filter: ITranslation;
   imgUrl: string;
   translations: ITranslation;
 }
@@ -24,7 +24,7 @@ const TranslationSchema: Schema<ITranslation> = new Schema(
 
 const MuscleSchema: Schema<IMuscle> = new Schema({
   name: { type: String, required: true },
-  filter: { type: TranslationSchema, required: true },  
+  filter: { type: TranslationSchema, required: true },
   imgUrl: { type: String, required: true },
   translations: { type: TranslationSchema, required: true },
 });

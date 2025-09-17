@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react";
 import PageLoader from "./PageLoader";
 
-export default function ClientWrapper({ children }: { children: React.ReactNode }) {
+export default function ClientWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

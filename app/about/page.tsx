@@ -91,10 +91,7 @@ export default function Home() {
             />
           </div>
           <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
-            <p className="text-lg leading-relaxed opacity-95">
-              {t("persZan")}
-              
-            </p>
+            <p className="text-lg leading-relaxed opacity-95">{t("persZan")}</p>
           </div>
         </div>
 
@@ -109,10 +106,7 @@ export default function Home() {
             />
           </div>
           <div className="flex-1 rounded-[40px] bg-[#718096] text-white p-8 flex flex-col justify-center">
-            <p className="text-lg leading-relaxed opacity-95">
-              {t("persZan")}
-             
-            </p>
+            <p className="text-lg leading-relaxed opacity-95">{t("persZan")}</p>
           </div>
         </div>
       </section>
@@ -123,16 +117,17 @@ export default function Home() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {users.map(({ name, icon, comment }, i) => (
-            <div key={i} className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300">
+            <div
+              key={i}
+              className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300"
+            >
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-[#2f2f2f] flex items-center justify-center border border-[#3a3a3a] text-white font-bold text-lg">
                   A
                 </div>
                 <p className="text-white text-sm">{name}</p>
               </div>
-              <div className="flex gap-1 mb-3">
-             
-              </div>
+              <div className="flex gap-1 mb-3"></div>
               <p className="text-gray-300 text-sm leading-relaxed">{comment}</p>
             </div>
           ))}
