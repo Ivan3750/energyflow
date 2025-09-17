@@ -66,29 +66,30 @@ export default function ExercisesModal({
     }
   };
 
-  const handleAddToFavorites = () => {
-    const storedFavorites = localStorage.getItem("favorites");
-    let favorites: FavoriteItem[] = storedFavorites
-      ? JSON.parse(storedFavorites)
-      : [];
+const handleAddToFavorites = () => {
+  const storedFavorites = localStorage.getItem("favorites");
+  const favorites: FavoriteItem[] = storedFavorites
+    ? JSON.parse(storedFavorites)
+    : [];
 
-    const exists = favorites.some((fav) => fav.id === exercise._id);
-    if (!exists) {
-      const newFavorite: FavoriteItem = {
-        id: exercise._id,
-        bodyPart: exercise.bodyPart,
-        name: exercise.name,
-        target: exercise.target,
-        rating: exercise.rating,
-        burnedCalories: exercise.burnedCalories,
-        time: exercise.time,
-      };
+  const exists = favorites.some((fav) => fav.id === exercise._id);
+  if (!exists) {
+    const newFavorite: FavoriteItem = {
+      id: exercise._id,
+      bodyPart: exercise.bodyPart,
+      name: exercise.name,
+      target: exercise.target,
+      rating: exercise.rating,
+      burnedCalories: exercise.burnedCalories,
+      time: exercise.time,
+    };
 
-      favorites.push(newFavorite);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsAdded(true);
-    }
-  };
+    favorites.push(newFavorite);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    setIsAdded(true);
+  }
+};
+
 
   return (
     <div
