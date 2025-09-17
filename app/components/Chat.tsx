@@ -12,9 +12,13 @@ type Message = {
 };
 
 export default function Chat() {
-  const getSystemText = () => {
-    const lang = localStorage.getItem("language") || "en";
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  // функція для визначення тексту системного повідомлення
+  const getSystemText = (lang: string) => {
     switch (lang) {
       case "ua":
         return "Вітаю! Я - ваш спортивний помічник. Питаєте — отримуєте план або пораду.";
@@ -26,17 +30,18 @@ export default function Chat() {
     }
   };
 
-  const [messages, setMessages] = useState<Message[]>(() => [
-    {
-      id: "sys",
-      role: "system",
-      text: getSystemText(),
-      createdAt: Date.now(),
-    },
-  ]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const bottomRef = useRef<HTMLDivElement | null>(null);
+  // ініціалізація повідомлення тільки після mount (щоб не падати на SSR)
+  useEffect(() => {
+    const lang = localStorage.getItem("lang") || "en";
+    setMessages([
+      {
+        id: "sys",
+        role: "system",
+        text: getSystemText(lang),
+        createdAt: Date.now(),
+      },
+    ]);
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -44,13 +49,16 @@ export default function Chat() {
 
   async function send() {
     if (!input.trim()) return;
+
     const userMsg: Message = {
       id: uuidv4(),
       role: "user",
       text: input.trim(),
       createdAt: Date.now(),
     };
-    setMessages((prev) => [...prev, userMsg]);
+
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
     setInput("");
     setLoading(true);
 
@@ -59,12 +67,13 @@ export default function Chat() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [...messages, userMsg].map((m) => ({
+          messages: newMessages.map((m) => ({
             role: m.role,
             text: m.text,
           })),
         }),
       });
+
       const data = await resp.json();
       const assistantMsg: Message = {
         id: uuidv4(),
@@ -85,6 +94,7 @@ export default function Chat() {
       setLoading(false);
     }
   }
+
   return (
     <div className="max-w-3xl mx-auto p-4 h-screen flex flex-col">
       <header className="mb-4">
@@ -134,7 +144,7 @@ export default function Chat() {
         <button
           onClick={send}
           disabled={loading}
-          className="px-4 py-2 rounded-lg bg-blue-600 text-white disabled:opacity-60"
+          className="px-4 py-2 rounded-lg bg-[#444] text-white disabled:opacity-60 h-full"
         >
           {loading ? "..." : "Відправити"}
         </button>
