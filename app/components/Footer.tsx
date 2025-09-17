@@ -25,7 +25,7 @@ const Footer = () => {
     const email = formData.get("email") as string;
 
     try {
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch("https://energyflow.b.goit.study/api/subscription", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +36,10 @@ const Footer = () => {
       if (response.ok) {
         alert(t("footer_success"));
         form.reset();
+        setEmail("");
       } else {
-        alert(t("footer_error"));
+        const err = await response.json();
+        alert(err.message || t("footer_error"));
       }
     } catch (error) {
       console.error(error);
@@ -51,8 +53,7 @@ const Footer = () => {
       <Image
         src="/img/hero.png"
         alt="Background image"
-        layout="fill"
-        objectFit="cover"
+        fill
         className={styles.footerImage}
       />
       <div className={styles.footerContent}>
@@ -80,7 +81,8 @@ const Footer = () => {
             </div>
           </div>
           <h1 className={styles.footerTitle}>
-            {t("footer_title1")} <span className={styles.highlight}>{t("footer_title_em")}</span>{" "}
+            {t("footer_title1")}{" "}
+            <span className={styles.highlight}>{t("footer_title_em")}</span>{" "}
             {t("footer_title2")}
           </h1>
         </div>
@@ -89,15 +91,16 @@ const Footer = () => {
             <p className={styles.formTitle}>{t("footer_subscribe_text")}</p>
 
             <form onSubmit={handleSubmit}>
-              <input
-                type="email"
-                placeholder={t("footer_email_placeholder")}
-                className={styles.emailInput}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                pattern="^\\w+(\\.\\w+)*@[a-zA-Z]+\\.[a-zA-Z]{2,}$"
-                required
-              />
+             <input
+               type="email"
+               name="email"
+               placeholder={t("footer_email_placeholder")}
+               className={styles.emailInput}
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
+               required
+/>
+
               <button type="submit" className={styles.sendButton}>
                 {t("footer_send")}
               </button>
