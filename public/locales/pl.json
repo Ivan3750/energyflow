@@ -155,6 +155,14 @@
   "durationByDay": "Czas trwania według dni",
   "durationByWeek": "Czas trwania według tygodni",
   "minutes": "min",
-  "duration": "Czas trwania (min)"
+  "duration": "Czas trwania (min)",
+
+   "systemWelcome": "Cześć! Jestem Twoim sportowym asystentem. Pytaj — otrzymasz plan lub poradę.",
+  "noAnswer": "Brak odpowiedzi",
+  "serverError": "Błąd serwera. Spróbuj później.",
+  "chatTitle": "Asystent sportowy — czat",
+  "chatSubtitle": "Szybkie porady, plany ćwiczeń i wskazówki dla bezpiecznych treningów.",
+  "inputPlaceholder": "Pytaj o treningi, ćwiczenia, plany...",
+  "sendButton": "Wyślij"
 
 }

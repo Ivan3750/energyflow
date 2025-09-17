@@ -143,7 +143,15 @@
   "durationByDay": "Duration by Day",
   "durationByWeek": "Duration by Week",
   "minutes": "min",
-  "duration": "Duration (min)"
+  "duration": "Duration (min)",
+
+    "systemWelcome": "Hi! I’m your fitness assistant. Ask me — you’ll get a plan or advice.",
+  "noAnswer": "No answer",
+  "serverError": "Server error. Please try again later.",
+  "chatTitle": "Fitness Assistant — Chat",
+  "chatSubtitle": "Quick tips, workout plans, and safe training guidance.",
+  "inputPlaceholder": "Ask about workouts, exercises, plans...",
+  "sendButton": "Send"
 
 
   

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import clsx from "clsx";
+import { useTranslate } from "../hooks/useTranslate"; 
 
 type Message = {
   id: string;
@@ -12,11 +13,12 @@ type Message = {
 };
 
 export default function Chat() {
+  const { t } = useTranslate(); 
   const [messages, setMessages] = useState<Message[]>(() => [
     {
       id: "sys",
       role: "system",
-      text: "Вітаю! Я - ваш спортивний помічник. Питаєте — отримуєте план або пораду.",
+      text: t("systemWelcome"), 
       createdAt: Date.now(),
     },
   ]);
@@ -55,7 +57,7 @@ export default function Chat() {
       const assistantMsg: Message = {
         id: uuidv4(),
         role: "assistant",
-        text: data.assistant || "Немає відповіді",
+        text: data.assistant || t("noAnswer"), 
         createdAt: Date.now(),
       };
       setMessages((prev) => [...prev, assistantMsg]);
@@ -63,7 +65,7 @@ export default function Chat() {
       const errMsg: Message = {
         id: uuidv4(),
         role: "assistant",
-        text: "Помилка сервера. Спробуйте пізніше.",
+        text: t("serverError"), 
         createdAt: Date.now(),
       };
       setMessages((prev) => [...prev, errMsg]);
@@ -71,13 +73,12 @@ export default function Chat() {
       setLoading(false);
     }
   }
+
   return (
     <div className="max-w-3xl mx-auto p-4 h-screen flex flex-col">
       <header className="mb-4">
-        <h1 className="text-2xl font-bold">Sports Assistant — чат</h1>
-        <p className="text-sm text-gray-600">
-          Швидкі поради, плани вправ та підказки для безпечного тренування.
-        </p>
+        <h1 className="text-2xl font-bold">{t("chatTitle")}</h1>
+        <p className="text-sm text-gray-600">{t("chatSubtitle")}</p>
       </header>
 
       <main className="bg-white shadow rounded-lg flex-1 p-4 overflow-auto">
@@ -114,7 +115,7 @@ export default function Chat() {
               send();
             }
           }}
-          placeholder="Питайте про тренування, вправи, плани..."
+          placeholder={t("inputPlaceholder")} 
           className="flex-1 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring"
         />
         <button
@@ -122,7 +123,7 @@ export default function Chat() {
           disabled={loading}
           className="px-4 py-2 rounded-lg bg-blue-600 text-white disabled:opacity-60"
         >
-          {loading ? "..." : "Відправити"}
+          {loading ? "..." : t("sendButton")} 
         </button>
       </footer>
     </div>
