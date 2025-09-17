@@ -93,16 +93,15 @@ export default function FavoritesPage() {
                   </span>
                 </div>
 
-                <h3 className="text-lg capitalize mt-6 ">
-                  {exercise.name}
-                </h3>
+                <h3 className="text-lg capitalize mt-6 ">{exercise.name}</h3>
 
                 <div className="flex justify-between mt-2">
                   <p className="text-sm text-black capitalize">
                     <span className="text-[#1B1B1B66] mr-1">
                       {t("favorites_burned")}:
                     </span>
-                    {exercise.burnedCalories}/{exercise.time} {t("favorites_min")}
+                    {exercise.burnedCalories}/{exercise.time}{" "}
+                    {t("favorites_min")}
                   </p>
                   <p className="text-sm text-black  capitalize">
                     <span className="text-[#1B1B1B66] mr-1">

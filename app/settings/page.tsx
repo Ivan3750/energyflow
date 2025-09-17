@@ -42,7 +42,6 @@ const Settings = () => {
         const data = await res.json();
 
         if (!data.error) {
-          // додамо мову з localStorage якщо є
           const storedLang = localStorage.getItem("lang");
           setUser({
             ...data,
@@ -76,7 +75,6 @@ const Settings = () => {
 
       const data = await res.json();
       if (!data.error) {
-        // оновимо user тільки з новими полями
         setUser((prev: any) => ({ ...prev, ...data }));
       }
     } catch (err) {
@@ -116,7 +114,6 @@ const Settings = () => {
     router.push("/login");
   };
 
-  // Лоадер
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -213,7 +210,7 @@ const Settings = () => {
           </div>
         </div>
 
-         <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
+        <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
           <h2 className="text-lg font-semibold">{t("settings_delivery")}</h2>
           {[
             {
@@ -245,7 +242,7 @@ const Settings = () => {
           ))}
         </div>
 
-         <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
+        <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
           <div className="flex gap-5 items-center">
             <Earth className="w-6 h-6" />
             <div>
@@ -270,7 +267,6 @@ const Settings = () => {
               </select>
             </div>
             <div className="hidden">
-               
               <label className="block font-medium">{t("settings_theme")}</label>
               <select
                 value={user.theme || "light"}
@@ -284,7 +280,7 @@ const Settings = () => {
           </div>
         </div>
 
-         <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
+        <div className="bg-white p-6 rounded-xl shadow space-y-4 mt-6">
           <h2 className="text-lg font-semibold">
             {t("settings_account_actions")}
           </h2>

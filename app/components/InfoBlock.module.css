@@ -60,7 +60,6 @@
   color: #ddd;
 }
 
-/* 📱 Планшети */
 @media (max-width: 1024px) {
   .infoBlock {
     grid-template-columns: 1fr;
@@ -86,7 +85,6 @@
   }
 }
 
-/* 📱 Смартфони */
 @media (max-width: 600px) {
   .infoBlock {
     padding: 0 10px;

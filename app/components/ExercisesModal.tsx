@@ -32,7 +32,10 @@ type ExercisesModalProps = {
   onClose: () => void;
 };
 
-export default function ExercisesModal({ exercise, onClose }: ExercisesModalProps) {
+export default function ExercisesModal({
+  exercise,
+  onClose,
+}: ExercisesModalProps) {
   const { t } = useTranslate();
   const modalRef = useRef<HTMLDivElement>(null);
   const [isAdded, setIsAdded] = useState(false);
@@ -65,9 +68,11 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
 
   const handleAddToFavorites = () => {
     const storedFavorites = localStorage.getItem("favorites");
-    let favorites: FavoriteItem[] = storedFavorites ? JSON.parse(storedFavorites) : [];
+    let favorites: FavoriteItem[] = storedFavorites
+      ? JSON.parse(storedFavorites)
+      : [];
 
-    const exists = favorites.some(fav => fav.id === exercise._id);
+    const exists = favorites.some((fav) => fav.id === exercise._id);
     if (!exists) {
       const newFavorite: FavoriteItem = {
         id: exercise._id,
@@ -104,8 +109,12 @@ export default function ExercisesModal({ exercise, onClose }: ExercisesModalProp
         <img src={exercise.gifUrl} alt={exercise.name} className="w-[270px]" />
 
         <div className="ml-4">
-          <h2 className="text-2xl !mb-[8px] font-bold capitalize">{exercise.name}</h2>
-          <p className="!mb-[16px]">⭐ {t("rating")}: {exercise.rating}</p>
+          <h2 className="text-2xl !mb-[8px] font-bold capitalize">
+            {exercise.name}
+          </h2>
+          <p className="!mb-[16px]">
+            ⭐ {t("rating")}: {exercise.rating}
+          </p>
           <div className="flex grid grid-cols-4 gap-[20px]">
             <p className="capitalize whitespace-nowrap">
               <span className="block text-gray-500 text-sm  capitalize">

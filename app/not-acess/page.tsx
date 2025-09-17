@@ -13,9 +13,7 @@ export default function NotAccessPage() {
         <h1 className="text-2xl font-bold mb-4 text-gray-800">
           {t("noAccess")}
         </h1>
-        <p className="text-gray-600 mb-6">
-          {t("noAccessDesc")}
-        </p>
+        <p className="text-gray-600 mb-6">{t("noAccessDesc")}</p>
         <button
           className="w-full rounded-xl text-lg py-3"
           onClick={() => router.push("/register")}
@@ -26,4 +24,3 @@ export default function NotAccessPage() {
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
- export async function POST(request: Request) {
+export async function POST(request: Request) {
   try {
     const { messages } = (await request.json()) as {
       messages: Array<{ role: string; text: string }>;
@@ -22,7 +22,7 @@
       );
     }
 
-     const contents = messages.map((m) => ({
+    const contents = messages.map((m) => ({
       role: m.role === "assistant" ? "model" : "user",
       parts: [{ text: m.text }],
     }));

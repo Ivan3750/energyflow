@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { DateTime } from "luxon";
-import { useTranslate } from "../hooks/useTranslate"; 
+import { useTranslate } from "../hooks/useTranslate";
 import { useRouter } from "next/navigation";
 
 interface WorkoutEvent {
@@ -41,14 +41,11 @@ export default function WorkoutStatsPage() {
     if (stored) setWorkouts(JSON.parse(stored));
   }, []);
 
-
   const now = DateTime.now();
 
-  const pastWorkouts = workouts.filter((w) =>
-    DateTime.fromISO(w.start) <= now
-  );
-  const futureWorkouts = workouts.filter((w) =>
-    DateTime.fromISO(w.start) > now
+  const pastWorkouts = workouts.filter((w) => DateTime.fromISO(w.start) <= now);
+  const futureWorkouts = workouts.filter(
+    (w) => DateTime.fromISO(w.start) > now
   );
 
   const dailyData = useMemo(() => {

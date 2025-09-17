@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 type Message = {
   id: string;
@@ -12,12 +13,22 @@ type Message = {
 };
 
 export default function Chat() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/not-acess");
+      return;
+    }
+  }, []);
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  // функція для визначення тексту системного повідомлення
   const getSystemText = (lang: string) => {
     switch (lang) {
       case "ua":
@@ -30,7 +41,6 @@ export default function Chat() {
     }
   };
 
-  // ініціалізація повідомлення тільки після mount (щоб не падати на SSR)
   useEffect(() => {
     const lang = localStorage.getItem("lang") || "en";
     setMessages([
