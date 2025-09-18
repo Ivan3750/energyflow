@@ -121,9 +121,11 @@
 .mobileSocials {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   margin-bottom: 20px;
 }
+
 .loginBtn {
   display: flex;
   align-items: center;
@@ -140,7 +142,7 @@
 }
 
 .loginBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2); 
 }
 
 /* Медіа для мобіли */

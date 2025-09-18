@@ -1,4 +1,4 @@
-.switcher {
+/* .switcher {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -44,4 +44,48 @@
 
 .label {
   letter-spacing: .4px;
+} */
+
+
+/* ///////////////////////////////////////////////////////// */
+
+ .switcher {
+  display: flex;
+  align-items: center;
 }
+
+.select {
+  appearance: none;
+  background: #eceff1;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px 8px 12px; 
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  position: relative;
+}
+
+
+.select::-ms-expand {
+  display: none; 
+}
+
+.select {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%231f2937' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.select:hover {
+  background: #44444430;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #444;
+} 
