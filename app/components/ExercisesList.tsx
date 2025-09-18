@@ -18,12 +18,16 @@ type Exercise = {
   gifUrl: string;
 };
 
-export default function ExercisesList({ muscle }: { muscle?: string }) {
+export default function ExercisesList({
+  muscle,
+  equipment
+}: {
+  muscle?: string;
+  equipment?: string;
+}) {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
-    null
-  );
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { t } = useTranslate();
@@ -32,9 +36,10 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
     const stored = localStorage.getItem("favorites");
     if (stored) setFavorites(JSON.parse(stored));
 
-    const url = muscle
-      ? `https://energyflow.b.goit.study/api/exercises?muscles=${muscle}&limit=9&page=${page}`
-      : `https://energyflow.b.goit.study/api/exercises?limit=9&page=${page}`;
+    let url = `https://energyflow.b.goit.study/api/exercises?limit=9&page=${page}`;
+
+    if (muscle) url += `&muscles=${muscle}`;
+    if (equipment) url += `&equipment=${equipment}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -42,7 +47,7 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
         setExercises(data.results);
         setTotalPages(data.totalPages);
       });
-  }, [muscle, page]);
+  }, [muscle, equipment, page]);
 
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -79,13 +84,13 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {exercises.map((exercise) => {
           const isFav = favorites.includes(exercise._id);
           return (
             <div
               key={exercise._id}
-              className="rounded-2xl p-4 bg-white shadow-md"
+              className="rounded-2xl p-4 bg-white shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
@@ -93,9 +98,8 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                     {t("workout")}
                   </span>
                   <span
-                    className={`cursor-pointer text-lg flex items-center gap-0.5 ${
-                      isFav ? "text-yellow-400" : "text-gray-400"
-                    }`}
+                    className={`cursor-pointer text-lg flex items-center gap-0.5 ${isFav ? "text-yellow-400" : "text-gray-400"
+                      }`}
                     onClick={() => toggleFavorite(exercise)}
                   >
                     <FaStar /> {exercise.rating}
@@ -111,12 +115,9 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
               </div>
 
               <h3 className="text-lg capitalize mt-6">{exercise.name}</h3>
-
-              <div className="flex gap-4 mt-2 text-sm">
+              <div className="flex gap-4 mt-2 text-sm flex-wrap">
                 <p>
-                  <span className="text-gray-500 mr-1">
-                    {t("burnedCalories")}:
-                  </span>
+                  <span className="text-gray-500 mr-1">{t("burnedCalories")}:</span>
                   {exercise.burnedCalories}/{exercise.time} min
                 </p>
                 <p className="capitalize">
@@ -128,6 +129,7 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
                   {exercise.target}
                 </p>
               </div>
+
             </div>
           );
         })}
@@ -143,9 +145,8 @@ export default function ExercisesList({ muscle }: { muscle?: string }) {
             <button
               key={idx}
               onClick={() => setPage(p as number)}
-              className={`px-3 py-1 rounded-lg ${
-                page === p ? "bg-[#7E847F] text-white" : "bg-gray-200"
-              }`}
+              className={`px-3 py-1 rounded-lg ${page === p ? "bg-[#7E847F] text-white" : "bg-gray-200"
+                }`}
             >
               {p}
             </button>

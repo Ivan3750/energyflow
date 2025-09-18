@@ -33,7 +33,7 @@ export default function Muscles({
 
     return (
         <div className="w-full flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+            <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
                 {data.map((muscle) => {
                     const isSelected = selectedMuscle === muscle.name;
                     return (
@@ -43,7 +43,7 @@ export default function Muscles({
                                 setSelectedMuscle(muscle.name);
                                 onSelectMuscle(muscle.name);
                             }}
-                            className={`relative w-[313px] h-[250px] rounded-2xl overflow-hidden cursor-pointer ${isSelected ? "ring-4 ring-[#FFD700]" : ""
+                            className={`relative shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-[250px] h-[200px] rounded-2xl overflow-hidden cursor-pointer ${isSelected ? "ring-4 ring-[#FFD700]" : ""
                                 }`}
                         >
                             <img

@@ -6,7 +6,6 @@ import QuoteCard from "./components/QuoteCard";
 import Exercises from "./components/Exercises";
 import Contact from "./components/Contact"
 
-
 export default function Home() {
   return (
 

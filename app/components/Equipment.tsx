@@ -1,78 +1,68 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 type Equipment = {
-  _id: string;
   name: string;
-  gifUrl: string;
+  imgUrl: string;
+  filter: string;
 };
 
-export default function Equipment() {
+export default function Equipments({
+  onSelectEquipment,
+}: {
+  onSelectEquipment: (name: string) => void;
+}) {
   const [data, setData] = useState<Equipment[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [selectedEquipment, setSelectedEquipment] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://energyflow.b.goit.study/api/exercises?bodypart=back&muscles=lats&page=${page}&limit=12`
-    )
+    fetch("https://energyflow.b.goit.study/api/filters?filter=Equipment&page=1&limit=12")
       .then((res) => res.json())
       .then((json) => {
-        setData(json.results);
-        setTotalPages(json.totalPages);
+        setData(json.results || []);
         setLoading(false);
       })
       .catch((err) => {
         console.error(err);
         setLoading(false);
       });
-  }, [page]);
+  }, []);
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex justify-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
-        {data.map((equipment) => (
-          <div
-            key={equipment._id}
-            className="relative w-[313px] h-[250px] rounded-2xl overflow-hidden"
-          >
-            <img
-              src={equipment.gifUrl}
-              alt={equipment.name}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/55" />
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
-              <h2 className=" font-normal text-white text-[24px] capitalize">
-                {equipment.name}
-              </h2>
-              <p className=" font-normal text-[#F6F6F666] text-[18px] mt-1">
-                Equipment
-              </p>
+        {data.map((equipment) => {
+          const isSelected = selectedEquipment === equipment.name;
+          return (
+            <div
+              key={equipment.name}
+              onClick={() => {
+                setSelectedEquipment(equipment.name);
+                onSelectEquipment(equipment.name);
+              }}
+              className={`relative shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl  w-[250px] h-[200px] rounded-2xl overflow-hidden cursor-pointer ${isSelected ? "ring-4 ring-[#FFD700]" : ""
+                }`}
+            >
+              <img
+                src={equipment.imgUrl}
+                alt={equipment.name}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/55" />
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
+                <h2 className="font-[DM_Sans] font-normal text-white text-[24px] capitalize">
+                  {equipment.name}
+                </h2>
+                <p className="font-[DM_Sans] font-normal text-[#F6F6F666] text-[18px] mt-1">
+                  {equipment.filter}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex gap-2 mt-6">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-          <button
-            key={num}
-            onClick={() => setPage(num)}
-            className={`px-4 py-2 rounded-lg ${
-              page === num
-                ? "bg-[#7E847F] text-white"
-                : "bg-gray-200 text-black"
-            }`}
-          >
-            {num}
-          </button>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

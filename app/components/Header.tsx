@@ -21,66 +21,61 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <Link href="/">
-        <div className={styles.logo}>
-          energy.<span>flow</span>
-        </div>
+          <div className={styles.logo}>
+            energy.<span>flow</span>
+          </div>
         </Link>
 
         <nav className={styles.nav}>
           <Link
             href="/"
-            className={`${styles.navItem} ${
-              activeTab === "home" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "home" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("home")}
           >
             {t("home")}
           </Link>
           <Link
             href="/favorites"
-            className={`${styles.navItem} ${
-              activeTab === "favorites" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "favorites" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("favorites")}
           >
             {t("favorites")}
           </Link>
           <Link
             href="/about"
-            className={`${styles.navItem} ${
-              activeTab === "about" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "about" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("about")}
           >
             {t("About")}
           </Link>
           <Link
             href="/calendar"
-            className={`${styles.navItem} ${
-              activeTab === "calendar" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "calendar" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("calendar")}
           >
             {t("Calendar")}
           </Link>
           <Link
             href="/statistic"
-            className={`${styles.navItem} ${
-              activeTab === "statistic" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "statistic" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("statistic")}
           >
             {t("Statistic")}
           </Link>
           <Link
             href="/ai"
-            className={`${styles.navItem} ${
-              activeTab === "ai" ? styles.active : ""
-            }`}
+            className={`${styles.navItem} ${activeTab === "ai" ? styles.active : ""
+              }`}
             onClick={() => setActiveTab("ai")}
           >
             {t("AI")}
           </Link>
+
         </nav>
 
         <div className={styles.langSwitcher}>
@@ -122,9 +117,8 @@ export default function Header() {
           <nav>
             <Link
               href="/"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "home" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "home" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("home");
@@ -134,9 +128,8 @@ export default function Header() {
             </Link>
             <Link
               href="/favorites"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "favorites" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "favorites" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("favorites");
@@ -146,9 +139,8 @@ export default function Header() {
             </Link>
             <Link
               href="/about"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "about" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "about" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("about");
@@ -158,9 +150,8 @@ export default function Header() {
             </Link>
             <Link
               href="/calendar"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "calendar" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "calendar" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("calendar");
@@ -170,9 +161,8 @@ export default function Header() {
             </Link>
             <Link
               href="/statistic"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "statistic" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "statistic" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("statistic");
@@ -182,9 +172,8 @@ export default function Header() {
             </Link>
             <Link
               href="/ai"
-              className={`${styles.mobileNavItem} ${
-                activeTab === "ai" ? styles.active : ""
-              }`}
+              className={`${styles.mobileNavItem} ${activeTab === "ai" ? styles.active : ""
+                }`}
               onClick={() => {
                 setMenuOpen(false);
                 setActiveTab("ai");

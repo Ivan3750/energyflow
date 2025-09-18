@@ -11,19 +11,22 @@ export default function Exercises() {
     "muscles" | "exerciseslist" | "equipment"
   >("muscles");
   const [selectedMuscle, setSelectedMuscle] = useState<string | null>(null);
+  const [selectedEquipment, setSelectedEquipment] = useState<string | null>(
+    null
+  );
 
   return (
     <div className="w-full flex justify-center">
       <section className="bg-[#E8E8E8] rounded-[50px] px-[48px] py-[55px]">
         <h2 className="text-[44px] font-[DM_Sans] font-semibold mb-4">
           {t("Exercises")}
-          {selectedMuscle && (
+          {(selectedMuscle || selectedEquipment) && (
             <span className="capitalize text-[#7E847F] text-3xl font-medium">
               <span className="text-[44px] text-black font-[DM_Sans] font-medium">
                 {" "}
                 /{" "}
               </span>
-              {selectedMuscle}
+              {selectedMuscle || selectedEquipment}
             </span>
           )}
         </h2>
@@ -33,12 +36,12 @@ export default function Exercises() {
             onClick={() => {
               setActive("muscles");
               setSelectedMuscle(null);
+              setSelectedEquipment(null);
             }}
-            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${
-              active === "muscles" && !selectedMuscle
-                ? "bg-[#7E847F] text-white"
-                : "bg-white text-gray-700"
-            }`}
+            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "muscles" && !selectedMuscle && !selectedEquipment
+              ? "bg-[#7E847F] text-white"
+              : "bg-white text-gray-700"
+              }`}
           >
             {t("Muscles")}
           </button>
@@ -47,13 +50,14 @@ export default function Exercises() {
             onClick={() => {
               setActive("exerciseslist");
               setSelectedMuscle(null);
+              setSelectedEquipment(null);
             }}
-            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${
-              active === "exerciseslist" ||
-              (active === "muscles" && selectedMuscle)
-                ? "bg-[#7E847F] text-white"
-                : "bg-white text-gray-700"
-            }`}
+            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "exerciseslist" ||
+              (active === "muscles" && selectedMuscle) ||
+              (active === "equipment" && selectedEquipment)
+              ? "bg-[#7E847F] text-white"
+              : "bg-white text-gray-700"
+              }`}
           >
             {t("Body parts")}
           </button>
@@ -62,29 +66,34 @@ export default function Exercises() {
             onClick={() => {
               setActive("equipment");
               setSelectedMuscle(null);
+              setSelectedEquipment(null);
             }}
-            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${
-              active === "equipment"
-                ? "bg-[#7E847F] text-white"
-                : "bg-white text-gray-700"
-            }`}
+            className={`px-4 py-2 rounded-full font-medium cursor-pointer hover:bg-[#7E847F] hover:text-white ${active === "equipment" && !selectedEquipment
+              ? "bg-[#7E847F] text-white"
+              : "bg-white text-gray-700"
+              }`}
           >
             {t("Equipment")}
           </button>
         </div>
 
+
         <div>
           {active === "muscles" && !selectedMuscle && (
             <Muscles onSelectMuscle={setSelectedMuscle} />
           )}
-
           {active === "muscles" && selectedMuscle && (
             <ExercisesList muscle={selectedMuscle} />
           )}
 
           {active === "exerciseslist" && <ExercisesList />}
 
-          {active === "equipment" && <Equipment />}
+          {active === "equipment" && !selectedEquipment && (
+            <Equipment onSelectEquipment={setSelectedEquipment} />
+          )}
+          {active === "equipment" && selectedEquipment && (
+            <ExercisesList equipment={selectedEquipment} />
+          )}
         </div>
       </section>
     </div>

@@ -66,39 +66,39 @@ export default function ExercisesModal({
     }
   };
 
-const handleAddToFavorites = () => {
-  const storedFavorites = localStorage.getItem("favorites");
-  const favorites: FavoriteItem[] = storedFavorites
-    ? JSON.parse(storedFavorites)
-    : [];
+  const handleAddToFavorites = () => {
+    const storedFavorites = localStorage.getItem("favorites");
+    const favorites: FavoriteItem[] = storedFavorites
+      ? JSON.parse(storedFavorites)
+      : [];
 
-  const exists = favorites.some((fav) => fav.id === exercise._id);
-  if (!exists) {
-    const newFavorite: FavoriteItem = {
-      id: exercise._id,
-      bodyPart: exercise.bodyPart,
-      name: exercise.name,
-      target: exercise.target,
-      rating: exercise.rating,
-      burnedCalories: exercise.burnedCalories,
-      time: exercise.time,
-    };
+    const exists = favorites.some((fav) => fav.id === exercise._id);
+    if (!exists) {
+      const newFavorite: FavoriteItem = {
+        id: exercise._id,
+        bodyPart: exercise.bodyPart,
+        name: exercise.name,
+        target: exercise.target,
+        rating: exercise.rating,
+        burnedCalories: exercise.burnedCalories,
+        time: exercise.time,
+      };
 
-    favorites.push(newFavorite);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    setIsAdded(true);
-  }
-};
+      favorites.push(newFavorite);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsAdded(true);
+    }
+  };
 
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+      className="fixed inset-0 flex  items-center justify-center bg-black/50 z-50"
       onClick={handleBackdropClick}
     >
       <div
         ref={modalRef}
-        className="relative flex bg-white rounded-2xl !p-[40px] w-[732px] shadow-lg"
+        className="relative flex flex-col sm:flex-row bg-white rounded-2xl p-6 sm:p-[40px] w-full max-w-[732px] shadow-lg"
       >
         <button
           onClick={onClose}
@@ -107,66 +107,56 @@ const handleAddToFavorites = () => {
           X
         </button>
 
-        <img src={exercise.gifUrl} alt={exercise.name} className="w-[270px]" />
+        <img
+          src={exercise.gifUrl}
+          alt={exercise.name}
+          className="w-full sm:w-[270px] mb-4 sm:mb-0 mx-auto"
+        />
 
-        <div className="ml-4">
-          <h2 className="text-2xl !mb-[8px] font-bold capitalize">
-            {exercise.name}
-          </h2>
-          <p className="!mb-[16px]">
+        <div className="ml-0 sm:ml-4 flex-1 flex flex-col">
+          <h2 className="text-2xl mb-2 font-bold capitalize">{exercise.name}</h2>
+          <p className="mb-4">
             ⭐ {t("rating")}: {exercise.rating}
           </p>
-          <div className="flex grid grid-cols-4 gap-[20px]">
-            <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm  capitalize">
-                {t("target")}
-              </span>
+
+          <div className="flex flex-wrap gap-4 mb-4">
+            <p className="flex-1 min-w-[120px] capitalize">
+              <span className="block text-gray-500 text-sm">{t("target")}</span>
               {exercise.target}
             </p>
-            <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm  capitalize">
-                {t("bodyPart")}
-              </span>
+            <p className="flex-1 min-w-[120px] capitalize">
+              <span className="block text-gray-500 text-sm">{t("bodyPart")}</span>
               {exercise.bodyPart}
             </p>
-            <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm  capitalize">
-                {t("equipment")}
-              </span>
+            <p className="flex-1 min-w-[120px] capitalize">
+              <span className="block text-gray-500 text-sm">{t("equipment")}</span>
               {exercise.equipment}
             </p>
-            <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm  capitalize">
-                {t("popularity")}
-              </span>
+            <p className="flex-1 min-w-[120px] capitalize">
+              <span className="block text-gray-500 text-sm">{t("popularity")}</span>
               {exercise.popularity}
             </p>
-            <p className="capitalize whitespace-nowrap">
-              <span className="block text-gray-500 text-sm ">
-                {t("burnedCalories")}
-              </span>
+            <p className="flex-1 min-w-[120px] capitalize">
+              <span className="block text-gray-500 text-sm">{t("burnedCalories")}</span>
               {exercise.burnedCalories} / {exercise.time} min
             </p>
           </div>
 
-          <p className="text-gray-500 font-[DM_Sans] capitalize !mb-[32px]">
+          <p className="text-gray-500 font-[DM_Sans] capitalize mb-8">
             {exercise.description}
           </p>
 
-          <div className="flex gap-2 mt-4">
-           <button
-  onClick={handleAddToFavorites}
-  className="rounded-3xl !py-[11px] !px-[20px] cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560]"
->
-  {isAdded ? t("added") : t("addToFavorites")}
-</button>
-
-            <button className="rounded-3xl !py-[11px] !px-[15px] cursor-pointer font-[DM_Sans] border border-black hover:border-[#7E847F] hover:text-[#7E847F]">
-              {t("giveRating")}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handleAddToFavorites}
+              className="rounded-3xl py-3 px-5 w-full sm:w-auto cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560] capitalize"
+            >
+              {isAdded ? t("added") : t("add to favorites")}
             </button>
           </div>
         </div>
       </div>
+
     </div>
   );
 }
