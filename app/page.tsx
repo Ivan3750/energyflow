@@ -9,13 +9,13 @@ import Exercises from "./components/Exercises";
 export default function Home() {
   return (
 
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <div className="container">
         <Hero />
-        <div className="px-[48px] py-[55px] w-full"> 
         <QuoteCard />
-        </div>
         <Exercises />
         <InfoBlock />
-      </main>
+      </div>
+    </main>
   )
 }
