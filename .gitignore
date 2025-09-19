@@ -39,6 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-app/components/Footer.module.css
-app/components/Footer.module.css
-app/components/Footer.tsx
