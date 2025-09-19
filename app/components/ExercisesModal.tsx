@@ -156,7 +156,9 @@ export default function ExercisesModal({
             </button>
             {!token && (
               <p className="text-xs text-red-500">
-                Зареєструйтеся, щоб додати
+                
+                {t("notReg_text")}
+                
               </p>
             )}
           </div>
