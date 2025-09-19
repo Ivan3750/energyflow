@@ -151,7 +151,25 @@
   "chatTitle": "Fitness Assistant — Chat",
   "chatSubtitle": "Quick tips, workout plans, and safe training guidance.",
   "inputPlaceholder": "Ask about workouts, exercises, plans...",
-  "sendButton": "Send"
+  "sendButton": "Send",
+
+
+   "contactTitle": "Want to improve your body?",
+  "contactSubtitle1": "Our team is available 24/7",
+  "contactSubtitle2": "Send us an email at",
+  "contactName": "Name",
+  "contactEmail": "Email",
+  "contactMessage": "Tell us about your goal",
+  "contactSubmit": "Send",
+
+  
+  "about": "About",
+  "calendar": "Calendar",
+  "contact": "Contact",
+  "statistic": "Statistics",
+  "ai": "AI Assistant"
+
+
 
 
   

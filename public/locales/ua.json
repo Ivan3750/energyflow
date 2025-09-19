@@ -160,6 +160,21 @@
   "chatTitle": "Спортивний асистент — чат",
   "chatSubtitle": "Швидкі поради, плани вправ та підказки для безпечних тренувань.",
   "inputPlaceholder": "Запитуй про тренування, вправи, плани...",
-  "sendButton": "Відправити"
+  "sendButton": "Відправити",
+
+
+   "contactTitle": "Хочете покращити своє тіло?",
+  "contactSubtitle1": "Наша команда на зв'язку 24/7",
+  "contactSubtitle2": "Надішліть нам електронного листа на адресу",
+  "contactName": "Ім'я",
+  "contactEmail": "Email",
+  "contactMessage": "Розкажіть про свою ціль",
+  "contactSubmit": "Відправити",
+  
+  "about": "Про нас",
+  "calendar": "Календар",
+  "contact": "Контакти",
+  "statistic": "Статистика",
+  "ai": "AI Асистент"
 
 }

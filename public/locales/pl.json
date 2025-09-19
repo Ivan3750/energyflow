@@ -163,6 +163,22 @@
   "chatTitle": "Asystent sportowy — czat",
   "chatSubtitle": "Szybkie porady, plany ćwiczeń i wskazówki dla bezpiecznych treningów.",
   "inputPlaceholder": "Pytaj o treningi, ćwiczenia, plany...",
-  "sendButton": "Wyślij"
+  "sendButton": "Wyślij",
+
+
+   "contactTitle": "Chcesz poprawić swoje ciało?",
+  "contactSubtitle1": "Nasz zespół jest dostępny 24/7",
+  "contactSubtitle2": "Wyślij nam e-mail na adres",
+  "contactName": "Imię",
+  "contactEmail": "Email",
+  "contactMessage": "Opowiedz o swoim celu",
+  "contactSubmit": "Wyślij",
+
+  
+  "about": "O nas",
+  "calendar": "Kalendarz",
+  "contact": "Kontakt",
+  "statistic": "Statystyka",
+  "ai": "Asystent AI"
 
 }
