@@ -276,12 +276,22 @@ export default function WorkoutCalendar() {
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
             />
-            <input
-              type="datetime-local"
-              className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
-              value={formDate}
-              onChange={(e) => setFormDate(e.target.value)}
-            />
+       <input
+  type="datetime-local"
+  className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
+  value={formDate}
+  onChange={(e) => {
+    const value = e.target.value;
+    const time = new Date(value).getHours();
+
+    if (time >= 7 && time <= 21) {
+      setFormDate(value);
+    } else {
+      alert("Вибирайте час тільки між 07:00 і 21:00");
+    }
+  }}
+/>
+
             <input
               type="number"
               min={15}
