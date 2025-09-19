@@ -165,7 +165,7 @@
   
   "about": "About",
   "calendar": "Calendar",
-  "contact": "Contact",
+  "Contact": "Contact",
   "statistic": "Statistics",
   "ai": "AI",
 
@@ -179,7 +179,8 @@
   "formSuccess": "Form success",
   "added":"Added",
   "add to favorites":"Add to favorites",
-  "notReg_text":"Sign up to add"
+  "notReg_text":"Sign up to add",
+  "ChasText":"Choose a time only between 07:00 and 21:00"
 
 
 
