@@ -1,21 +1,52 @@
 "use client";
+
 import Link from "next/link";
 import styles from "./Header.module.css";
 import { FaFacebookF, FaInstagram, FaYoutube, FaUser } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useTranslate } from "../hooks/useTranslate";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { t } = useTranslate();
+  const pathname = usePathname();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
-  }, []);
+    setActiveTab(pathname);
+  }, [pathname]);
+
+  const navItems = [
+    { path: "/", label: t("home") },
+    { path: "/favorites", label: t("favorites") },
+    { path: "/about", label: t("about") },
+    { path: "/calendar", label: t("calendar") },
+    { path: "/contact", label: t("contact") },
+    { path: "/statistic", label: t("statistic") },
+    { path: "/ai", label: t("ai") },
+  ];
+
+  const renderLinks = (isMobile = false) =>
+    navItems.map((item) => (
+      <Link
+        key={item.path}
+        href={item.path}
+        className={`${isMobile ? styles.mobileNavItem : styles.navItem} ${
+          activeTab === item.path ? styles.active : ""
+        }`}
+        onClick={() => {
+          setActiveTab(item.path);
+          if (isMobile) setMenuOpen(false);
+        }}
+      >
+        {item.label}
+      </Link>
+    ));
 
   return (
     <>
@@ -26,60 +57,12 @@ export default function Header() {
           </div>
         </Link>
 
-        <nav className={styles.nav}>
-          <Link
-            href="/"
-            className={`${styles.navItem} ${activeTab === "home" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("home")}
-          >
-            {t("home")}
-          </Link>
-          <Link
-            href="/favorites"
-            className={`${styles.navItem} ${activeTab === "favorites" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("favorites")}
-          >
-            {t("favorites")}
-          </Link>
-          <Link
-            href="/about"
-            className={`${styles.navItem} ${activeTab === "about" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("about")}
-          >
-            {t("About")}
-          </Link>
-          <Link
-            href="/calendar"
-            className={`${styles.navItem} ${activeTab === "calendar" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("calendar")}
-          >
-            {t("Calendar")}
-          </Link>
-          <Link
-            href="/statistic"
-            className={`${styles.navItem} ${activeTab === "statistic" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("statistic")}
-          >
-            {t("Statistic")}
-          </Link>
-          <Link
-            href="/ai"
-            className={`${styles.navItem} ${activeTab === "ai" ? styles.active : ""
-              }`}
-            onClick={() => setActiveTab("ai")}
-          >
-            {t("AI")}
-          </Link>
-
-        </nav>
+        <nav className={styles.nav}>{renderLinks()}</nav>
 
         <div className={styles.langSwitcher}>
-          <LanguageSwitcher />
+          <div className={styles.langWrapper}>
+            <LanguageSwitcher />
+          </div>
         </div>
 
         <div className={styles.socials}>
@@ -98,7 +81,7 @@ export default function Header() {
             </Link>
           ) : (
             <Link href="/login" className={styles.loginBtn}>
-              {t("Login")}
+              {t("login")}
             </Link>
           )}
         </div>
@@ -114,74 +97,7 @@ export default function Header() {
             ✕
           </div>
 
-          <nav>
-            <Link
-              href="/"
-              className={`${styles.mobileNavItem} ${activeTab === "home" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("home");
-              }}
-            >
-              {t("home")}
-            </Link>
-            <Link
-              href="/favorites"
-              className={`${styles.mobileNavItem} ${activeTab === "favorites" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("favorites");
-              }}
-            >
-              {t("favorites")}
-            </Link>
-            <Link
-              href="/about"
-              className={`${styles.mobileNavItem} ${activeTab === "about" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("about");
-              }}
-            >
-              {t("About")}
-            </Link>
-            <Link
-              href="/calendar"
-              className={`${styles.mobileNavItem} ${activeTab === "calendar" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("calendar");
-              }}
-            >
-              {t("Calendar")}
-            </Link>
-            <Link
-              href="/statistic"
-              className={`${styles.mobileNavItem} ${activeTab === "statistic" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("statistic");
-              }}
-            >
-              {t("Statistic")}
-            </Link>
-            <Link
-              href="/ai"
-              className={`${styles.mobileNavItem} ${activeTab === "ai" ? styles.active : ""
-                }`}
-              onClick={() => {
-                setMenuOpen(false);
-                setActiveTab("ai");
-              }}
-            >
-              {t("AI")}
-            </Link>
-          </nav>
+          <nav>{renderLinks(true)}</nav>
 
           <div className={styles.mobileSocials} style={{ gap: "10px" }}>
             <a href="https://www.facebook.com/goITclub/">
@@ -198,11 +114,9 @@ export default function Header() {
                 <FaUser />
               </Link>
             ) : (
-              <>
-                <Link href="/login" className={styles.loginBtn}>
-                  {t("Login")}
-                </Link>
-              </>
+              <Link href="/login" className={styles.loginBtn}>
+                {t("login")}
+              </Link>
             )}
           </div>
         </div>
