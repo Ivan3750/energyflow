@@ -127,11 +127,6 @@ export default function ExercisesList({
                   {exercise.target}
                 </p>
               </div>
-              {!token && (
-                <p className="text-xs text-red-500 mt-3">
-                  Зареєструйтеся, щоб додати
-                </p>
-              )}
             </div>
           );
         })}
