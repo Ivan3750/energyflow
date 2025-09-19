@@ -26,12 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} antialiased bg-white`}>
-      <TranslateProvider>
-  <Header />
-  <ClientWrapper>{children}</ClientWrapper>
-  <Footer />
-</TranslateProvider>
-
+        <TranslateProvider>
+          <Header />
+          <ClientWrapper>{children}</ClientWrapper>
+          <Footer />
+        </TranslateProvider>
       </body>
     </html>
   );

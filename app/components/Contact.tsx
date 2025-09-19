@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./Contact.css";
 import { useTranslate } from "../hooks/useTranslate"; 
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Contact() {
   const { t } = useTranslate();
@@ -11,6 +12,7 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,7 +23,12 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
-    alert("Form submitted!");
+    setShowModal(true);
+    setFormData({ name: "", email: "", message: "" });
+
+    setTimeout(() => {
+      setShowModal(false);
+    }, 3000);
   };
 
   return (
@@ -63,6 +70,21 @@ export default function Contact() {
 
         <button type="submit">{t("contactSubmit")}</button>
       </form>
+
+  
+{showModal && (
+  <div
+    className="contact-modal"
+    onClick={() => setShowModal(false)}
+  >
+    <div className="contact-modal-content flex flex-col items-center gap-3">
+      <FaCheckCircle className="text-gray-500 text-4xl" />
+      <p className="text-gray-700 text-center text-lg">
+        {t("formSuccess") || "Thanks for feedback!"}
+      </p>
+    </div>
+  </div>
+)}
     </section>
   );
 }
