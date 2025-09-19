@@ -39,6 +39,7 @@ export default function ExercisesModal({
   const { t } = useTranslate();
   const modalRef = useRef<HTMLDivElement>(null);
   const [isAdded, setIsAdded] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -46,12 +47,12 @@ export default function ExercisesModal({
         onClose();
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
   useEffect(() => {
+    setToken(localStorage.getItem("token") || null);
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
       const favorites: FavoriteItem[] = JSON.parse(storedFavorites);
@@ -67,11 +68,11 @@ export default function ExercisesModal({
   };
 
   const handleAddToFavorites = () => {
+    if (!token) return;
     const storedFavorites = localStorage.getItem("favorites");
     const favorites: FavoriteItem[] = storedFavorites
       ? JSON.parse(storedFavorites)
       : [];
-
     const exists = favorites.some((fav) => fav.id === exercise._id);
     if (!exists) {
       const newFavorite: FavoriteItem = {
@@ -83,17 +84,15 @@ export default function ExercisesModal({
         burnedCalories: exercise.burnedCalories,
         time: exercise.time,
       };
-
       favorites.push(newFavorite);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       setIsAdded(true);
     }
   };
 
-
   return (
     <div
-      className="fixed inset-0 flex  items-center justify-center bg-black/50 z-50"
+      className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
       onClick={handleBackdropClick}
     >
       <div
@@ -143,17 +142,26 @@ export default function ExercisesModal({
             {exercise.description}
           </p>
 
-          <div className="flex justify-center mt-4">
+          <div className="flex flex-col items-center gap-2 mt-4">
             <button
               onClick={handleAddToFavorites}
-              className="rounded-3xl py-3 px-5 w-full sm:w-auto cursor-pointer text-white bg-[#7E847F] font-[DM_Sans] hover:bg-[#5F6560] capitalize"
+              disabled={!token}
+              className={`rounded-3xl py-3 px-5 w-full sm:w-auto text-white font-[DM_Sans] capitalize ${
+                token
+                  ? "cursor-pointer bg-[#7E847F] hover:bg-[#5F6560]"
+                  : "bg-gray-300 cursor-not-allowed"
+              }`}
             >
               {isAdded ? t("added") : t("add to favorites")}
             </button>
+            {!token && (
+              <p className="text-xs text-red-500">
+                Зареєструйтеся, щоб додати
+              </p>
+            )}
           </div>
         </div>
       </div>
-
     </div>
   );
 }

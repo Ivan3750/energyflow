@@ -11,39 +11,37 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const { t } = useTranslate();
 
+  const [modal, setModal] = useState<{ open: boolean; message: string }>({
+    open: false,
+    message: "",
+  });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.currentTarget;
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const formData = new FormData(form);
-    const email = formData.get("email") as string;
-
     try {
-      const response = await fetch("https://energyflow.b.goit.study/api/subscription", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        "https://energyflow.b.goit.study/api/subscription",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       if (response.ok) {
-        alert(t("footer_success"));
-        form.reset();
+        setModal({ open: true, message: t("footer_success") });
         setEmail("");
       } else {
         const err = await response.json();
-        alert(err.message || t("footer_error"));
+        setModal({
+          open: true,
+          message: err.message || t("footer_error"),
+        });
       }
     } catch (error) {
       console.error(error);
-      alert(t("footer_network"));
+      setModal({ open: true, message: t("footer_network") });
     }
   };
 
@@ -54,6 +52,7 @@ const Footer = () => {
         src="/img/hero.png"
         alt="Background image"
         fill
+        style={{ objectFit: "cover" }}
         className={styles.footerImage}
       />
       <div className={styles.footerContent}>
@@ -91,17 +90,15 @@ const Footer = () => {
             <p className={styles.formTitle}>{t("footer_subscribe_text")}</p>
 
             <form onSubmit={handleSubmit}>
-             <input
-  type="email"
-  name="email"
-  placeholder="email"
-  className={styles.emailInput}
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  required
-/>
-
-
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                className={styles.emailInput}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <button type="submit" className={styles.sendButton}>
                 {t("footer_send")}
               </button>
@@ -125,6 +122,20 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+
+      {modal.open && (
+        <div className={styles.modalBackdrop}>
+          <div className={styles.modal}>
+            <p>{modal.message}</p>
+            <button
+              className={styles.closeBtn}
+              onClick={() => setModal({ open: false, message: "" })}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -68,6 +68,24 @@
   background: #f5f5f5;
 }
 
+.langWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.langArrow {
+  font-size: 20px;
+  color: #333; /* Підіграй під стиль сайту */
+  transition: transform 0.3s ease;
+}
+
+.langWrapper:active .langArrow {
+  transform: rotate(180deg);
+}
+
+
 .burger {
   display: none;
   font-size: 26px;

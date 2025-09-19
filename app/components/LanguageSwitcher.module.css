@@ -48,7 +48,7 @@
 
 
 /* ///////////////////////////////////////////////////////// */
-
+/* 
  .switcher {
   display: flex;
   align-items: center;
@@ -89,3 +89,99 @@
   outline: none;
   border-color: #444;
 } 
+.langArrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.langArrow.open {
+  transform: rotate(180deg);
+}
+
+.langList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+  margin-top: 4px;
+}
+
+.langOption {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.langOption:hover {
+  background: #eceff1;
+} */
+ /* /////////////////////////////// */
+
+.switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Обгортка поточної мови + стрілка */
+.langWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #eceff1;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s ease;
+}
+
+.langWrapper:hover {
+  background: #44444430;
+}
+
+.currentLang {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* Стрілка */
+.langArrow {
+  font-size: 20px;
+  color: #1f2937;
+  transition: transform 0.3s ease;
+}
+
+.langArrow.open {
+  transform: rotate(180deg);
+}
+
+/* Список мов */
+.langList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Опції мов */
+.langOption {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.langOption:hover {
+  background: #eceff1;
+}

@@ -19,7 +19,9 @@
 .heroImage {
   width: 100%;
   height: auto;
-  border-radius: 50px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
   object-fit: cover;
 }
 
@@ -41,12 +43,14 @@
 }
 
 .right {
-  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 60px;
-  background-color: #fff;
+  background: rgba(241, 241, 241, 0.389);
 }
 
 .right h1 {
