@@ -24,26 +24,27 @@ interface WorkoutEvent extends EventInit {
 
 export default function WorkoutCalendar() {
   const router = useRouter();
-
   const { t } = useTranslate();
   const calendarRef = useRef<FullCalendar>(null);
   const [events, setEvents] = useState<WorkoutEvent[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentEvent, setCurrentEvent] = useState<WorkoutEvent | null>(null);
-
   const [formTitle, setFormTitle] = useState("");
   const [formDate, setFormDate] = useState("");
   const [formDesc, setFormDesc] = useState("");
   const [formDuration, setFormDuration] = useState(60);
+  const [dateError, setDateError] = useState("");
+  const [repeat, setRepeat] = useState<
+    "none" | "daily" | "weekly" | "monthly" | "yearly"
+  >("none");
+  const [repeatCount, setRepeatCount] = useState(1);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       router.push("/not-acess");
       return;
     }
-
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (stored) setEvents(JSON.parse(stored));
   }, []);
@@ -70,17 +71,10 @@ export default function WorkoutCalendar() {
     setIsModalOpen(true);
   };
 
-  const [repeat, setRepeat] = useState<
-    "none" | "daily" | "weekly" | "monthly" | "yearly"
-  >("none");
-  const [repeatCount, setRepeatCount] = useState(1);
-
   const handleSave = () => {
-    if (!formTitle || !formDate) return;
-
+    if (!formTitle || !formDate || dateError) return;
     const startDate = new Date(formDate);
     const endDate = new Date(startDate.getTime() + formDuration * 60000);
-
     const generateRecurringEvents = (): WorkoutEvent[] => {
       if (repeat === "none")
         return [
@@ -93,20 +87,17 @@ export default function WorkoutCalendar() {
             duration: formDuration,
           },
         ];
-
       const freqMap = {
         daily: RRule.DAILY,
         weekly: RRule.WEEKLY,
         monthly: RRule.MONTHLY,
         yearly: RRule.YEARLY,
       };
-
       const rule = new RRule({
         freq: freqMap[repeat],
         count: repeatCount,
         dtstart: startDate,
       });
-
       return rule.all().map((date) => ({
         id: Date.now().toString() + date.getTime(),
         title: formTitle,
@@ -116,7 +107,6 @@ export default function WorkoutCalendar() {
         duration: formDuration,
       }));
     };
-
     const newEvents = currentEvent
       ? events.map((ev) =>
           ev.id === currentEvent.id
@@ -131,7 +121,6 @@ export default function WorkoutCalendar() {
             : ev
         )
       : [...events, ...generateRecurringEvents()];
-
     saveEvents(newEvents);
     setIsModalOpen(false);
   };
@@ -153,7 +142,6 @@ export default function WorkoutCalendar() {
         </h1>
         <p className="text-gray-600 max-w-xl">{t("subtitle")}</p>
       </section>
-
       <section className="row-start-2 flex flex-col items-center sm:items-start px-6 sm:px-20 gap-8 w-full py-5">
         <div className="flex w-full justify-between items-center">
           <div className="flex gap-2">
@@ -176,7 +164,6 @@ export default function WorkoutCalendar() {
               ▶
             </button>
           </div>
-
           <button
             onClick={() => openModal()}
             className="px-6 py-3 bg-[#444] text-white font-medium rounded-full shadow transition"
@@ -184,7 +171,6 @@ export default function WorkoutCalendar() {
             +
           </button>
         </div>
-
         <div className="rounded-2xl shadow-xl overflow-hidden border border-gray-200 w-full bg-white">
           <FullCalendar
             ref={calendarRef}
@@ -262,7 +248,6 @@ export default function WorkoutCalendar() {
           />
         </div>
       </section>
-
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl animate-fadeIn flex flex-col gap-4">
@@ -276,22 +261,26 @@ export default function WorkoutCalendar() {
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
             />
-       <input
-  type="datetime-local"
-  className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400"
-  value={formDate}
-  onChange={(e) => {
-    const value = e.target.value;
-    const time = new Date(value).getHours();
-
-    if (time >= 7 && time <= 21) {
-      setFormDate(value);
-    } else {
-      alert("Вибирайте час тільки між 07:00 і 21:00");
-    }
-  }}
-/>
-
+            <input
+              type="datetime-local"
+              className={`w-full rounded-2xl border px-4 py-3 placeholder-gray-400 ${
+                dateError ? "border-red-500" : "border-gray-300"
+              }`}
+              value={formDate}
+              onChange={(e) => {
+                const value = e.target.value;
+                const time = new Date(value).getHours();
+                if (time >= 7 && time <= 21) {
+                  setFormDate(value);
+                  setDateError("");
+                } else {
+                  setDateError("Вибирайте час тільки між 07:00 і 21:00");
+                }
+              }}
+            />
+            {dateError && (
+              <p className="text-red-500 text-sm mt-1">{dateError}</p>
+            )}
             <input
               type="number"
               min={15}
@@ -325,7 +314,6 @@ export default function WorkoutCalendar() {
                 />
               )}
             </div>
-
             <textarea
               placeholder={t("description")}
               className="w-full rounded-2xl border border-gray-300 px-4 py-3 placeholder-gray-400 resize-none h-24"
