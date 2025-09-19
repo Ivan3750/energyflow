@@ -7,13 +7,9 @@ import { useTranslate } from "../hooks/useTranslate";
 
 export default function Exercises() {
   const { t } = useTranslate();
-  const [active, setActive] = useState<
-    "muscles" | "exerciseslist" | "equipment"
-  >("muscles");
+  const [active, setActive] = useState<"muscles" | "exerciseslist" | "equipment">("muscles");
   const [selectedMuscle, setSelectedMuscle] = useState<string | null>(null);
-  const [selectedEquipment, setSelectedEquipment] = useState<string | null>(
-    null
-  );
+  const [selectedEquipment, setSelectedEquipment] = useState<string | null>(null);
 
   return (
     <div className=" flex h-full justify-center overflow-auto">
@@ -21,10 +17,9 @@ export default function Exercises() {
         <h2 className="text-[44px] font-[DM_Sans] font-semibold mb-4">
           {t("Exercises")}
           {(selectedMuscle || selectedEquipment) && (
-            <span className="capitalize text-[#7E847F] text-3xl font-medium">
-              <span className="text-[44px] text-black font-[DM_Sans] font-medium">
-                {" "}
-                /{" "}
+            <span className="capitalize text-[#7E847F] text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium">
+              <span className="text-black text-lg sm:text-xl md:text-2xl lg:text-[44px] font-[DM_Sans] font-medium">
+                {" "}/{" "}
               </span>
               {selectedMuscle || selectedEquipment}
             </span>
@@ -77,23 +72,12 @@ export default function Exercises() {
           </button>
         </div>
 
-
         <div>
-          {active === "muscles" && !selectedMuscle && (
-            <Muscles onSelectMuscle={setSelectedMuscle} />
-          )}
-          {active === "muscles" && selectedMuscle && (
-            <ExercisesList muscle={selectedMuscle} />
-          )}
-
+          {active === "muscles" && !selectedMuscle && <Muscles onSelectMuscle={setSelectedMuscle} />}
+          {active === "muscles" && selectedMuscle && <ExercisesList muscle={selectedMuscle} />}
           {active === "exerciseslist" && <ExercisesList />}
-
-          {active === "equipment" && !selectedEquipment && (
-            <Equipment onSelectEquipment={setSelectedEquipment} />
-          )}
-          {active === "equipment" && selectedEquipment && (
-            <ExercisesList equipment={selectedEquipment} />
-          )}
+          {active === "equipment" && !selectedEquipment && <Equipment onSelectEquipment={setSelectedEquipment} />}
+          {active === "equipment" && selectedEquipment && <ExercisesList equipment={selectedEquipment} />}
         </div>
       </section>
     </div>

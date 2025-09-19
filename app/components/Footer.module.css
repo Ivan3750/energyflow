@@ -42,7 +42,7 @@
 
 .leftColumn {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 150px; 
 }
 
@@ -118,6 +118,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .formTitle {
@@ -221,6 +222,8 @@
 
   .leftColumn {
     gap: 20px;
+    flex-direction: column;
+    
   }
 
   .footerTitle {
@@ -270,7 +273,11 @@
     align-items: center;
     gap: 30px;
   }
-
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 150px; 
+}
   .leftColumn,
   .rightColumn {
     width: 100%;
@@ -296,7 +303,7 @@
   }
 }
 
-/* Десктопы большие экраны */
+
 @media (min-width: 1200px) {
   .footerWrapper {
     padding: 40px;
@@ -341,3 +348,6 @@
 .closeBtn:hover {
   background: #222;
 }
+
+
+

@@ -274,7 +274,7 @@ export default function WorkoutCalendar() {
                   setFormDate(value);
                   setDateError("");
                 } else {
-                  setDateError("Вибирайте час тільки між 07:00 і 21:00");
+                  setDateError(t("ChasText"));
                 }
               }}
             />
