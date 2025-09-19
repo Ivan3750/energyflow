@@ -177,7 +177,7 @@
   
   "about": "O nas",
   "calendar": "Kalendarz",
-  "contact": "Kontakt",
+  "Contact": "Kontakt",
   "statistic": "Statystyka",
   "ai": "AI",
 
@@ -191,7 +191,8 @@
   "formSuccess": "Sukces formularza",
   "added":"Dodano",
   "add to favorites":"Dodaj do ulubionych",
-  "notReg_text":"Zarejestruj się, aby dodać"
+  "notReg_text":"Zarejestruj się, aby dodać",
+  "ChasText":"Wybierz godzinę tylko pomiędzy 07:00 a 21:00"
 
 
 }
