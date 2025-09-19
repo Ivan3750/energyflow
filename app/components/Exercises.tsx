@@ -16,7 +16,7 @@ export default function Exercises() {
   );
 
   return (
-    <div className="w-full h-[1200px]  flex justify-center">
+    <div className="w-full h-[930px] flex justify-center">
       <section className="bg-[#E8E8E8]  w-full h-full rounded-[50px] px-[48px] py-[55px]">
         <h2 className="text-[44px] font-[DM_Sans] font-semibold mb-4">
           {t("Exercises")}
