@@ -24,11 +24,11 @@ export default function Header() {
   const navItems = [
     { path: "/", label: t("home") },
     { path: "/favorites", label: t("favorites") },
-    { path: "/about", label: t("about") },
-    { path: "/calendar", label: t("calendar") },
-    { path: "/contact", label: t("contact") },
-    { path: "/statistic", label: t("statistic") },
-    { path: "/ai", label: t("ai") },
+    { path: "/about", label: t("About") },
+    { path: "/calendar", label: t("Calendar") },
+    { path: "/contact", label: t("Contact") },
+    { path: "/statistic", label: t("Statistic") },
+    { path: "/ai", label: t("Ai") },
   ];
 
   const renderLinks = (isMobile = false) =>
