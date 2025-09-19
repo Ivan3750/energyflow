@@ -98,20 +98,17 @@ export default function ExercisesModal({
     >
       <div
         ref={modalRef}
-        className="relative flex flex-col sm:flex-row bg-white rounded-2xl p-6 sm:p-[40px] w-full max-w-[732px] shadow-lg"
-      >
+        className="
+  relative flex flex-col sm:flex-row 
+  bg-white rounded-2xl p-6 sm:p-[40px] shadow-lg w-[335px] sm:w-[690px] md:w-[732px]  
+"      >
         <button
           onClick={onClose}
           className="absolute top-4 right-6 text-xl text-black cursor-pointer"
         >
           X
         </button>
-
-        <img
-          src={exercise.gifUrl}
-          alt={exercise.name}
-          className="w-full sm:w-[270px] mb-4 sm:mb-0 mx-auto"
-        />
+        <div className="flex items-center">    <img src={exercise.gifUrl} alt={exercise.name} className=" w-[270px] !h-[280px] sm:w-[270px] mb-4 sm:mb-0 mx-auto" /></div>
 
         <div className="ml-0 sm:ml-4 flex-1 flex flex-col">
           <h2 className="text-2xl mb-2 font-bold capitalize">{exercise.name}</h2>

@@ -33,7 +33,7 @@ export default function Muscles({
 
     return (
         <div className="w-full flex justify-center">
-            <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-x-5 gap-y-10">
                 {data.map((muscle) => {
                     const isSelected = selectedMuscle === muscle.name;
                     return (
