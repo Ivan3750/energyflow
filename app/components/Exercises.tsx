@@ -12,7 +12,7 @@ export default function Exercises() {
   const [selectedEquipment, setSelectedEquipment] = useState<string | null>(null);
 
   return (
-    <div className="flex justify-center w-full h-full overflow-auto px-4 sm:px-6 md:px-8 lg:px-16 py-6 sm:py-8 md:py-12">
+    <div className="flex justify-center w-full h-full overflow-auto ">
       <section className="bg-[#E8E8E8] w-full max-w-[1200px] rounded-[50px] px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8 md:py-12 lg:py-16">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-[DM_Sans] font-semibold mb-4">
           {t("Exercises")}
