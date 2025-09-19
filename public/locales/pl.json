@@ -179,6 +179,13 @@
   "calendar": "Kalendarz",
   "contact": "Kontakt",
   "statistic": "Statystyka",
-  "ai": "Asystent AI"
+  "ai": "Asystent AI",
+
+   "none": "Brak",
+  "daily": "Codziennie",
+  "weekly": "Co tydzień",
+  "monthly": "Co miesiąc",
+  "yearly": "Co rok",
+  "repeat": "Powtarzanie"
 
 }
