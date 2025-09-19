@@ -167,7 +167,14 @@
   "calendar": "Calendar",
   "contact": "Contact",
   "statistic": "Statistics",
-  "ai": "AI Assistant"
+  "ai": "AI Assistant",
+
+    "none": "None",
+  "daily": "Daily",
+  "weekly": "Weekly",
+  "monthly": "Monthly",
+  "yearly": "Yearly",
+  "repeat": "Repeat"
 
 
 
