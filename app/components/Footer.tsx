@@ -47,6 +47,7 @@ const Footer = () => {
 
   return (
     <div className={styles.footerWrapper}>
+      {/* Фон и затемнение */}
       <div className={styles.footerOverlay}></div>
       <Image
         src="/img/hero.png"
@@ -55,45 +56,53 @@ const Footer = () => {
         style={{ objectFit: "cover" }}
         className={styles.footerImage}
       />
+
+      {/* Контент футера */}
       <div className={styles.footerContent}>
+        {/* Левая колонка */}
         <div className={styles.leftColumn}>
           <div className={styles.brandInfo}>
             <Link href="/" passHref>
               <span className={styles.brandName}>energy.flow</span>
             </Link>
-            <div className={styles.socialIcons}>
-              <Link href="https://facebook.com" passHref>
-                <div className={styles.iconContainer}>
-                  <FaFacebookF className={styles.socialIcon} />
-                </div>
-              </Link>
-              <Link href="https://instagram.com" passHref>
-                <div className={styles.iconContainer}>
-                  <FaInstagram className={styles.socialIcon} />
-                </div>
-              </Link>
-              <Link href="https://youtube.com" passHref>
-                <div className={styles.iconContainer}>
-                  <FaYoutube className={styles.socialIcon} />
-                </div>
-              </Link>
-            </div>
           </div>
+          <div className={styles.socialIcons}>
+            <Link href="https://facebook.com" passHref>
+              <div className={styles.iconContainer}>
+                <FaFacebookF className={styles.socialIcon} />
+              </div>
+            </Link>
+            <Link href="https://instagram.com" passHref>
+              <div className={styles.iconContainer}>
+                <FaInstagram className={styles.socialIcon} />
+              </div>
+            </Link>
+            <Link href="https://youtube.com" passHref>
+              <div className={styles.iconContainer}>
+                <FaYoutube className={styles.socialIcon} />
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Центр */}
+        <div className={styles.centerColumn}>
           <h1 className={styles.footerTitle}>
             {t("footer_title1")}{" "}
             <span className={styles.highlight}>{t("footer_title_em")}</span>{" "}
             {t("footer_title2")}
           </h1>
         </div>
+
+        {/* Правая колонка */}
         <div className={styles.rightColumn}>
           <div className={styles.subscriptionForm}>
             <p className={styles.formTitle}>{t("footer_subscribe_text")}</p>
-
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.inlineForm}>
               <input
                 type="email"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
                 className={styles.emailInput}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -106,8 +115,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      
       <footer className={styles.footer}>
-        <div className={styles.footerContent}>
+        <div className={styles.footerContentBottom}>
           <p className={styles.copyright}>
             &copy; 2025 Energy Flow. {t("footer_rights")}
           </p>
@@ -123,6 +134,7 @@ const Footer = () => {
         </div>
       </footer>
 
+      
       {modal.open && (
         <div className={styles.modalBackdrop}>
           <div className={styles.modal}>
