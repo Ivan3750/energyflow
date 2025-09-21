@@ -43,8 +43,8 @@ export default function Home() {
 
   return (
     <main className="p-8 space-y-24 bg-white">
-      <section className=" mx-auto">
-        <h2 className="text-[44px] text-center font-semibold !mb-4">
+      <section className="mx-auto">
+        <h2 className="text-[44px] text-center font-semibold mb-6">
           {t("ourAdvantages")}
         </h2>
         <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -76,11 +76,11 @@ export default function Home() {
       </section>
 
       <section className="space-y-12">
-        <h2 className="text-[44px] text-center font-semibold !mb-4">
+        <h2 className="text-[44px] text-center font-semibold mb-6">
           {t("personalTraining")}
         </h2>
 
-        <div className="flex flex-col md:flex-row gap-6  mx-auto">
+        <div className="flex flex-col md:flex-row gap-6 mx-auto">
           <div className="flex-1 rounded-[40px] overflow-hidden">
             <Image
               src={s2}
@@ -95,7 +95,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row-reverse gap-6  mx-auto">
+        <div className="flex flex-col md:flex-row-reverse gap-6 mx-auto">
           <div className="flex-1 rounded-[40px] overflow-hidden">
             <Image
               src={s3}
@@ -111,26 +111,75 @@ export default function Home() {
         </div>
       </section>
 
-      <section className=" mx-auto space-y-8">
-        <h2 className="text-[44px] text-center font-semibold !mb-4">
+      <section className="mx-auto space-y-8">
+        <h2 className="text-[44px] text-center font-semibold mb-6">
           {t("clientReviews")}
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {users.map(({ name, icon, comment }, i) => (
             <div
               key={i}
-              className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6  w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300"
+              className="bg-[#1e1e1e] border border-[#2c2c2c] rounded-[40px] p-6 w-full shadow-lg backdrop-blur-sm hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-[#2f2f2f] flex items-center justify-center border border-[#3a3a3a] text-white font-bold text-lg">
-                  A
+                  {icon}
                 </div>
                 <p className="text-white text-sm">{name}</p>
               </div>
-              <div className="flex gap-1 mb-3"></div>
               <p className="text-gray-300 text-sm leading-relaxed">{comment}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <h2 className="text-[32px] font-semibold text-center">Зміни себе вже сьогодні!</h2>
+      <div className="relative flex justify-center items-center my-24 h-[400px]">
+        <div className="absolute w-[440px] h-[420px] bg-gray-300 rounded-full z-0" />
+        <img
+          src="https://static.tildacdn.com/tild3961-6236-4630-b266-353563303964/WhatsApp_Image_2021-.jpeg"
+          alt="Sport"
+          className="w-[390px] h-[390px] rounded-full object-cover relative z-10"
+        />
+        <div className="absolute text-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-1/3 bg-black/60 p-4 rounded-2xl">
+          <h3 className="text-base mb-2">Індивідуальні тренування</h3>
+          <p className="text-sm">Програма підлаштована під ваші потреби та ритм життя.</p>
+        </div>
+      </div>
+
+      <section className="flex flex-col gap-8">
+        <div className="flex flex-wrap gap-6 justify-center items-stretch">
+          <div className="flex-1 min-w-[280px] max-w-[500px] bg-black text-white p-8 rounded-[40px] flex flex-col justify-center">
+            <span className="flex items-center gap-2 mb-2">
+              <User /> Персональний підхід
+            </span>
+            <p>
+              Наші тренери приділяють увагу кожному клієнту. Ми стежимо за технікою виконання вправ та
+              адаптуємо програму залежно від вашого прогресу. Ви завжди отримаєте підтримку та мотивацію.
+            </p>
+          </div>
+          <img
+            className="flex-1 min-w-[280px] max-w-[500px] h-[250px] object-cover rounded-[40px]"
+            src="https://img.championat.com/i/p/y/1631097555885234001.jpg"
+            alt="Training"
+          />
+        </div>
+
+        <div className="flex flex-wrap gap-6 justify-center items-stretch">
+          <img
+            className="flex-1 min-w-[280px] max-w-[500px] h-[250px] object-cover rounded-[40px]"
+            src="https://feromon.ua/wp-content/uploads/2021/07/IMG_9515-1024x683.jpg"
+            alt="Training"
+          />
+          <div className="flex-1 min-w-[280px] max-w-[500px] bg-black text-white p-8 rounded-[40px] flex flex-col justify-center">
+            <span className="flex items-center gap-2 mb-2">
+              <User /> Результати помітні вже через місяць
+            </span>
+            <p>
+              Завдяки регулярним тренуванням та персоналізованій програмі ви швидко помітите зміни у своїй фізичній формі,
+              підвищення енергії та загальне покращення самопочуття. EnergyFlow робить спорт приємним та ефективним.
+            </p>
+          </div>
         </div>
       </section>
     </main>
