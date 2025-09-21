@@ -163,8 +163,7 @@
   background: rgba(255, 255, 255, 0.2); 
 }
 
-/* Медіа для мобіли */
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .navItem{
     font-size: 12px;
   }
@@ -175,5 +174,100 @@
 
   .burger {
     display: block;
+  }
+}
+
+
+ @media (min-width: 1024px) {
+  .header {
+    padding: 16px 60px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .navItem {
+    font-size: 16px;
+  }
+}
+
+ @media (max-width: 1023px) and (min-width: 769px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .nav {
+    gap: 6px;
+  }
+  .langWrapper{
+    display: none;
+  }
+  .navItem {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+
+  .socials a {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+}
+
+ @media (max-width: 768px) {
+  .header {
+    padding: 12px 20px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav,
+  .socials {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+    font-size: 26px;
+  }
+
+  .mobileMenu nav {
+    gap: 16px;
+  }
+
+  .mobileNavItem {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+
+  .loginBtn {
+    width: auto !important;
+    padding: 8px 20px;
+  }
+}
+
+ @media (max-width: 400px) {
+  .logo {
+    font-size: 16px;
+  }
+
+  .burger {
+    font-size: 22px;
+  }
+
+  .mobileNavItem {
+    font-size: 14px;
+    padding: 6px 16px;
+  }
+
+  .mobileSocials {
+    gap: 12px;
   }
 }

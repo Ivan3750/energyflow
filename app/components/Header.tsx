@@ -66,15 +66,7 @@ export default function Header() {
         </div>
 
         <div className={styles.socials}>
-          <a href="https://www.facebook.com/goITclub/">
-            <FaFacebookF />
-          </a>
-          <a href="https://www.instagram.com/goitclub/">
-            <FaInstagram />
-          </a>
-          <a href="https://www.youtube.com/c/GoIT">
-            <FaYoutube />
-          </a>
+      
           {isLoggedIn ? (
             <Link href="/settings">
               <FaUser />
