@@ -180,7 +180,15 @@
   "added":"Added",
   "add to favorites":"Add to favorites",
   "notReg_text":"Sign up to add",
-  "ChasText":"Choose a time only between 07:00 and 21:00"
+  "ChasText":"Choose a time only between 07:00 and 21:00",
+
+  "changeYourself": "Change yourself today!",
+  "individualTraining": "Individual training",
+  "programPersonalized": "The program is tailored to your needs and lifestyle.",
+  "personalApproach": "Personal approach",
+  "personalApproachText": "Our trainers pay attention to every client. We monitor exercise technique and adjust the program according to your progress. You will always receive support and motivation.",
+  "resultsInMonth": "Results visible in just one month",
+  "resultsInMonthText": "Thanks to regular training and a personalized program, you will quickly notice changes in your physical condition, increased energy, and overall well-being. EnergyFlow makes sports enjoyable and effective."
 
 
 

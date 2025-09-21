@@ -192,7 +192,15 @@
   "added":"Dodano",
   "add to favorites":"Dodaj do ulubionych",
   "notReg_text":"Zarejestruj się, aby dodać",
-  "ChasText":"Wybierz godzinę tylko pomiędzy 07:00 a 21:00"
+  "ChasText":"Wybierz godzinę tylko pomiędzy 07:00 a 21:00",
+
+  "changeYourself": "Zmień siebie już dziś!",
+  "individualTraining": "Indywidualne treningi",
+  "programPersonalized": "Program dostosowany do Twoich potrzeb i rytmu życia.",
+  "personalApproach": "Indywidualne podejście",
+  "personalApproachText": "Nasi trenerzy zwracają uwagę na każdego klienta. Dbamy o technikę wykonywania ćwiczeń i dostosowujemy program w zależności od Twoich postępów. Zawsze otrzymasz wsparcie i motywację.",
+  "resultsInMonth": "Efekty widoczne już po miesiącu",
+  "resultsInMonthText": "Dzięki regularnym treningom i spersonalizowanemu programowi szybko zauważysz zmiany w swojej kondycji fizycznej, wzrost energii oraz ogólną poprawę samopoczucia. EnergyFlow sprawia, że sport staje się przyjemny i skuteczny."
 
 
 }

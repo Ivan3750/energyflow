@@ -84,7 +84,7 @@ export default function Home() {
           <div className="flex-1 rounded-[40px] overflow-hidden">
             <Image
               src={s2}
-              alt="Зал"
+              alt={t("hallAlt")}
               className="w-full h-full object-cover"
               width={600}
               height={400}
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="flex-1 rounded-[40px] overflow-hidden">
             <Image
               src={s3}
-              alt="Тренажери"
+              alt={t("machinesAlt")}
               className="w-full h-full object-cover"
               width={600}
               height={400}
@@ -133,7 +133,9 @@ export default function Home() {
         </div>
       </section>
 
-      <h2 className="text-[32px] font-semibold text-center">Зміни себе вже сьогодні!</h2>
+      <h2 className="text-[32px] font-semibold text-center">
+        {t("changeYourself")}
+      </h2>
       <div className="relative flex justify-center items-center my-24 h-[400px]">
         <div className="absolute w-[440px] h-[420px] bg-gray-300 rounded-full z-0" />
         <img
@@ -142,8 +144,8 @@ export default function Home() {
           className="w-[390px] h-[390px] rounded-full object-cover relative z-10"
         />
         <div className="absolute text-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-1/3 bg-black/60 p-4 rounded-2xl">
-          <h3 className="text-base mb-2">Індивідуальні тренування</h3>
-          <p className="text-sm">Програма підлаштована під ваші потреби та ритм життя.</p>
+          <h3 className="text-base mb-2">{t("individualTraining")}</h3>
+          <p className="text-sm">{t("programPersonalized")}</p>
         </div>
       </div>
 
@@ -151,12 +153,9 @@ export default function Home() {
         <div className="flex flex-wrap gap-6 justify-center items-stretch">
           <div className="flex-1 min-w-[280px] max-w-[500px] bg-black text-white p-8 rounded-[40px] flex flex-col justify-center">
             <span className="flex items-center gap-2 mb-2">
-              <User /> Персональний підхід
+              <User /> {t("personalApproach")}
             </span>
-            <p>
-              Наші тренери приділяють увагу кожному клієнту. Ми стежимо за технікою виконання вправ та
-              адаптуємо програму залежно від вашого прогресу. Ви завжди отримаєте підтримку та мотивацію.
-            </p>
+            <p>{t("personalApproachText")}</p>
           </div>
           <img
             className="flex-1 min-w-[280px] max-w-[500px] h-[250px] object-cover rounded-[40px]"
@@ -173,12 +172,9 @@ export default function Home() {
           />
           <div className="flex-1 min-w-[280px] max-w-[500px] bg-black text-white p-8 rounded-[40px] flex flex-col justify-center">
             <span className="flex items-center gap-2 mb-2">
-              <User /> Результати помітні вже через місяць
+              <User /> {t("resultsInMonth")}
             </span>
-            <p>
-              Завдяки регулярним тренуванням та персоналізованій програмі ви швидко помітите зміни у своїй фізичній формі,
-              підвищення енергії та загальне покращення самопочуття. EnergyFlow робить спорт приємним та ефективним.
-            </p>
+            <p>{t("resultsInMonthText")}</p>
           </div>
         </div>
       </section>
